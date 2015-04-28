@@ -42,7 +42,7 @@ classdef MyPerceptron < handle
         
         % xs es una matriz en donde cada fila es un input
         % zs es un vector en donde cada posicion coincide con el resultado
-        function learning(this, xs, zs, min_error, max_epoch)
+        function train(this, xs, zs, min_error, max_epoch)
             error = min_error+1;
             epoch = 0;
             while (error > min_error) && (epoch < max_epoch)
