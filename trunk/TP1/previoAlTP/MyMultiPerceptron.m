@@ -46,7 +46,7 @@ classdef MyMultiPerceptron < handle
             % cada capa con la siguiente.
             for i = 1:(size(arq,2)-1)
                 % Aplico la funcion de inicializacion
-    	    	this.layers{i} = this.fi(rand(arq(i)+1, arq(i+1)));
+    	    	this.layers{i} = 0.1*this.fi(rand(arq(i)+1, arq(i+1)));
             end
         end
         
@@ -65,7 +65,7 @@ classdef MyMultiPerceptron < handle
             for i = 1:length(this.layers)
                 % Agrega el bias
                 Y{i} = [Y{i} -1];
-                % Aplica activacion a cada posición del resultado de Y*W
+                % Aplica activacion a cada posiciï¿½n del resultado de Y*W
                 % Nota: Es el map de matlab, nada de que asustarse.
                 Y{i+1} = arrayfun(this.fa, Y{i}*this.layers{i});
             end
@@ -86,23 +86,28 @@ classdef MyMultiPerceptron < handle
                     Y = this.propagateFeed(x);
                     [e, ldeltas] = this.correction(Y, z, ldeltas);
                     error = error + e;
+                    this.adaptation(ldeltas);
                 end
-                this.adaptation(ldeltas);
             end
         end
         
         function [error, ldeltas] = correction(this, Y, z, ldeltas)
             y = Y{length(Y)}; % Tomo el resultado final para inicializar E
             E = (z-y);
-            for i = size(Y):-1:1
-                E = E .* arrayfun(this.fd, Y{i}*this.layers{i});
+            error = sum(E.^2);
+            % size(this.layers) = L-1
+            for i = length(this.layers):-1:1
+                %size(Y{i}')
+                %size(E)
+                %''
+                % NOTE: No deberia sacarle el -1 a Y{i}' ?
+                E = E .* arrayfun(this.fd, Y{i+1});
                 ldeltas{i} = ldeltas{i} + this.gamma*(Y{i}' * E);
                 E = E*(this.layers{i})';
                 % No tengo en cuenta el error del bias!
                 % NOTE: Como coinciden aca los tamanios?
-                % E = E(1:length(E)-1);
+                E = E(1:length(E)-1);
             end
-            error = sum(E.^2);
         end
         
         function ldeltas = resetDeltas(this)

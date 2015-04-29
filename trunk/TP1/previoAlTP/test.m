@@ -11,7 +11,11 @@ function test(group)
         p.layers{1}
         p.layers{2}
         xs = [0 0; 0 1; 1 0; 1 1];
-        zs = [-1; -1; -1; 1];
+        zs = [-1; 1; 1; 1];
+        
+        %p.layers{1} = [6.382149 4.090566; 6.535708 3.949229; 2.701877 6.121340];
+        %p.layers{2} = [9.109082; -8.943964; 4.334059];
+        
         p.train(xs, zs, 0, 10000);
         p.feedForward([0 0])
         p.feedForward([0 1])
