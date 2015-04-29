@@ -30,9 +30,9 @@ function [ error, W_list, neuronas ] = training(entrada, salida, W_list)
 	for i = 1:size(W_list,2)
 		delta_W_list{i} = zeros(size(W_list{i},1), size(W_list{i},2));
 	end
-	perm = randperm(size(entrada,2));
+	perm = randperm(size(entrada,1));
 	%perm = [1:size(entrada,2)];
-	for i = length(perm)
+	for i = 1:length(perm)
 		neuronas = activation(entrada(perm(i),:), W_list);
 		[e, delta_W_list] = correction(salida(perm(i),:), W_list, delta_W_list, neuronas);
 		error = error + e;
@@ -53,7 +53,7 @@ function [ e, delta_W_list ] = correction(Z_h, W_list, delta_W_list, Y)
 	alpha = 0.2; % Learning rate
 	L = size(W_list,2);
 	E = Z_h - Y{L+1}; % Si L es la cantidad de matrices de pesos, hay L + 1 capas y la última es el resultado
-	e = norm(E);
+	e = sum(E*E');
 
 	for i = 1:L
 		E = E .* fP(Y{L+1-i} * W_list{L+1-i});
