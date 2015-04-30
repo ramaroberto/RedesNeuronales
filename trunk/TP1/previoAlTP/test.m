@@ -7,21 +7,24 @@ function test(group)
     end
     
     if strcmp(group, 'multi-xor')
-        p = MyMultiPerceptron([2, 2, 1], 0.10, 'bipolar')
-        p.layers{1}
-        p.layers{2}
+        % [2 2 3 1] significa:
+        % 2 dimensiones de entrada
+        % 2 neuronas en la primera capa oculta
+        % 3 neuronas en la segunda capa oculta
+        % 1 dimension de salida
+        mp = MyMultiPerceptron([2 2 3 1], 0.10, 'bipolar')
         xs = [0 0; 0 1; 1 0; 1 1];
-        zs = [-1; 1; 1; 1];
+        zs = [-1; 1; 1; -1];
         
         %p.layers{1} = [6.382149 4.090566; 6.535708 3.949229; 2.701877 6.121340];
         %p.layers{2} = [9.109082; -8.943964; 4.334059];
         
-        p.train(xs, zs, 0, 10000);
-        p.feedForward([0 0])
-        p.feedForward([0 1])
-        p.feedForward([1 0])
-        p.feedForward([1 1])
-        clear p;
+        error = mp.train(xs, zs, 0, 1000)
+        mp.feedForward([0 0])
+        mp.feedForward([0 1])
+        mp.feedForward([1 0])
+        mp.feedForward([1 1])
+        clear mp;
     end
 
     if strcmp(group, 'perceptron-xor')

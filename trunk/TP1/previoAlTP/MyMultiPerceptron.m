@@ -1,7 +1,6 @@
 classdef MyMultiPerceptron < handle
     properties
-        % TODO: Renombrar "layers" a lweights
-        layers
+        weights
         gamma
         fi
         fa
@@ -38,15 +37,15 @@ classdef MyMultiPerceptron < handle
             this.fa = fa;
             this.fd = fd;
             
-            this.initLayers(arq);
+            this.initWeights(arq);
         end
         
-        function initLayers(this, arq)
+        function initWeights(this, arq)
             % Construye las matrices de pesos relacionando
             % cada capa con la siguiente.
             for i = 1:(size(arq,2)-1)
                 % Aplico la funcion de inicializacion
-    	    	this.layers{i} = 0.1*this.fi(rand(arq(i)+1, arq(i+1)));
+    	    	this.weights{i} = 0.1*this.fi(rand(arq(i)+1, arq(i+1)));
             end
         end
         
@@ -62,18 +61,18 @@ classdef MyMultiPerceptron < handle
         % x es un vector fila
         function Y = propagateFeed(this, x)
             Y{1} = x;
-            for i = 1:length(this.layers)
+            for i = 1:length(this.weights)
                 % Agrega el bias
                 Y{i} = [Y{i} -1];
                 % Aplica activacion a cada posici�n del resultado de Y*W
                 % Nota: Es el map de matlab, nada de que asustarse.
-                Y{i+1} = arrayfun(this.fa, Y{i}*this.layers{i});
+                Y{i+1} = arrayfun(this.fa, Y{i}*this.weights{i});
             end
         end
         
         % xs es una matriz en donde cada fila es un input
         % zs es una matriz en donde cada fila coincide con el resultado
-        function train(this, xs, zs, min_error, max_epoch)
+        function error = train(this, xs, zs, min_error, max_epoch)
             error = min_error + 1;
             epoch = 0;
             while (error > min_error) && (epoch < max_epoch)
@@ -95,33 +94,36 @@ classdef MyMultiPerceptron < handle
             y = Y{length(Y)}; % Tomo el resultado final para inicializar E
             E = (z-y);
             error = sum(E.^2);
-            % size(this.layers) = L-1
-            for i = length(this.layers):-1:1
-                %size(Y{i}')
-                %size(E)
-                %''
-                % NOTE: No deberia sacarle el -1 a Y{i}' ?
-                E = E .* arrayfun(this.fd, Y{i+1});
+            for i = length(this.weights):-1:1
+                % NOTE: Si se quiere mas performance, corregir esto.
+                % No es lo mismo Y{i} * this.layers{i}, que Y{i+1}.
+                % Como no es lo mismo un metro de encaje negro,
+                % que un negro te encaje un metro. La igualdad es
+                % Y{i} * this.layers{i} = Y{i+1}(1:length(Y{i+1}-1))
+                % Se complica porque el primer Y no tiene el -1 y rompe.
+                
+                % Multiplico punto a punto el error por la derivada
+                % de la funcion de activacion valuada en el resultado
+                % de esa capa.
+                E = E .* arrayfun(this.fd, Y{i}*this.weights{i});
                 ldeltas{i} = ldeltas{i} + this.gamma*(Y{i}' * E);
-                E = E*(this.layers{i})';
-                % No tengo en cuenta el error del bias!
-                % NOTE: Como coinciden aca los tamanios?
-                E = E(1:length(E)-1);
+                E = E*(this.weights{i})';
+                % No tengo en cuenta el error del bias! Al ser la 
+                % traspuesta de los layers saco la ultima columna.
+                E = E(:,1:(size(E,2)-1));
             end
         end
         
         function ldeltas = resetDeltas(this)
-            ldeltas{length(this.layers)} = [];
-            for i = 1:length(this.layers)
-                ldeltas{i} = zeros(size(this.layers{i}));
+            ldeltas{length(this.weights)} = [];
+            for i = 1:length(this.weights)
+                ldeltas{i} = zeros(size(this.weights{i}));
             end
         end
         
         function adaptation(this, ldeltas)
-            for i = 1:length(this.layers)
-                this.layers{i} = this.layers{i} + ldeltas{i};
-                % Manda todo a cero
-                %ldeltas{i} = ldeltas{i} .* 0; % Ya lo estoy haciendo >L82
+            for i = 1:length(this.weights)
+                this.weights{i} = this.weights{i} + ldeltas{i};
             end
         end
         
