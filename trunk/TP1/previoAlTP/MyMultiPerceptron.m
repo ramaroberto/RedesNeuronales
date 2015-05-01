@@ -5,10 +5,12 @@ classdef MyMultiPerceptron < handle
         fi
         fa
         fd
+        fal
+        fdl
     end
     
     methods
-        function this = MyMultiPerceptron(arq, gamma, mode, fi, fa, fd)
+        function this = MyMultiPerceptron(arq, gamma, mode, fi, fa, fd, fal, fdl)
             if nargin < 3
                 mode = 'bipolar';
             end
@@ -21,14 +23,30 @@ classdef MyMultiPerceptron < handle
             % TODO: Chequear las derivadas
             if not(strcmp(mode, 'custom'))
                 switch mode
+                    case 'binary-regresion'
+                        fi = @(x) x; % entre [0,1]
+                        fa = @(t) 1/(1+exp(1)^(-t));
+                        fd = @(t) fa(t)*(1-fa(t));
+                        fal = @(t) t;
+                        fdl = @(t) 1;
                     case 'binary'
                         fi = @(x) x; % entre [0,1]
                         fa = @(t) 1/(1+exp(1)^(-t));
                         fd = @(t) fa(t)*(1-fa(t));
+                        fal = fa;
+                        fdl = fd;
+                    case 'bipolar-regresion'
+                        fi = @(x) x*2-1; % entre [-1,1]
+                        fa = @(t) tanh(t);
+                        fd = @(t) 1-(tanh(t)^2);
+                        fal = @(t) t;
+                        fdl = @(t) 1;
                     otherwise % bipolar
                         fi = @(x) x*2-1; % entre [-1,1]
                         fa = @(t) tanh(t);
                         fd = @(t) 1-(tanh(t)^2);
+                        fal = fa;
+                        fdl = fd;
                 end
             end
             
@@ -36,6 +54,8 @@ classdef MyMultiPerceptron < handle
             this.fi = fi;
             this.fa = fa;
             this.fd = fd;
+            this.fal = fal;
+            this.fdl = fdl;
             
             this.initWeights(arq);
         end
@@ -66,7 +86,11 @@ classdef MyMultiPerceptron < handle
                 Y{i} = [Y{i} -1];
                 % Aplica activacion a cada posici�n del resultado de Y*W
                 % Nota: Es el map de matlab, nada de que asustarse.
-                Y{i+1} = arrayfun(this.fa, Y{i}*this.weights{i});
+                if i == length(this.weights)
+                    Y{i+1} = arrayfun(this.fal, Y{i}*this.weights{i});
+                else
+                    Y{i+1} = arrayfun(this.fa, Y{i}*this.weights{i});
+                end
             end
         end
         
@@ -105,7 +129,11 @@ classdef MyMultiPerceptron < handle
                 % Multiplico punto a punto el error por la derivada
                 % de la funcion de activacion valuada en el resultado
                 % de esa capa.
-                E = E .* arrayfun(this.fd, Y{i}*this.weights{i});
+                if i == length(this.weights)
+                    E = E .* arrayfun(this.fdl, Y{i}*this.weights{i});
+                else
+                    E = E .* arrayfun(this.fd, Y{i}*this.weights{i});
+                end
                 ldeltas{i} = ldeltas{i} + this.gamma*(Y{i}' * E);
                 E = E*(this.weights{i})';
                 % No tengo en cuenta el error del bias! Al ser la 
