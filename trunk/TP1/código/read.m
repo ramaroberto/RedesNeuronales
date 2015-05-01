@@ -10,7 +10,7 @@ function [ input, output ] = read(fileName, bipolar)
 		    line = fgets(fid);
 		    if line(1) == 'M'
 		    	if bipolar
-		    		valor = -1
+		    		valor = -1;
 		    	else
 		    		valor = 0;
 		    	end
