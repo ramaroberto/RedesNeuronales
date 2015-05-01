@@ -10,13 +10,13 @@
 function [] = crearParticiones(fileName, folds, outDir)
 	[status, result] = system( ['wc -l ', fileName] );
 	number = result(1:3);
-    numlines = str2num(number)-1;
+    numlines = str2num(number);
 
 	partition = cvpartition(numlines,'KFold',folds);
 
 	for fold = 1:partition.NumTestSets
-		outNameTrain = [outDir 'dataset' fileName(length(fileName)-4) '_train_fold' num2str(fold) '.txt'];
-		outNameTest = [outDir 'dataset' fileName(length(fileName)-4) '_test_fold' num2str(fold) '.txt'];
+		outNameTrain = [outDir 'train_fold' num2str(fold) '_dataset' fileName(length(fileName)-4) '.txt'];
+		outNameTest = [outDir 'test_fold' num2str(fold) '_dataset' fileName(length(fileName)-4) '.txt'];
 		fidTrain = fopen(outNameTrain,'w');
 		fidTest = fopen(outNameTest,'w');
 		i = 1;
