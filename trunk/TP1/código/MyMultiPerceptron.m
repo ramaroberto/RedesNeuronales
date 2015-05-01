@@ -96,11 +96,12 @@ classdef MyMultiPerceptron < handle
         
         % xs es una matriz en donde cada fila es un input
         % zs es una matriz en donde cada fila coincide con el resultado
-        function error = train(this, xs, zs, min_error, max_epoch)
-            error = min_error + 1;
+        function [ep_errors, ferror] = train(this, xs, zs, min_error, max_epoch)
+            ep_errors = [];
+            ferror = min_error + 1;
             epoch = 0;
-            while (error > min_error) && (epoch < max_epoch)
-                error = 0;
+            while (ferror > min_error) && (epoch < max_epoch)
+                ferror = 0;
                 epoch = epoch + 1;
                 ldeltas = this.resetDeltas();
                 for i = 1:size(xs, 1)
@@ -108,9 +109,10 @@ classdef MyMultiPerceptron < handle
                     z = zs(i);
                     Y = this.propagateFeed(x);
                     [e, ldeltas] = this.correction(Y, z, ldeltas);
-                    error = error + e;
+                    ferror = ferror + e;
                     this.adaptation(ldeltas);
                 end
+                ep_errors = [ep_errors ferror];
             end
         end
         
