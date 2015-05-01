@@ -95,27 +95,29 @@ andorEntrada = [[l,l];[l,h];[h,l];[h,h]]; %% AND + OR
 andorSalida = [[l,l];[l,h];[l,h];[h,h]]; %% AND + OR
 
 
-capas = [2];
-[e,t,W_list] = learning(input, output, epsilon, maxEpochs, capas);
-e
-t
-
-for i = 1:size(input,1)
-	input(i,:)
-	Y = activation(input(i,:), W_list);
-	out = Y{3}
-	expected = output(i)
-end
-
-
-%capas = [];
-%[e,t,W_list] = learning(andorEntrada,andorSalida,epsilon,maxEpochs,capas);
+%capas = [2];
+%[Error,e,t,W_list] = learning(input, output, epsilon, maxEpochs, capas);
+%
+%for i = 1:size(input,1)
+%	Y = activation(input(i,:), W_list);
+%	out = Y{3}
+%	expected = output(i)
+%end
 %e
 %t
-%
-%for i = 1:size(andorEntrada,1)
-%	andorEntrada(i,:);
-%	Y = activation(andorEntrada(i,:), W_list);
-%	out = Y{size(Y,2)}
-%	expected = andorSalida(i,:)
-%end
+%X = [1:length(Error)];
+%plot(X,Error);
+
+
+capas = [];
+[Error,e,t,W_list] = learning(andorEntrada,andorSalida,epsilon,maxEpochs,capas);
+
+for i = 1:size(andorEntrada,1)
+	Y = activation(andorEntrada(i,:), W_list);
+	out = Y{size(Y,2)}
+	expected = andorSalida(i,:)
+end
+e
+t
+X = [1:length(Error)];
+plot(X,Error);

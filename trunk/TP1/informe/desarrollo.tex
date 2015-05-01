@@ -1,0 +1,24 @@
+\documentclass[informe.tex]{subfiles}
+\begin{document}
+  
+  \section{Desarrollo}
+
+  A fin de lograr que todas las características observadas tengan la misma influencia en la red (y evitar que por ejemplo la la influencia de una característica con amplitud y valor absoluto en sus valores sea mayor que la de una con análogos menores) analizamos los resultados al hacer un preprocesamiento de cada paracterística en las bases de datos.
+  
+  Como preprocesamiento elegimos realizar una normalización de cada característica numérica, incluyendo la salida en el segundo conjunto de datos. Para el caso de la salida en el primer conjunto que consiste en 
+  
+  
+  
+  
+  
+    \subsection{Generación de instancias de prueba}
+    
+      Con el objetivo de evaluar diferentes arquitecturas de redes decidimos particionar el conjunto de datos disponibles (realizando la misma operación para cada dataset) utilizando k-fold cross-validation para disminuir los efectos de overfitting y los ocasionados por tomar conjuntos poco representativos y analizar el funcionamiento de una determinada selección de parámetros sobre distintas particiones de los datos. Sin embargo, considerando que debemos realizar una serie de pruebas en un tiempo acotado, decidimos acotarlas de la siguiente manera.
+      
+      Inicialmente, particionamos la totalidad de los datos en cuatro partes, cada una considerando el 25\% de los mismos. Dada esa partición generamos 4 folds diferentes. Luego, para cada conjunto de 75\% de los datos realizamos una nueva partici\'on en tres partes iguales para realizar cross-validation en la proporci\'on 66\% para entrenamiento y 33\% para test. 
+      
+      De esta manera, analizamos diferentes arquitecturas sobre el 50\% de los datos (dos tercios de tres cuartos) testeando en unos de los 25\% restantes con el fin de elegir aquellas con buen desempeño. Una vez elegidas, realizamos una nueva etapa de entrenamiento ahora sobre el 75\% de los datos (usados previamente para entrenar y testear) que ser\'an validados en el 25\% restante ya como m\'etodo de validaci\'on final entre aquellas redes obtenidas con parámetros que generaron buenos resultados en la etapa previa.
+      
+      
+  
+\end{document}

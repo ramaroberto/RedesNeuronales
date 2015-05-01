@@ -1,9 +1,9 @@
-function [ e, t, W_list ] = learning(X, Z, e_stop, t_stop, capas)
+function [ Error, e, t, W_list ] = learning(X, Z, e_stop, t_stop, capas)
 	% Capas incluye la cantidad de input, sin contar el bias (en ninguna capa)
     % Ej: capas = c(3,4), es una red que tiene una capa oculta intermedia de 3
     % neuronas (sin contar el bias) y otra capa oculta con 4
     e = 999;
-    t = 0;
+    t = 1;
 
     % En todas las matrices de pesos siempre hay una fila más para considerar al bias
     if length(capas) == 0
@@ -21,6 +21,7 @@ function [ e, t, W_list ] = learning(X, Z, e_stop, t_stop, capas)
 
     while e > e_stop & t < t_stop
     	[e, W_list, neuronas] = training(X, Z, W_list);
+    	Error(t) = e;
     	t = t + 1;
     end
 end
