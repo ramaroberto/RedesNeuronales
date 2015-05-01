@@ -1,20 +1,27 @@
-function [ M, labels ] = read(fileName)
+function [ input, output ] = read(fileName, bipolar)
 	[status, result] = system( ['wc -l ', fileName] );
-    numlines = str2num(result)-1;
-	M = csvread(fileName,0,1);
+    number = result(1:3);
+    numlines = str2num(number)
+
 	if fileName(length(fileName)-4)=='1'
+		input = dlmread(fileName, ',', 0, 1);
 		i = 1;
 		fid = fopen(fileName,'r');
 		while ~feof(fid)
 		    line = fgets(fid);
 		    if line(1) == 'M'
-		    	labels(i) = -1;
+		    	if bipolar
+		    		output(i) = -1;
+		    	else
+		    		output(i) = 0;
+		    	end
 		    elseif line(1) == 'B'
-		    	labels(i) = 1;
+		    	output(i) = 1;
 		    end
 		    i = i+1;
 		end
-		labels = labels';
+		output = output';
 	elseif fileName(length(fileName)-4)=='2'
-		labels = dlmread(fileName,',',[0,0,499,0]);
+		input = dlmread(fileName, ',', [0 0 499 7]);
+		output = dlmread(fileName, ',', [0,8,499,9]);
 	end
