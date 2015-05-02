@@ -31,7 +31,7 @@ function [ep_errors, final_error] = ejCancerTraining(training_filename, hlayers,
     output = size(zs, 2);
     arq = [input hlayers output];
     gamma = 0.10; % Learning rate
-    epochs = 10000;
+    epochs = 10;
     max_error = 0;
     
     % Creacion y entrenamiento de la neuronal network
