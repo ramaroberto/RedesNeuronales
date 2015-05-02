@@ -1,7 +1,7 @@
 function error = testing(testing_filename, input_filename)
     
     % Se usa solamente en el dataset de cancer
-    bipolar = true;
+    bipolar = false;
     % Lectura de entrada y salida
     [xs zs] = read(testing_filename, bipolar);
     

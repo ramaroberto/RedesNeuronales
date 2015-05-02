@@ -1,9 +1,9 @@
 function [ep_errors, final_error] = training(training_filename, hlayers, mode, output_filename, epochs, max_error, graph_filename)
 
     % Se usa solamente en el dataset de cancer
-    bipolar = true;
+    bipolar = false;
     % Lectura de entrada y salida
-    [xs zs] = read(training_filename, true);
+    [xs zs] = read(training_filename, bipolar);
     
     % Filtrado y normalizacion de los datos de entrada
     xs = normalizar(xs);
