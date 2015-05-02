@@ -101,11 +101,12 @@ classdef MyMultiPerceptron < handle
             ferror = min_error + 1;
             epoch = 0;
             while (ferror > min_error) && (epoch < max_epoch)
+                permutation = randperm(size(xs,1));
                 ferror = 0;
                 epoch = epoch + 1;
                 ldeltas = this.resetDeltas();
                 for i = 1:size(xs, 1)
-                    x = xs(i,:);
+                    x = xs(permutation(i),:);
                     z = zs(i);
                     Y = this.propagateFeed(x);
                     [e, ldeltas] = this.correction(Y, z, ldeltas);
