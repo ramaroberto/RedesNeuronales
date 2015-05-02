@@ -114,6 +114,9 @@ classdef MyMultiPerceptron < handle
                     this.adaptation(ldeltas);
                 end
                 ep_errors = [ep_errors ferror];
+                %if mod(epoch, 100) == 0
+                %    epoch
+                %end
             end
         end
         
