@@ -17,7 +17,7 @@ function [ input, output ] = read(fileName, bipolar)
 		    elseif line(1) == 'B'
 		    	valor = 1;
 		    end
-		    output(i) = valor;
+		    output(i,1) = valor;
 		    i = i+1;
 		end
 	elseif fileName(length(fileName)-4)=='2'

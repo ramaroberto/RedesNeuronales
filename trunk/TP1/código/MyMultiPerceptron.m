@@ -96,7 +96,7 @@ classdef MyMultiPerceptron < handle
         
         % xs es una matriz en donde cada fila es un input
         % zs es una matriz en donde cada fila coincide con el resultado
-        function [ep_errors, ferror] = train(this, xs, zs, min_error, max_epoch)
+        function [ep_errors ferror] = train(this, xs, zs, min_error, max_epoch)
             ep_errors = [];
             ferror = min_error + 1;
             epoch = 0;
