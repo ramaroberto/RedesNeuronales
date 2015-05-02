@@ -19,8 +19,6 @@ function error = testing(testing_filename, input_filename)
     
     % Evaluacion de los datos de testing
     error = 0;
-    size(xs, 1)
-    size(zs, 1)
     for i = 1:size(xs, 1)
         error = error + norm(zs(i,:)-mp.feedForward(xs(i,:)));
     end
