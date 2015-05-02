@@ -118,6 +118,7 @@ classdef MyMultiPerceptron < handle
                 %    epoch
                 %end
             end
+            ep_errors = ep_errors / size(xs,1);
         end
         
         function [error, ldeltas] = correction(this, Y, z, ldeltas)
