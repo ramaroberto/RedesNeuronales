@@ -21,6 +21,6 @@ function [ep_errors, final_error] = training(training_filename, hlayers, mode, o
     [ep_errors, final_error] = mp.train(xs, zs, max_error, epochs);
     
     % Guardado del estado de la misma
-    guardar(output_filename, input, cell2num(hlayers), output, mp.weights, mode)
+    guardar(output_filename, input, cell2num(hlayers), output, mp.weights, mode);
     
 end
