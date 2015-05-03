@@ -124,7 +124,7 @@ classdef MyMultiPerceptron < handle
             % Guardamos las diferencias a aplicar en cada nivel
             ldeltas = cell(length(this.weights),1);
 
-            % Propagamos el error y tomamos nota de las dieferencias
+            % Propagamos el error y tomamos nota de las deferencias
             % Guarda el error en cada loop
             run_error = (target - Y{end});
             output_error = sum(abs(run_error))/length(run_error);
