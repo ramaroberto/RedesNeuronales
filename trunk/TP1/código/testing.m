@@ -1,4 +1,4 @@
-function error = testing(testing_filename, input_filename)
+function error = testing(testing_filename, input_filename, gamma)
     
     % Se usa solamente en el dataset de cancer
     bipolar = false;
@@ -11,7 +11,6 @@ function error = testing(testing_filename, input_filename)
     % Cargo parametros de la red
     [input, hlayers, output, weights, mode] = cargar(input_filename);
     arq = [input hlayers output];
-    gamma = 0.10; % Learning rate
     
     % Creacion y entrenamiento de la neuronal network
     mp = MyMultiPerceptron(arq, gamma, char(mode));
