@@ -8,6 +8,7 @@ classdef MyMultiPerceptron < handle
         fal
         fdl
         arq
+        mode
     end
     
     methods
@@ -60,6 +61,7 @@ classdef MyMultiPerceptron < handle
             this.fal = fal;
             this.fdl = fdl;
             this.arq = arq;
+            this.mode = mode;
             
             this.initWeights(arq);
         end
@@ -90,16 +92,22 @@ classdef MyMultiPerceptron < handle
                 Y{i} = [Y{i} 1];
                 % Aplica activacion a cada posicion del resultado de Y*W
                 % Nota: Es el map de matlab, nada de que asustarse.
-                if i == length(this.weights)
-                    Y{i+1} = arrayfun(this.fal, Y{i}*this.weights{i});
+                temp = Y{i}*this.weights{i}; 
+                if i == length(this.weights) && strcmp(this.mode, 'binary-regresion')
+                    Y{i+1} = temp; % squash the output a bit
                 else
-                    Y{i+1} = arrayfun(this.fa, Y{i}*this.weights{i});
+                    Y{i+1} = 1./(1+exp(-temp)); % squash the output a bit
                 end
+                %if i == length(this.weights)
+                %    Y{i+1} = arrayfun(this.fal, Y{i}*this.weights{i});
+                %else
+                %    Y{i+1} = arrayfun(this.fa, Y{i}*this.weights{i});
+                %end
             end
         end
         
         function train(this, xs, zs, min_error, max_epoch)
-            [model] = train_mlp(xs, zs, this.arq, max_epoch, 0.10);
+            [model] = train_mlp(xs, zs, this.arq, max_epoch, 0.10, this.mode);
             for i = 1:length(this.weights)
                 this.weights{i} = [model.weights{i}; model.biases{i}];
             end

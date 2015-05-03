@@ -1,4 +1,4 @@
-function [model] = update_mlp(model, input, target)
+function [model] = update_mlp(model, input, target, mode)
 % this function is called once for every pattern presentation, weights are
 % updated every time, which is the magical step.
 
@@ -14,7 +14,7 @@ function [model] = update_mlp(model, input, target)
         % number of neurons in the next layer
         temp = activations{i} * model.weights{i} + model.biases{i}; 
         
-        if i == length(model.weights)
+        if i == length(model.weights) && strcmp(mode, 'binary-regresion')
             activations{i+1} = temp; % squash the output a bit
         else
             activations{i+1} = 1./(1+exp(-(temp))); % squash the output a bit
@@ -28,7 +28,7 @@ function [model] = update_mlp(model, input, target)
     % this code propagates the error back through the neural net
     run_error = (target - activations{end}); %keeps track of the error at each loop
     for i = length(model.weights):-1:1
-        if i == length(model.weights)
+        if i == length(model.weights) && strcmp(mode, 'binary-regresion')
             errors{i} = ones(size(activations{i+1})) .* (run_error);
         else
             errors{i} = activations{i+1} .* (1-activations{i+1}) .* (run_error);

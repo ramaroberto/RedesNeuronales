@@ -1,4 +1,4 @@
-function [model] = train_mlp(input, target, arq, iterations, learning_rate)
+function [model] = train_mlp(input, target, arq, iterations, learning_rate, mode)
     % this is the function that handles all the looping and running of the
     % neural network, it initializes the network based on the number of
     % hidden layers, and presents every item in the input over and over,
@@ -41,7 +41,7 @@ function [model] = train_mlp(input, target, arq, iterations, learning_rate)
         order = randperm(ntrain);  % randomize the presentations
         for j = 1:ntrain
             % update_mlp is where the training is actually done
-            model = update_mlp(model, input(order(j),:), target(order(j),:));
+            model = update_mlp(model, input(order(j),:), target(order(j),:), mode);
         end
     end
 end
