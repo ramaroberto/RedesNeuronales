@@ -1,4 +1,4 @@
-function [model] = update_mlp(model, input, target)
+function [model output_error] = update_mlp(model, input, target)
 % this function is called once for every pattern presentation, weights are
 % updated every time, which is the magical step.
 
@@ -27,6 +27,8 @@ function [model] = update_mlp(model, input, target)
     
     % this code propagates the error back through the neural net
     run_error = (target - activations{end}); %keeps track of the error at each loop
+    % Return the absolute value
+    output_error = sum(abs(run_error))/length(run_error);
     for i = length(model.weights):-1:1
         if i == length(model.weights)
             errors{i} = ones(size(activations{i+1})) .* (run_error);
@@ -36,6 +38,7 @@ function [model] = update_mlp(model, input, target)
         run_error = errors{i} * model.weights{i}';
     end
     
+
     % this code updates the weights and biases
     for i = 1:length(model.weights)
         % update weights based on the learning rate, the input activation
