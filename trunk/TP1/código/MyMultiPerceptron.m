@@ -22,33 +22,31 @@ classdef MyMultiPerceptron < handle
             %   parametro un valor proveniente de una normal [0,1]
             % * fa es la funcion de activacion de las neuronas
             % * fd es la derivada de la funcion de activacion
-            % TODO: Chequear las derivadas
+            %fa = @(t) (t > 45) * 1 + (-45 < t && t < 45) * (1/(1+exp(1)^(-t)));
             if not(strcmp(mode, 'custom'))
                 switch mode
                     case 'binary-regresion'
                         fi = @(x) x; % entre [0,1]
-                        fa = @(t) 1/(1+exp(1)^(-t));
-                        %fa = @(t) (t > 45) * 1 + (-45 < t && t < 45) * (1/(1+exp(1)^(-t)));
-                        fd = @(t) fa(t)*(1-fa(t));
+                        fa = @(t) 1./(1+exp(-t));
+                        fd = @(t) t.*(1-t); %fd = @(t) fa(t).*(1-fa(t));
                         fal = @(t) t;
-                        fdl = @(t) 1;
+                        fdl = @(t) ones(size(t));
                     case 'binary'
                         fi = @(x) x; % entre [0,1]
-                        fa = @(t) 1/(1+exp(1)^(-t));
-                        %fa = @(t) (t > 45) * 1 + (-45 < t && t < 45) * (1/(1+exp(1)^(-t)));
-                        fd = @(t) fa(t)*(1-fa(t));
+                        fa = @(t) 1./(1+exp(-t));
+                        fd = @(t) t.*(1-t); %fd = @(t) fa(t).*(1-fa(t));
                         fal = fa;
                         fdl = fd;
                     case 'bipolar-regresion'
                         fi = @(x) x*2-1; % entre [-1,1]
                         fa = @(t) tanh(t);
-                        fd = @(t) 1-(tanh(t)^2);
+                        fd = @(t) 1-(tanh(t).^2);
                         fal = @(t) t;
-                        fdl = @(t) 1;
+                        fdl = @(t) ones(size(t));
                     otherwise % bipolar
                         fi = @(x) x*2-1; % entre [-1,1]
                         fa = @(t) tanh(t);
-                        fd = @(t) 1-(tanh(t)^2);
+                        fd = @(t) 1-(tanh(t).^2);
                         fal = fa;
                         fdl = fd;
                 end
@@ -71,7 +69,8 @@ classdef MyMultiPerceptron < handle
             % cada capa con la siguiente.
             for i = 1:(size(arq,2)-1)
                 % Aplico la funcion de inicializacion
-    	    	this.weights{i} = 0.1*rand(arq(i)+1, arq(i+1))*2-1;
+    	    	%this.weights{i} = 0.1*rand(arq(i)+1, arq(i+1))*2-1;
+                this.weights{i} = randn(arq(i)+1, arq(i+1));
             end
         end
         
@@ -81,139 +80,66 @@ classdef MyMultiPerceptron < handle
             y = Y{length(Y)};
         end
         
-        % NOTE: Si no anda la red para testear esto puedo tomar el estado
-        % de los layers de otra red ya entrenada y chequear si da el mismo
-        % resultado.
-        % x es un vector fila
-        function Y = propagateFeed(this, x)
-            Y{1} = x;
+        function [Y] = propagateFeed(this, xs)
+            % Incializamos la cell para guardar los datos
+            Y = cell(length(this.weights)+1,1);
+            Y{1} = xs;
+
+            % Aplica activacion al resultado de Y*W
             for i = 1:length(this.weights)
-                % Agrega el bias
-                Y{i} = [Y{i} 1];
-                % Aplica activacion a cada posicion del resultado de Y*W
-                % Nota: Es el map de matlab, nada de que asustarse.
-                temp = Y{i}*this.weights{i}; 
-                if i == length(this.weights) && strcmp(this.mode, 'binary-regresion')
-                    Y{i+1} = temp; % squash the output a bit
+                if i == length(this.weights)
+                    Y{i+1} = this.fal([Y{i} 1] * this.weights{i});
                 else
-                    Y{i+1} = 1./(1+exp(-temp)); % squash the output a bit
+                    Y{i+1} = this.fa([Y{i} 1] * this.weights{i});
                 end
-                %if i == length(this.weights)
-                %    Y{i+1} = arrayfun(this.fal, Y{i}*this.weights{i});
-                %else
-                %    Y{i+1} = arrayfun(this.fa, Y{i}*this.weights{i});
-                %end
-            end
-        end
-        
-        function [ep_errors] = train(this, xs, zs, min_error, max_epoch)
-            [model ep_errors] = train_mlp(xs, zs, this.arq, max_epoch, 0.10, this.mode);
-            for i = 1:length(this.weights)
-                this.weights{i} = [model.weights{i}; model.biases{i}];
             end
         end
         
         % xs es una matriz en donde cada fila es un input
         % zs es una matriz en donde cada fila coincide con el resultado
-        function [ep_errors ferror] = train_orig(this, xs, zs, min_error, max_epoch)
-            ferror = min_error + 1;
-            ntrain = size(xs,1);
+        function [ep_errors] = train(this, xs, zs, min_error, max_epoch)
+            total_run_error = min_error + 1;
+            ntrain = length(xs);
             ep_errors = [];
             epoch = 0;
             
-            while (ferror > min_error) && (epoch < max_epoch)
+            while (total_run_error > min_error) && (epoch < max_epoch)
                 order = randperm(ntrain);
-                ferror = 0;
+                total_run_error = 0;
                 epoch = epoch + 1;
-                ldeltas = this.resetDeltas();
-                for i = 1:ntrain
-                    x = xs(order(i),:);
-                    z = zs(order(i),:);
-                    Y = this.propagateFeed(x);
-                    
-                    [e, ldeltas] = this.correction_orig(Y, z, ldeltas);
+                for j = 1:ntrain
+                    Y = this.propagateFeed(xs(order(j),:));
+                    [run_error, ldeltas] = this.correction(Y, zs(order(j),:));
                     this.adaptation(ldeltas);
-                    
-                    %[e] = this.correction(Y, z);
-                    
-                    ferror = ferror + e;
+                    total_run_error = total_run_error + run_error;
                 end
-                ep_errors = [ep_errors ferror];
-                %if mod(epoch, 100) == 0
-                %    epoch
-                %end
+                ep_errors = [ep_errors total_run_error];
             end
-            
+
             ep_errors = ep_errors / size(xs,1);
         end
         
-        function [error, ldeltas] = correction_orig(this, Y, z, ldeltas)
-            E = (z-Y{end}); % Tomo el resultado final para inicializar E
-            error = sum(E.^2);
+        function [output_error, ldeltas] = correction(this, Y, target)
+            
+            % Guardamos las diferencias a aplicar en cada nivel
+            ldeltas = cell(length(this.weights),1);
+
+            % Propagamos el error y tomamos nota de las dieferencias
+            % Guarda el error en cada loop
+            run_error = (target - Y{end});
+            output_error = sum(abs(run_error))/length(run_error);
             for i = length(this.weights):-1:1
-                % Multiplico punto a punto el error por la derivada
-                % de la funcion de activacion valuada en el resultado
-                % de esa capa.
+
                 if i == length(this.weights)
-                    E = E .* arrayfun(this.fdl, Y{i}*this.weights{i});
+                    run_error = run_error .* this.fdl(Y{i+1});
                 else
-                    E = E .* arrayfun(this.fd, Y{i}*this.weights{i});
+                    run_error = run_error .* this.fd(Y{i+1});
                 end
-                ldeltas{i} = ldeltas{i} + this.gamma*(Y{i}' * E);
-                E = E*(this.weights{i})';
-                % No tengo en cuenta el error del bias! Al ser la 
-                % traspuesta de los layers saco la ultima columna.
-                E = E(:,1:(size(E,2)-1));
-            end
-        end
-        
-        function [error] = correction(this, Y, z)
-            
-            % Variable for holding the errors at each level
-            errors = cell(length(this.weights),1);
-            
-            run_error = (z-Y{end});
-            error = sum(run_error.^2);
-            
-            % Propagate the error back
-            for i = length(this.weights):-1:1
-                % Multiplico punto a punto el error por la derivada
-                % de la funcion de activacion valuada en el resultado
-                % de esa capa.
-                y = Y{i} * this.weights{i};
-                %if i == length(this.weights) && false
-                %    errors{i} = ones(size(y)) .* (run_error);
-                    %run_error = run_error .* arrayfun(this.fdl, Y{i}*this.weights{i});
-                %else
-                errors{i} = y .* (1-y) .* (run_error);
-                %end
-                run_error = errors{i} * this.weights{i}(1:end-1,:)';
-                %ldeltas{i} = ldeltas{i} + this.gamma*(Y{i}' * run_error);
-                %run_error = run_error * this.weights{i}';
-                % No tengo en cuenta el error del bias! Al ser la 
-                % traspuesta de los layers saco la ultima columna.
-                %run_error = run_error(:,1:(size(run_error,2)-1));
-            end
-            
-            for i = 1:length(this.weights)
-                %Y{i}' * errors{i}
-                % update weights based on the learning rate, the input activation
-                % and the error
-                %biases = this.weights{i}(end,:);
-                this.weights{i} = this.weights{i} + this.gamma * Y{i}' * errors{i};
-                %this.weights{i}(end,:)
-                %biases + this.gamma * errors{i}
-                % update the neuron biases as well
-                % it takes a while to figure out all the matrix operations, but
-                % once it's done it's nice.
-            end
-            
-        end
-        
-        function ldeltas = resetDeltas(this)
-            ldeltas{length(this.weights)} = [];
-            for i = 1:length(this.weights)
-                ldeltas{i} = zeros(size(this.weights{i}));
+
+                ldeltas{i} = this.gamma * [Y{i} 1]' * run_error;
+
+                % Dejamos afuera la ultima fila ya que es la que tiene los bias
+                run_error = run_error * (this.weights{i}(1:end-1,:))';
             end
         end
         
