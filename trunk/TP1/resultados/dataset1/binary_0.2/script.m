@@ -16,10 +16,10 @@
 parfor f = 1:4
 %for f = 1:1
 	f
-	for max_epocas = 1000:500:3000
+	for max_epocas = 10:10:100
 %	for max_epocas = 100
 		test_error_filename = ['../resultados/dataset' num2str(dataset) '/binary_0.2/test' num2str(dataset) '_error' num2str(f) '.txt'];
-		for neurons1 = 10:5:30
+		for neurons1 = 5:5:25
 %		for neurons1 = 5
 			neurons1
 			
