@@ -9,6 +9,7 @@ classdef MyMultiPerceptron < handle
         fdl
         arq
         mode
+        momentum
     end
     
     methods
@@ -60,6 +61,7 @@ classdef MyMultiPerceptron < handle
             this.fdl = fdl;
             this.arq = arq;
             this.mode = mode;
+            this.momentum = 0;
             
             this.initWeights(arq);
         end
@@ -97,11 +99,18 @@ classdef MyMultiPerceptron < handle
         
         % xs es una matriz en donde cada fila es un input
         % zs es una matriz en donde cada fila coincide con el resultado
-        function [ep_errors] = train(this, xs, zs, min_error, max_epoch)
+        function [ep_errors] = train(this, xs, zs, min_error, max_epoch, momentum)
+            if nargin > 5
+                this.momentum = momentum;
+            end
+
             total_run_error = min_error + 1;
             ntrain = length(xs);
             ep_errors = [];
             epoch = 0;
+            
+            last_ldeltas = cell(length(this.weights),1);
+            [last_ldeltas{:}] = deal(0);
             
             while (total_run_error > min_error) && (epoch < max_epoch)
                 order = randperm(ntrain);
@@ -110,8 +119,11 @@ classdef MyMultiPerceptron < handle
                 for j = 1:ntrain
                     Y = this.propagateFeed(xs(order(j),:));
                     [run_error, ldeltas] = this.correction(Y, zs(order(j),:));
-                    this.adaptation(ldeltas);
+                    this.adaptation(ldeltas, last_ldeltas);
                     total_run_error = total_run_error + run_error;
+                    if this.momentum ~= 0
+                        last_ldeltas = ldeltas;
+                    end
                 end
                 ep_errors = [ep_errors total_run_error];
             end
@@ -143,9 +155,13 @@ classdef MyMultiPerceptron < handle
             end
         end
         
-        function adaptation(this, ldeltas)
+        function adaptation(this, ldeltas, last_ldeltas)
             for i = 1:length(this.weights)
-                this.weights{i} = this.weights{i} + ldeltas{i};
+                if this.momentum == 0
+                    this.weights{i} = this.weights{i} + ldeltas{i};
+                else
+                    this.weights{i} = this.weights{i} + ldeltas{i} + this.momentum * last_ldeltas{i};
+                end
             end
         end
         
