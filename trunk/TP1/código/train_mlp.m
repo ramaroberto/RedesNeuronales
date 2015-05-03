@@ -1,4 +1,4 @@
-function [model] = train_mlp(input, target, arq, iterations, learning_rate, mode)
+function [model ep_errors] = train_mlp(input, target, arq, iterations, learning_rate, mode)
     % this is the function that handles all the looping and running of the
     % neural network, it initializes the network based on the number of
     % hidden layers, and presents every item in the input over and over,
@@ -37,11 +37,17 @@ function [model] = train_mlp(input, target, arq, iterations, learning_rate, mode
 	model.lastdelta{i} = 0;  
     end
     
+    ep_errors = [];
     for i = 1:iterations % repeat the whole training set over and over
+        total_run_error = 0;
         order = randperm(ntrain);  % randomize the presentations
         for j = 1:ntrain
             % update_mlp is where the training is actually done
-            model = update_mlp(model, input(order(j),:), target(order(j),:), mode);
+            [model run_error] = update_mlp(model, input(order(j),:), target(order(j),:), mode);
+            total_run_error = total_run_error + run_error;
         end
+        ep_errors = [ep_errors total_run_error];
     end
+
+    ep_errors = ep_errors / size(input,1);
 end

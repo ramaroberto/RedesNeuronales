@@ -106,8 +106,8 @@ classdef MyMultiPerceptron < handle
             end
         end
         
-        function train(this, xs, zs, min_error, max_epoch)
-            [model] = train_mlp(xs, zs, this.arq, max_epoch, 0.10, this.mode);
+        function [ep_errors] = train(this, xs, zs, min_error, max_epoch)
+            [model ep_errors] = train_mlp(xs, zs, this.arq, max_epoch, 0.10, this.mode);
             for i = 1:length(this.weights)
                 this.weights{i} = [model.weights{i}; model.biases{i}];
             end

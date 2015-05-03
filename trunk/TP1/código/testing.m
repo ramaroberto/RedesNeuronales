@@ -20,7 +20,9 @@ function error = testing(testing_filename, input_filename)
     % Evaluacion de los datos de testing
     error = 0;
     for i = 1:size(xs, 1)
-        error = error + norm(zs(i,:)-mp.feedForward(xs(i,:)));
+        e_vector = abs(zs(i,:)-mp.feedForward(xs(i,:)));
+        e_num = sum(e_vector)/length(e_vector);
+        error = error + e_num;
     end
     error = error / size(xs, 1);
 end

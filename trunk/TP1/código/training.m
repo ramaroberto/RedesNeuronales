@@ -16,8 +16,10 @@ function [ep_errors, final_error] = training(training_filename, hlayers, mode, o
     
     % Creacion y entrenamiento de la neuronal network
     mp = MyMultiPerceptron(arq, gamma, mode);
-    [ep_errors final_error] = mp.train(xs, zs, max_error, epochs);
-    
+    [ep_errors] = mp.train(xs, zs, max_error, epochs);
+    final_error = ep_errors(length(ep_errors));
+
+
     % Guardado del estado de la misma
     guardar(output_filename, input, hlayers, output, mp.weights, mode);
     
@@ -25,10 +27,11 @@ function [ep_errors, final_error] = training(training_filename, hlayers, mode, o
     % Creacion de grafico con el error en funcion de la epoca
     set(0,'DefaultFigureVisible','off');
     fig = figure;
-    plot([1:length(ep_errors)], ep_errors, 'b--o');
+    plot([1:length(ep_errors)], ep_errors, 'b.');
     title('Error en funcion de las epocas');
     xlabel('Epoca');
     ylabel('Error');
+    axis([-inf,inf,0,0.2]);
     set(gcf, 'PaperPosition', [0 0 5 5]); %Position plot at left hand corner with width 5 and height 5.
     set(gcf, 'PaperSize', [5 5]);
     saveas(fig, graph_filename);
