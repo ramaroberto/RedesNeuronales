@@ -2,5 +2,60 @@
 \begin{document}
   
   \section{Opciones de uso}
+  
+    El código principal para el funcionamiento de la red se encuentra en MyMultiPerceptron.m como fue explicado en el Desarrollo del trabajo. Sin embargo, existen dos archivos que buscan facilitar la obtenci\'on de resultados de entrenamiento y validaci\'on de la red. A continuaci\'on detallamos las funciones en esos dos archivos.
+    
+    La primera, training, realiza el entrenamiento de una red dado un conjunto de parámetros elegidos y genera un gráfico del error según la época.
+    
+    \verb|function [ep_errors, final_error] = training(training_filename, hlayers, mode, | \\
+    \verb|                  output_filename, epochs, max_error, gamma, graph_filename)|
+    
+    \smallskip
+    \verb|training_filename| es el nombre del archivo a utilizar para entrenar. Por ejemplo, uno de los generados en las particiones.
+    
+    \smallskip
+    \verb|hlayers| es el vector con las capas ocultas que se quiere en la red, por ejemplo, \verb|[2]| si se quieren dos neuronas en la capa oculta. Notemos que las cantidades de neuronas en las capas ocultas son independientes de las cantidades de entradas y salidas.
+    
+    \smallskip
+    \verb|mode| es alguna variante para indicar la elección entre binaria o bipolar o regresión.
+    
+    \smallskip
+    \verb|output_filename| es el nombre del archivo donde se guardarán los parámetros de la red entrenada.
+    
+    \smallskip
+    \verb|epochs| es el número máximo de épocas que se admite en el entrenamiento.
+    
+    \smallskip
+    \verb|max_error| es el error que se considera como tope para continuar entrenando a la red.
+    
+    \smallskip
+    \verb|gamma| es el learning rate.
+    
+    \smallskip
+    \verb|graph_filename| es el nombre del archivo donde se guardará el gráfico de error en función de las épocas.
 
+    \smallskip
+    \verb|ep_errors| es el vector que guarda para cada época el error en esa etapa para el conjunto de entrenamiento.
+    
+    \smallskip
+    \verb|final_error| es el valor del error para la última iteración.
+    
+    \bigskip
+    
+    La segunda, testing, lee los datos sobre una red entrenada y calcula el error sobre un conjunto de datos de testing.
+    
+    \verb|function error = testing(testing_filename, input_filename, gamma)|
+    
+    \smallskip
+    \verb|testing_filename| es el nombre del archivo sobre el cual se testeará la red.
+    
+    \smallskip
+    \verb|input_filename| es el archivo con los parámetros de la red entrenada.
+    
+    \smallskip
+    \verb|gamma| se utiliza para crear la instancia de la red.
+    
+    \smallskip
+    \verb|error| es el cálculo del error sobre el conjunto de validación.
+    
 \end{document}
