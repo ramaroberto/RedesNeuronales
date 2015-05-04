@@ -157,10 +157,9 @@ classdef MyMultiPerceptron < handle
         
         function adaptation(this, ldeltas, last_ldeltas)
             for i = 1:length(this.weights)
-                if this.momentum == 0
-                    this.weights{i} = this.weights{i} + ldeltas{i};
-                else
-                    this.weights{i} = this.weights{i} + ldeltas{i} + this.momentum * last_ldeltas{i};
+                this.weights{i} = this.weights{i} + ldeltas{i};
+                if this.momentum ~= 0
+                    this.weights{i} = this.weights{i} + this.momentum * last_ldeltas{i};
                 end
             end
         end
