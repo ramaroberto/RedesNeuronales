@@ -4,10 +4,20 @@
   \section{Conclusiones}
   
   
+    \subsection{Problema 2}
+      
+      A partir de los resultados analizados, es posible ver que un número de neuronas igual a 20 permite obtener bajo error en la validación. Podrían analizarse variantes con más neuronas o bien arquitecturas con menos neuronas pero ubicadas en más de una capa lo cual queda como trabajo futuro.
+      
+      Si bien el error en la validación varía un poco según la cantidad de épocas utilizadas para el entrenamiento, valores mayores en general permiten obtener mejores resultados. Observando los gráficos correspondientes a la arquitectura con 20 neuronas se puede apreciar que con 500 épocas el error en el entrenamiento comienza a estabilizarse, sin embargo continúa disminuyendo hasta 1500 épocas, punto a partir del cual la disminución es cada vez menos apreciable.
+      
+      Respecto del learning rate, por lo mencionado en la sección de resultados, el mejor valor entre aquellos considerados para la experimentación es 0.1 ya que proporciona un balance entre velocidad de convergencia y buen nivel de generalidad.
+  
     \subsection{Trabajo futuro}
     
       Dado el tiempo acotado para realizar pruebas con los conjuntos de datos, quedan planteados como posibles trabajos futuros el ańalisis de arquitecturas con más capas ocultas. Si bien utilizar una sola capa en general debería dar buenos resultados, es posible que usando más de una capa sea posible converger a las soluciones obtenidas en la experimentación con una menor cantidad de iteraciones o bien utilizando menos neuronas en total y en menos tiempo.
       
       Otra variante a evaluar es tratar de obtener un learning rate para cada problema que permita obtener buenos resultados m\'as r\'apidamente. Si bien se evaluaron distintos valores, es posible continuar analizando algunos otros y combinar otras arquitecturas con otros learning rates.
+      
+      Lo mismo podría plantearse en el problema 1 sobre el uso de momentum. En el problema 2, queda como trabajo a futuro evaluar si utilizar esta técnica permite una convergencia más rápida sin producir overfitting.
 
 \end{document}
