@@ -38,7 +38,7 @@ function [ep_errors, final_error] = training(training_filename, hlayers, mode, o
     if dataset == '1'
         axis([-inf,inf,0,0.2]); % Para el dataset1
     elseif dataset == '2'
-        axis([-inf,inf,0,2]); % Para el dataset2
+        axis([-inf,inf,0,4]); % Para el dataset2
     end
     set(gcf, 'PaperPosition', [0 0 5 5]); %Position plot at left hand corner with width 5 and height 5.
     set(gcf, 'PaperSize', [5 5]);
