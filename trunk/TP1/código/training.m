@@ -1,5 +1,8 @@
-function [ep_errors, final_error] = training(training_filename, hlayers, mode, output_filename, epochs, max_error, gamma, graph_filename)
-
+function [ep_errors, final_error] = training(training_filename, hlayers, mode, output_filename, epochs, max_error, gamma, graph_filename, momentum)
+    if nargin < 9
+        momentum = 0;
+    end
+    
     % Se usa solamente en el dataset de cancer
     bipolar = false;
 
@@ -20,7 +23,7 @@ function [ep_errors, final_error] = training(training_filename, hlayers, mode, o
     
     % Creacion y entrenamiento de la neuronal network
     mp = MyMultiPerceptron(arq, gamma, mode);
-    [ep_errors] = mp.train(xs, zs, max_error, epochs);
+    [ep_errors] = mp.train(xs, zs, max_error, epochs, momentum);
     final_error = ep_errors(length(ep_errors));
 
 
