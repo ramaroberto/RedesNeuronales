@@ -40,7 +40,7 @@
 	    \While{$e\ >$ err$_{min}\ \wedge$ $t\ <$ ep$_{max}$}
 	      \State $e = 0$
 	      \State $t = t+1$
-	      \For{$x,z = [1..|$data$|]$}
+	      \For{$x,z \in $ data}
 		\State $y =$ propagateFeed($x$)
 		\State $[fe\ \Delta w] = $ correction(w, $y$, $z$, $\gamma$)
 		\State w $=$ adaptation(w, $\Delta w$, $\Delta lw$, $\alpha$)
