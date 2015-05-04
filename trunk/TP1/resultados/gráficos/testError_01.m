@@ -1,53 +1,61 @@
-X = 	[10:5:30];
 
-D1_f1_1000ep 	= 	[0.36194, 0.36691, 0.36736, 0.36399, 0.36145];
-D1_f1_1500ep 	= 	[0.36530, 0.36361, 0.36847, 0.37189, 0.36421];
-D1_f1_2000ep 	= 	[0.36140, 0.36726, 0.36675, 0.36441, 0.36012];
-D1_f1_2500ep 	= 	[0.36486, 0.36385, 0.36259, 0.36236, 0.36361];
-D1_f1_3000ep 	= 	[0.36219, 0.37168, 0.35917, 0.36733, 0.36860];
+D1_f1_5n 	= 	[0.096569, 0.075579, 0.060084, 0.063589, 0.054584, 0.043600, 0.047530, 0.050783, 0.052235, 0.043415];
+D1_f1_10n 	= 	[0.088395, 0.053989, 0.047113, 0.048921, 0.046575, 0.050883, 0.039857, 0.047255, 0.063424, 0.043447];
+D1_f1_15n 	= 	[0.073376, 0.061371, 0.062254, 0.045318, 0.041800, 0.038508, 0.043552, 0.049971, 0.044150, 0.041432];
+D1_f1_20n 	= 	[0.073862, 0.067401, 0.055198, 0.063004, 0.044092, 0.047978, 0.045589, 0.044297, 0.043418, 0.043057];
+D1_f1_25n 	= 	[0.071701, 0.060142, 0.057368, 0.052665, 0.045098, 0.037125, 0.052245, 0.041827, 0.041595, 0.034287];
 
-D1_f2_1000ep 	= 	[0.35526, 0.35556, 0.35913, 0.36353, 0.35925];
-D1_f2_1500ep 	= 	[0.35643, 0.35622, 0.35153, 0.35057, 0.35466];
-D1_f2_2000ep 	= 	[0.34679, 0.34980, 0.35133, 0.34947, 0.35179];
-D1_f2_2500ep 	= 	[0.34776, 0.35695, 0.36102, 0.35375, 0.35456];
-D1_f2_3000ep 	= 	[0.35600, 0.35482, 0.35340, 0.35551, 0.3564];
+D1_f2_5n 	= 	[0.105690, 0.074473, 0.064101, 0.049437, 0.051966, 0.043542, 0.044011, 0.046212, 0.048238, 0.046712];
+D1_f2_10n 	= 	[0.1111080, 0.058643, 0.053360, 0.046926, 0.049799, 0.045747, 0.046449, 0.045864, 0.042951, 0.046655];
+D1_f2_15n 	= 	[0.073336, 0.064243, 0.055983, 0.043951, 0.049940, 0.048963, 0.049736, 0.047377, 0.033005, 0.042657];
+D1_f2_20n 	= 	[0.080961, 0.052228, 0.038947, 0.045733, 0.050057, 0.044626, 0.043049, 0.043439, 0.038632, 0.038215];
+D1_f2_25n 	= 	[0.0774110, 0.061344, 0.053724, 0.036979, 0.052265, 0.056934, 0.034382, 0.031803, 0.0411014, 0.038217];
 
-D1_f3_1000ep 	= 	[0.39480, 0.38558, 0.39234, 0.38580, 0.39468];
-D1_f3_1500ep 	= 	[0.39793, 0.39748, 0.39246, 0.40006, 0.39762];
-D1_f3_2000ep 	= 	[0.39315, 0.39307, 0.40004, 0.39589, 0.39038];
-D1_f3_2500ep 	= 	[0.39410, 0.39104, 0.39148, 0.39293, 0.38878];
-D1_f3_3000ep 	= 	[0.39504, 0.38837, 0.39754, 0.39664, 0.39661];
+D1_f3_5n 	= 	[0.139300, 0.117890, 0.096068, 0.097577, 0.074891, 0.075675, 0.076069, 0.085702, 0.070446, 0.054504];
+D1_f3_10n 	= 	[0.147000, 0.106890, 0.090125, 0.077815, 0.080312, 0.067807, 0.065924, 0.060742, 0.072375, 0.073604];
+D1_f3_15n 	= 	[0.094593, 0.095334, 0.090551, 0.080614, 0.064104, 0.068758, 0.078674, 0.072119, 0.067969, 0.070980];
+D1_f3_20n 	= 	[0.108370, 0.097420, 0.064375, 0.0711025, 0.061993, 0.062850, 0.067698, 0.066927, 0.066379, 0.078114];
+D1_f3_25n 	= 	[0.097625, 0.072919, 0.069330, 0.069853, 0.076226, 0.078687, 0.075210, 0.064397, 0.0691102, 0.065805];
 
-D1_f4_1000ep 	= 	[0.35131, 0.35042, 0.35572, 0.35714, 0.35157];
-D1_f4_1500ep 	= 	[0.34931, 0.35372, 0.35789, 0.35519, 0.35293];
-D1_f4_2000ep 	= 	[0.35082, 0.34721, 0.34943, 0.34243, 0.36399];
-D1_f4_2500ep 	= 	[0.35467, 0.34784, 0.35405, 0.34253, 0.34901];
-D1_f4_3000ep 	= 	[0.35141, 0.35432, 0.34852, 0.35278, 0.34915];
+D1_f4_5n 	= 	[0.10358, 0.095194, 0.080651, 0.087809, 0.085384, 0.081823, 0.075464, 0.083459, 0.073492, 0.059643];
+D1_f4_10n 	= 	[0.11901, 0.097618, 0.092892, 0.082287, 0.079390, 0.074477, 0.066304, 0.076700, 0.065090, 0.064135];
+D1_f4_15n 	= 	[0.11010, 0.099023, 0.079321, 0.078917, 0.076739, 0.074004, 0.065959, 0.073529, 0.085754, 0.081275];
+D1_f4_20n 	= 	[0.10378, 0.079221, 0.079179, 0.079098, 0.059559, 0.081590, 0.063369, 0.060646, 0.087441, 0.078485];
+D1_f4_25n 	= 	[0.08950, 0.074489, 0.068932, 0.082402, 0.070457, 0.081438, 0.067212, 0.059482, 0.081187, 0.048954];
+
+D1_5n = (D1_f1_5n + D1_f2_5n + D1_f3_5n + D1_f4_5n)/4;
+D1_10n = (D1_f1_10n + D1_f2_10n + D1_f3_10n + D1_f4_10n)/4;
+D1_15n = (D1_f1_15n + D1_f2_15n + D1_f3_15n + D1_f4_15n)/4;
+D1_20n = (D1_f1_20n + D1_f2_20n + D1_f3_20n + D1_f4_20n)/4;
+D1_25n = (D1_f1_25n + D1_f2_25n + D1_f3_25n + D1_f4_25n)/4;
 
 
-D2_f1_1000ep 	= 	[2.0420, 1.3463, 1.5114, 1.9198, 1.3619];
-D2_f1_1500ep 	= 	[1.8832, 1.7998, 1.4667, 1.5138, 1.8394];
-D2_f1_2000ep 	= 	[2.6700, 1.9887, 1.2180, 1.9103, 1.6805];
-D2_f1_2500ep 	= 	[1.6677, 2.7759, 1.7188, 1.3499, 1.7588];
-D2_f1_3000ep 	= 	[1.8044, 1.9537, 1.6749, 1.7727, 1.6936];
 
-D2_f2_1000ep 	= 	[2.6589, 1.9316, 1.5270, 1.4358, 1.1448];
-D2_f2_1500ep 	= 	[2.7359, 1.7839, 1.9039, 1.4153, 1.7787];
-D2_f2_2000ep 	= 	[2.0844, 2.0873, 1.3994, 1.3926, 1.3188];
-D2_f2_2500ep 	= 	[2.6961, 1.7911, 1.4841, 1.1253, 1.7573];
-D2_f2_3000ep 	= 	[1.7399, 1.4271, 1.4399, 1.3623, 1.9578];
 
-D2_f3_1000ep 	= 	[1.5256, 1.5148, 1.3370, 1.6218, 1.9730];
-D2_f3_1500ep 	= 	[1.8234, 2.1898, 1.5955, 2.2929, 1.6409];
-D2_f3_2000ep 	= 	[2.0440, 1.5184, 1.7966, 1.5614, 1.6130];
-D2_f3_2500ep 	= 	[2.1817, 1.4681, 1.6199, 1.8749, 2.0487];
-D2_f3_3000ep 	= 	[1.7393, 1.8232, 1.5235, 2.4510, 1.2817];
+D2_f1_500ep 	= 	[2.9455, 2.5459, 2.7871, 2.2634, 2.1771, 2.0229, 1.9282];
+D2_f1_1000ep 	= 	[3.5911, 2.6324, 1.9316, 1.9133, 1.4908, 2.5134, 2.2475];
+D2_f1_1500ep 	= 	[3.4910, 2.4095, 1.7886, 2.6598, 2.0506, 2.4966, 1.7370];
+D2_f1_2000ep 	= 	[3.4511, 2.7673, 2.1059, 1.9884, 2.0886, 1.5117, 1.6925];
 
-D2_f4_1000ep 	= 	[1.23800, 1.13080, 0.93064, 0.90880, 0.90936];
-D2_f4_1500ep 	= 	[1.73880, 1.18630, 0.98481, 1.02720, 0.86921];
-D2_f4_2000ep 	= 	[1.48590, 1.60790, 1.21620, 0.75574, 0.77048];
-D2_f4_2500ep 	= 	[1.41010, 1.36320, 0.82037, 0.89423, 0.91900];
-D2_f4_3000ep 	= 	[1.41840, 1.22930, 0.89973, 0.83290, 0.79565];
+D2_f2_500ep 	= 	[3.1768, 2.8917, 1.7689, 2.2491, 2.3759, 1.8498, 2.1762];
+D2_f2_1000ep 	= 	[3.0193, 2.4225, 2.5330, 2.1767, 2.2036, 1.6832, 1.2753];
+D2_f2_1500ep 	= 	[2.8102, 2.8717, 1.9869, 2.5324, 2.0328, 1.8096, 2.0496];
+D2_f2_2000ep 	= 	[2.8071, 2.6317, 1.6596, 2.5369, 1.9755, 1.5464, 1.9284];
+
+D2_f3_500ep 	= 	[2.7508, 1.9157, 2.6923, 2.3721, 1.4446, 1.9822, 2.0382];
+D2_f3_1000ep 	= 	[3.1223, 2.5241, 2.3628, 1.4622, 1.8802, 1.5612, 1.5702];
+D2_f3_1500ep 	= 	[2.8174, 2.1275, 2.4741, 2.4075, 2.0782, 2.1304, 1.6594];
+D2_f3_2000ep 	= 	[2.8435, 2.4652, 2.3367, 2.1910, 1.7222, 1.8526, 1.6741];
+
+D2_f4_500ep 	= 	[3.8904, 2.6227, 1.5115, 1.7957, 1.7071, 1.5852, 0.9613];
+D2_f4_1000ep 	= 	[2.6457, 2.0450, 2.2719, 1.9193, 1.9671, 1.5615, 1.1487];
+D2_f4_1500ep 	= 	[2.7314, 2.4171, 1.5811, 1.7689, 1.4160, 1.3273, 1.5774];
+D2_f4_2000ep 	= 	[2.6501, 3.4972, 2.0894, 1.3674, 1.4311, 1.3540, 2.0150];
+
+D2_500ep	= (D2_f1_500ep + 	D2_f2_500ep + 	D2_f3_500ep +	D2_f4_500ep)/4;
+D2_1000ep	= (D2_f1_1000ep + 	D2_f2_1000ep + 	D2_f3_1000ep +	D2_f4_1000ep)/4;
+D2_1500ep	= (D2_f1_1500ep + 	D2_f2_1500ep + 	D2_f3_1500ep +	D2_f4_1500ep)/4;
+D2_2000ep	= (D2_f1_2000ep + 	D2_f2_2000ep + 	D2_f3_2000ep +	D2_f4_2000ep)/4;
 
 
 
@@ -60,40 +68,50 @@ tam_labels = 30;
 tam_legend = 20;
 tam_title = 40;
 
-ySupD1 = 0.5;
-ySupD2 = 3;
+XD1 = 	[10:10:100];
+XD2 = 	[2:2:14];
+ySupD1 = 0.15;
+ySupD2 = 3.5;
 
 gamma = '0.1';
 
 % Seteo de escalas
-escalaX = [10:5:30];
-escalaYD1 = [0:0.05:ySupD1];
+escalaXD1 = [10:10:110];
+escalaXD2 = [1:1:15];
+escalaYD1 = [0:0.01:ySupD1];
 escalaYD2 = [0:0.1:ySupD2];
 
 
 
+
+
+
+
+
+
+
 fig = figure;
 
-plot(X,D1_f1_1000ep,'.','MarkerEdgeColor', 'r', 'MarkerFaceColor', 'r', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f1_1500ep,'.','MarkerEdgeColor', 'g', 'MarkerFaceColor', 'g', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f1_2000ep,'.','MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f1_2500ep,'.','MarkerEdgeColor', 'c', 'MarkerFaceColor', 'c', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f1_3000ep,'.','MarkerEdgeColor', 'm', 'MarkerFaceColor', 'm', 'MarkerSize', tam_marker);
+plot(XD1,D1_5n,'.','MarkerEdgeColor', 'r', 'MarkerFaceColor', 'r', 'MarkerSize', tam_marker); hold on
+plot(XD1,D1_10n,'.','MarkerEdgeColor', 'g', 'MarkerFaceColor', 'g', 'MarkerSize', tam_marker); hold on
+plot(XD1,D1_15n,'.','MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'MarkerSize', tam_marker); hold on
+plot(XD1,D1_20n,'.','MarkerEdgeColor', 'c', 'MarkerFaceColor', 'c', 'MarkerSize', tam_marker); hold on
+plot(XD1,D1_25n,'.','MarkerEdgeColor', 'm', 'MarkerFaceColor', 'm', 'MarkerSize', tam_marker);
 
-xlim([5 35]);
+xlim([0 110]);
 ylim([0 ySupD1]);
 
-h_legend = legend('1000 epocas','1500 epocas','2000 epocas','2500 epocas','3000 epocas','Location','NorthEastoutside');
+h_legend = legend('5 neuronas','10 neuronas','15 neuronas','20 neuronas','25 neuronas','Location','NorthEastoutside');
 
 xlabel('Cantidad de neuronas en la unica capa oculta','FontSize',tam_labels,'FontWeight','bold');
 ylabel('Error en el conjunto de test','FontSize',tam_labels,'FontWeight','bold');
-set(gca,'XTick',escalaX);
+set(gca,'XTick',escalaXD1);
 set(gca,'YTick',escalaYD1);
 set(gca,'FontSize',20,'FontWeight','bold');
 set(h_legend,'FontSize',tam_legend);
 legend boxoff;
-title('Fold 1 del dataset 1','FontSize',tam_title,'FontWeight','bold');
-graph_filename = ['d1_f1_' gamma '.pdf'];
+title('Promedio de errores en conjuntos de test Dataset 1','FontSize',tam_title,'FontWeight','bold');
+graph_filename = ['d1_' gamma '.pdf'];
 grid on
 
 set(gcf, 'PaperPosition', [0 0 tamPapelAncho tamPapelLargo]);
@@ -110,242 +128,26 @@ saveas(fig, graph_filename);
 
 fig = figure;
 
-plot(X,D1_f2_1000ep,'.','MarkerEdgeColor', 'r', 'MarkerFaceColor', 'r', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f2_1500ep,'.','MarkerEdgeColor', 'g', 'MarkerFaceColor', 'g', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f2_2000ep,'.','MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f2_2500ep,'.','MarkerEdgeColor', 'c', 'MarkerFaceColor', 'c', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f2_3000ep,'.','MarkerEdgeColor', 'm', 'MarkerFaceColor', 'm', 'MarkerSize', tam_marker);
 
-xlim([5 35]);
-ylim([0 ySupD1]);
+plot(XD2,D2_500ep,'.','MarkerEdgeColor', 'r', 'MarkerFaceColor', 'r', 'MarkerSize', tam_marker); hold on
+plot(XD2,D2_1000ep,'.','MarkerEdgeColor', 'g', 'MarkerFaceColor', 'g', 'MarkerSize', tam_marker); hold on
+plot(XD2,D2_1500ep,'.','MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'MarkerSize', tam_marker); hold on
+plot(XD2,D2_2000ep,'.','MarkerEdgeColor', 'c', 'MarkerFaceColor', 'c', 'MarkerSize', tam_marker);
 
-h_legend = legend('1000 epocas','1500 epocas','2000 epocas','2500 epocas','3000 epocas','Location','NorthEastoutside');
-
-xlabel('Cantidad de neuronas en la unica capa oculta','FontSize',tam_labels,'FontWeight','bold');
-ylabel('Error en el conjunto de test','FontSize',tam_labels,'FontWeight','bold');
-set(gca,'XTick',escalaX);
-set(gca,'YTick',escalaYD1);
-set(gca,'FontSize',20,'FontWeight','bold');
-set(h_legend,'FontSize',tam_legend);
-legend boxoff;
-title('Fold 2 del dataset 1','FontSize',tam_title,'FontWeight','bold');
-graph_filename = ['d1_f2_' gamma '.pdf'];
-grid on
-
-set(gcf, 'PaperPosition', [0 0 tamPapelAncho tamPapelLargo]);
-set(gcf, 'PaperSize', [tamPapelAncho tamPapelLargo]);
-saveas(fig, graph_filename);
-
-
-
-
-
-
-
-
-
-fig = figure;
-
-plot(X,D1_f3_1000ep,'.','MarkerEdgeColor', 'r', 'MarkerFaceColor', 'r', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f3_1500ep,'.','MarkerEdgeColor', 'g', 'MarkerFaceColor', 'g', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f3_2000ep,'.','MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f3_2500ep,'.','MarkerEdgeColor', 'c', 'MarkerFaceColor', 'c', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f3_3000ep,'.','MarkerEdgeColor', 'm', 'MarkerFaceColor', 'm', 'MarkerSize', tam_marker);
-
-xlim([5 35]);
-ylim([0 ySupD1]);
-
-h_legend = legend('1000 epocas','1500 epocas','2000 epocas','2500 epocas','3000 epocas','Location','NorthEastoutside');
-
-xlabel('Cantidad de neuronas en la unica capa oculta','FontSize',tam_labels,'FontWeight','bold');
-ylabel('Error en el conjunto de test','FontSize',tam_labels,'FontWeight','bold');
-set(gca,'XTick',escalaX);
-set(gca,'YTick',escalaYD1);
-set(gca,'FontSize',20,'FontWeight','bold');
-set(h_legend,'FontSize',tam_legend);
-legend boxoff;
-title('Fold 3 del dataset 1','FontSize',tam_title,'FontWeight','bold');
-graph_filename = ['d1_f3_' gamma '.pdf'];
-grid on
-
-set(gcf, 'PaperPosition', [0 0 tamPapelAncho tamPapelLargo]);
-set(gcf, 'PaperSize', [tamPapelAncho tamPapelLargo]);
-saveas(fig, graph_filename);
-
-
-
-
-
-
-
-
-
-fig = figure;
-
-plot(X,D1_f4_1000ep,'.','MarkerEdgeColor', 'r', 'MarkerFaceColor', 'r', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f4_1500ep,'.','MarkerEdgeColor', 'g', 'MarkerFaceColor', 'g', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f4_2000ep,'.','MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f4_2500ep,'.','MarkerEdgeColor', 'c', 'MarkerFaceColor', 'c', 'MarkerSize', tam_marker); hold on
-plot(X,D1_f4_3000ep,'.','MarkerEdgeColor', 'm', 'MarkerFaceColor', 'm', 'MarkerSize', tam_marker);
-
-xlim([5 35]);
-ylim([0 ySupD1]);
-
-h_legend = legend('1000 epocas','1500 epocas','2000 epocas','2500 epocas','3000 epocas','Location','NorthEastoutside');
-
-xlabel('Cantidad de neuronas en la unica capa oculta','FontSize',tam_labels,'FontWeight','bold');
-ylabel('Error en el conjunto de test','FontSize',tam_labels,'FontWeight','bold');
-set(gca,'XTick',escalaX);
-set(gca,'YTick',escalaYD1);
-set(gca,'FontSize',20,'FontWeight','bold');
-set(h_legend,'FontSize',tam_legend);
-legend boxoff;
-title('Fold 4 del dataset 1','FontSize',tam_title,'FontWeight','bold');
-graph_filename = ['d1_f4_' gamma '.pdf'];
-grid on
-
-set(gcf, 'PaperPosition', [0 0 tamPapelAncho tamPapelLargo]);
-set(gcf, 'PaperSize', [tamPapelAncho tamPapelLargo]);
-saveas(fig, graph_filename);
-
-
-
-
-
-
-
-
-
-fig = figure;
-
-plot(X,D2_f1_1000ep,'.','MarkerEdgeColor', 'r', 'MarkerFaceColor', 'r', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f1_1500ep,'.','MarkerEdgeColor', 'g', 'MarkerFaceColor', 'g', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f1_2000ep,'.','MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f1_2500ep,'.','MarkerEdgeColor', 'c', 'MarkerFaceColor', 'c', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f1_3000ep,'.','MarkerEdgeColor', 'm', 'MarkerFaceColor', 'm', 'MarkerSize', tam_marker);
-
-xlim([5 35]);
+xlim([1 15]);
 ylim([0 ySupD2]);
 
-h_legend = legend('1000 epocas','1500 epocas','2000 epocas','2500 epocas','3000 epocas','Location','NorthEastoutside');
+h_legend = legend('500 epocas','1000 epocas','1500 epocas','2000 epocas','Location','NorthEastoutside');
 
-xlabel('Cantidad de neuronas en la unica capa oculta','FontSize',tam_labels,'FontWeight','bold');
+xlabel('Cantidad de epocas en el entrenamiento','FontSize',tam_labels,'FontWeight','bold');
 ylabel('Error en el conjunto de test','FontSize',tam_labels,'FontWeight','bold');
-set(gca,'XTick',escalaX);
+set(gca,'XTick',escalaXD2);
 set(gca,'YTick',escalaYD2);
 set(gca,'FontSize',20,'FontWeight','bold');
 set(h_legend,'FontSize',tam_legend);
 legend boxoff;
-title('Fold 1 del dataset 2','FontSize',tam_title,'FontWeight','bold');
-graph_filename = ['d2_f1_' gamma '.pdf'];
-grid on
-
-set(gcf, 'PaperPosition', [0 0 tamPapelAncho tamPapelLargo]);
-set(gcf, 'PaperSize', [tamPapelAncho tamPapelLargo]);
-saveas(fig, graph_filename);
-
-
-
-
-
-
-
-
-
-fig = figure;
-
-plot(X,D2_f2_1000ep,'.','MarkerEdgeColor', 'r', 'MarkerFaceColor', 'r', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f2_1500ep,'.','MarkerEdgeColor', 'g', 'MarkerFaceColor', 'g', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f2_2000ep,'.','MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f2_2500ep,'.','MarkerEdgeColor', 'c', 'MarkerFaceColor', 'c', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f2_3000ep,'.','MarkerEdgeColor', 'm', 'MarkerFaceColor', 'm', 'MarkerSize', tam_marker);
-
-xlim([5 35]);
-ylim([0 ySupD2]);
-
-h_legend = legend('1000 epocas','1500 epocas','2000 epocas','2500 epocas','3000 epocas','Location','NorthEastoutside');
-
-xlabel('Cantidad de neuronas en la unica capa oculta','FontSize',tam_labels,'FontWeight','bold');
-ylabel('Error en el conjunto de test','FontSize',tam_labels,'FontWeight','bold');
-set(gca,'XTick',escalaX);
-set(gca,'YTick',escalaYD2);
-set(gca,'FontSize',20,'FontWeight','bold');
-set(h_legend,'FontSize',tam_legend);
-legend boxoff;
-title('Fold 2 del dataset 2','FontSize',tam_title,'FontWeight','bold');
-graph_filename = ['d2_f2_' gamma '.pdf'];
-grid on
-
-set(gcf, 'PaperPosition', [0 0 tamPapelAncho tamPapelLargo]);
-set(gcf, 'PaperSize', [tamPapelAncho tamPapelLargo]);
-saveas(fig, graph_filename);
-
-
-
-
-
-
-
-
-
-fig = figure;
-
-plot(X,D2_f3_1000ep,'.','MarkerEdgeColor', 'r', 'MarkerFaceColor', 'r', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f3_1500ep,'.','MarkerEdgeColor', 'g', 'MarkerFaceColor', 'g', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f3_2000ep,'.','MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f3_2500ep,'.','MarkerEdgeColor', 'c', 'MarkerFaceColor', 'c', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f3_3000ep,'.','MarkerEdgeColor', 'm', 'MarkerFaceColor', 'm', 'MarkerSize', tam_marker);
-
-xlim([5 35]);
-ylim([0 ySupD2]);
-
-h_legend = legend('1000 epocas','1500 epocas','2000 epocas','2500 epocas','3000 epocas','Location','NorthEastoutside');
-
-xlabel('Cantidad de neuronas en la unica capa oculta','FontSize',tam_labels,'FontWeight','bold');
-ylabel('Error en el conjunto de test','FontSize',tam_labels,'FontWeight','bold');
-set(gca,'XTick',escalaX);
-set(gca,'YTick',escalaYD2);
-set(gca,'FontSize',20,'FontWeight','bold');
-set(h_legend,'FontSize',tam_legend);
-legend boxoff;
-title('Fold 3 del dataset 2','FontSize',tam_title,'FontWeight','bold');
-graph_filename = ['d2_f3_' gamma '.pdf'];
-grid on
-
-set(gcf, 'PaperPosition', [0 0 tamPapelAncho tamPapelLargo]);
-set(gcf, 'PaperSize', [tamPapelAncho tamPapelLargo]);
-saveas(fig, graph_filename);
-
-
-
-
-
-
-
-
-
-fig = figure;
-
-plot(X,D2_f4_1000ep,'.','MarkerEdgeColor', 'r', 'MarkerFaceColor', 'r', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f4_1500ep,'.','MarkerEdgeColor', 'g', 'MarkerFaceColor', 'g', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f4_2000ep,'.','MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f4_2500ep,'.','MarkerEdgeColor', 'c', 'MarkerFaceColor', 'c', 'MarkerSize', tam_marker); hold on
-plot(X,D2_f4_3000ep,'.','MarkerEdgeColor', 'm', 'MarkerFaceColor', 'm', 'MarkerSize', tam_marker);
-
-xlim([5 35]);
-ylim([0 ySupD2]);
-
-h_legend = legend('1000 epocas','1500 epocas','2000 epocas','2500 epocas','3000 epocas','Location','NorthEastoutside');
-
-xlabel('Cantidad de neuronas en la unica capa oculta','FontSize',tam_labels,'FontWeight','bold');
-ylabel('Error en el conjunto de test','FontSize',tam_labels,'FontWeight','bold');
-set(gca,'XTick',escalaX);
-set(gca,'YTick',escalaYD2);
-set(gca,'FontSize',20,'FontWeight','bold');
-set(h_legend,'FontSize',tam_legend);
-legend boxoff;
-title('Fold 4 del dataset 2','FontSize',tam_title,'FontWeight','bold');
-graph_filename = ['d2_f4_' gamma '.pdf'];
+title('Promedio de errores en conjuntos de test Dataset 2','FontSize',tam_title,'FontWeight','bold');
+graph_filename = ['d2_' gamma '.pdf'];
 grid on
 
 set(gcf, 'PaperPosition', [0 0 tamPapelAncho tamPapelLargo]);
