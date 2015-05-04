@@ -244,29 +244,29 @@
     
     Tomando los resultados de las Figuras \ref{fig:p2-f2-gamma01} y \ref{fig:p2-f2-gamma01-segundaParte} se puede ver que los errores (tanto en entrenamiento como en validaci\'on) m\'as bajos se obtienen usando 20 neuronas, además de un comportamiento estable por lo que decidimos no buscar configuraciones con más neuronas.
     
-    Considerando esa arquitectura, decidimos analizar otros valores de learning rate a fin de observar si es posible converger más rápido. Los resultados se encuentran en la Figura \ref{fig:p2-f2-gammasVarios}.
+    Considerando esa arquitectura, decidimos analizar otros valores de learning rate a fin de observar si es posible converger más rápido. Los resultados se encuentran en la Figura \ref{fig:p2-f2-gammasVarios}. Si bien es claro que cuanto menor es $\gamma$, más raṕido obtenemos un error menor en este caso, si observamos los errores de validación, se puede ver cómo el mismo aumenta. Esto es un indicador de overfitting en el entrenamiento. En consecuencia, los mejores resultados son para $\gamma=0.1$ ya que converge sin tanta variaci\'on como 0.15 pero mantiene un error de validaci\'on bajo.
     
     \begin{figure}[H]
         \centering
         \begin{subfigure}[b]{0.49\textwidth}
                 \includegraphics[width=\textwidth]{graficos/error_fold2_20_binary-regresion_2000_0005.pdf}
-                \caption{Con $\gamma=0.005$.}
+                \caption{Con $\gamma=0.005$. Error en validación: 1.6481}
                 \label{fig:d2-f2-2k-0005-n20}
         \end{subfigure}
         \begin{subfigure}[b]{0.49\textwidth}
                 \includegraphics[width=\textwidth]{graficos/error_fold2_20_binary-regresion_2000_001.pdf}
-                \caption{Con $\gamma=0.01$.}
+                \caption{Con $\gamma=0.01$. Error en validación: 1.5528}
                 \label{fig:d2-f2-2k-001-n20}
         \end{subfigure}
         
         \begin{subfigure}[b]{0.49\textwidth}
                 \includegraphics[width=\textwidth]{graficos/error_fold2_20_binary-regresion_2000_005.pdf}
-                \caption{Con $\gamma=0.05$.}
+                \caption{Con $\gamma=0.05$. Error en validación: 1.5752}
                 \label{fig:d2-f2-2k-005-n20}
         \end{subfigure}
         \begin{subfigure}[b]{0.49\textwidth}
                 \includegraphics[width=\textwidth]{graficos/error_fold2_20_binary-regresion_2000_015.pdf}
-                \caption{Con $\gamma=0.15$.}
+                \caption{Con $\gamma=0.15$. Error en validación: 1.3657}
                 \label{fig:d2-f2-2k-015-n20}
         \end{subfigure}
         
