@@ -24,11 +24,12 @@
       \end{center}
     \end{figure}
     
-    
+    \newpage
     \subsection{Problema 1}
       
       Dado que según la Figura \ref{fig:errorTest-d1} las configuraciones con 5 y 10 neuronas no presentan tan buenos resultados, mostramos a continuación (Figura \ref{fig:p1-f1-gamma01}) gráficos sobre la convergencia del error en función de las épocas usando las otras arquitecturas evaluadas. Para ello mostramos el fold 1 pero los demás presentan un comportamiento similar.
       
+      \FloatBarrier
       \begin{figure}[H]
         \centering
         \begin{subfigure}[b]{0.32\textwidth}
@@ -49,6 +50,7 @@
         
         \caption{Error durante el entrenamiento en el fold 1 del problema 1 usando una sola capa oculta y $\gamma=0.1$.}\label{fig:p1-f1-gamma01}
     \end{figure}
+    \FloatBarrier
     
     Considerando esos resultados, decidimos analizar qué sucedía al utilizar valores de $\gamma$ mayores ya que tal vez era posible converger más rápidamente. Los resultados se encuentran en las Figuras \ref{fig:p1-f1-gamma02}, \ref{fig:p1-f1-gamma03}, \ref{fig:p1-f1-gamma04} y \ref{fig:p1-f1-gamma05}, nuevamente para 15, 20 y 25 neuronas.
     
@@ -73,7 +75,7 @@
         \caption{Error durante el entrenamiento en el fold 1 del problema 1 usando una sola capa oculta y $\gamma=0.2$.}\label{fig:p1-f1-gamma02}
     \end{figure}    
 
-    \begin{figure}[H]
+    \begin{figure}
         \centering
         \begin{subfigure}[b]{0.32\textwidth}
                 \includegraphics[width=\textwidth]{graficos/error_fold1_15_binary_100_03.pdf}
@@ -94,7 +96,7 @@
         \caption{Error durante el entrenamiento en el fold 1 del problema 1 usando una sola capa oculta y $\gamma=0.3$.}\label{fig:p1-f1-gamma03}
     \end{figure}    
     
-    \begin{figure}[H]
+    \begin{figure}
         \centering
         \begin{subfigure}[b]{0.32\textwidth}
                 \includegraphics[width=\textwidth]{graficos/error_fold1_15_binary_100_04.pdf}
@@ -115,7 +117,7 @@
         \caption{Error durante el entrenamiento en el fold 1 del problema 1 usando una sola capa oculta y $\gamma=0.4$.}\label{fig:p1-f1-gamma04}
     \end{figure}    
 
-    \begin{figure}[H]
+    \begin{figure}
         \centering
         \begin{subfigure}[b]{0.32\textwidth}
                 \includegraphics[width=\textwidth]{graficos/error_fold1_15_binary_100_05.pdf}
@@ -136,9 +138,9 @@
         \caption{Error durante el entrenamiento en el fold 1 del problema 1 usando una sola capa oculta y $\gamma=0.5$.}\label{fig:p1-f1-gamma05}
     \end{figure}    
     
+    \FloatBarrier
     
-    
-    \begin{table}
+    \begin{table}[H]
       \begin{center}
 	\begin{tabular}{|c|c|c|c|}
 	\hline
@@ -159,7 +161,6 @@
 	\label{tab:error-d1-f1}
       \end{center}
     \end{table}
-    
     
     \subsection{Problema 2}
     
