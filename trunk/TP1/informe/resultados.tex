@@ -17,6 +17,9 @@
 	    \label{fig:errorTest-d1}
 	\end{center}
       \end{figure}
+      
+      \newpage
+      \subsubsection{An\'alisis de learning rate ($\gamma$)}
     
       Dado que según la Figura \ref{fig:errorTest-d1} las configuraciones con 5 y 10 neuronas no presentan tan buenos resultados, mostramos a continuación (Figura \ref{fig:p1-f1-gamma01}) gráficos sobre la convergencia del error en función de las épocas usando las otras arquitecturas evaluadas. Para ello mostramos el fold 1 pero los demás presentan un comportamiento similar.
       
@@ -153,10 +156,12 @@
       \end{center}
     \end{table}
     
+    En general, se puede observar una convergencia mas rapida a medida que aumentamos el learning rate. Sin embargo, no debemos olvidar que a medida que aumentamos el mismo incrementa el riesgo de que la red no converja.
+    
 
-    \subsubsection{Momentum ($\alpha$)}
+    \subsubsection{An\'alisis de momentum ($\alpha$)}
     
-    
+    Para analizar el momentum decidimos utilizar la arquitectura de 20 neuronas, ya que tiene una buena convergencia y conserva mas generalizacion que la arquitectura de 25 neuronas. El learning rate fue fijado en 0.1 ($\gamma = 0.1$) y los resultados son los promedios de los resultados de los 4 folds.
     
     \begin{table}[H]
       \begin{center}
@@ -189,6 +194,23 @@
 	\label{tab:error-d1-f1}
       \end{center}
     \end{table}
+    
+    Como se puede observar, con casi todos los valores de momentum se observa una mejoria significativa respecto a la corrida sin el mismo, ocrriendo los maximos entre $\alpha = [0.55, 0.70]$.
+    
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.30\textwidth}
+                \includegraphics[width=\textwidth]{graficos/cmp_momentum_0.pdf}
+                \caption{$\alpha = 0$}
+                \label{fig:cmp_momentum_0}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.30\textwidth}
+                \includegraphics[width=\textwidth]{graficos/cmp_momentum_07.pdf}
+                \caption{$\alpha = 0.70$}
+                \label{fig:cmp_momentum_07}
+        \end{subfigure}
+        \caption{Error durante el entrenamiento sin momentum y con el valor de momentum fijado en $0,70$. Se puede observar una convergencia m\'as r\'apida en el segundo caso.}\label{fig:p1-f1-gamma01}
+    \end{figure}
     
     \subsection{Problema 2}
     
