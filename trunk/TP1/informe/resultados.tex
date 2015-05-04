@@ -162,6 +162,40 @@
       \end{center}
     \end{table}
     
+    \subsubsection{Momentum ($\alpha$)}
+    
+    \begin{table}[H]
+      \begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|}
+	\hline
+	$\alpha$ & Error & Diferencia & $\alpha$ & Error & Diferencia  \\ 
+	\hline
+	0.00 & 0.0594 & 0.0000 & 0.50 & 0.0564 & -0.0030 \\
+	\hline
+	0.05 & 0.0524 & -0.0069 & 0.55 & 0.0520 & -0.0074 \\
+	\hline
+	0.10 & 0.0550 & -0.0043 & 0.60 & 0.0544 & -0.0050 \\
+	\hline
+	0.15 & 0.0542 & -0.0051 & 0.65 & 0.0511 & -0.0082 \\
+	\hline
+	0.20 & 0.0602 & 0.0007 & 0.70 & 0.0505 & -0.0089 \\
+	\hline
+	0.25 & 0.0543 & -0.0051 & 0.75 & 0.0537 & -0.0056 \\
+	\hline
+	0.30 & 0.0534 & -0.0059 & 0.80 & 0.0574 & -0.0019 \\
+	\hline
+	0.35 & 0.0565 & -0.0029 & 0.85 & 0.0602 & 0.0007 \\
+	\hline
+	0.40 & 0.0590 & -0.0004 & 0.90 & 0.0533 & -0.0061 \\
+	\hline
+	0.45 & 0.0628 & 0.0034 & 0.95 & 0.0565 & -0.0028 \\
+	\hline
+	\end{tabular}
+	\caption{Error de validación promedio con 100 iteraciones y una capa oculta de 20 neuronas.}
+	\label{tab:error-d1-f1}
+      \end{center}
+    \end{table}
+    
     \subsection{Problema 2}
     
       A continuación (Figura \ref{fig:p2-f2-gamma01}) mostramos los errores de entrenamiento en función de la época al entrenar las redes con diversas cantidades de neuronas en el fold 2 aunque comportamientos similares fueron observados en el resto de los folds. Se puede observar cómo la cantidad de neuronas en la capa oculta juega un papel esencial en el error obtenido. Dado que cuanto mayor es el número de neuronas, mejores resultados obtenemos, decidimos analizar los resultados usando 16, 17, 18, 19 y 20 neuronas, mostrados en la Figura \ref{fig:p2-f2-gamma01-segundaParte}.
@@ -245,7 +279,9 @@
     
     Tomando los resultados de las Figuras \ref{fig:p2-f2-gamma01} y \ref{fig:p2-f2-gamma01-segundaParte} se puede ver que los errores (tanto en entrenamiento como en validaci\'on) m\'as bajos se obtienen usando 20 neuronas, además de un comportamiento estable por lo que decidimos no buscar configuraciones con más neuronas.
     
-    Considerando esa arquitectura, decidimos analizar otros valores de learning rate a fin de observar si es posible converger más rápido. Los resultados se encuentran en la Figura \ref{fig:p2-f2-gammasVarios}. Si bien es claro que cuanto menor es $\gamma$, más raṕido obtenemos un error menor en este caso, si observamos los errores de validación, se puede ver cómo el mismo aumenta. Esto es un indicador de overfitting en el entrenamiento. En consecuencia, los mejores resultados son para $\gamma=0.1$ ya que converge sin tanta variaci\'on como 0.15 pero mantiene un error de validaci\'on bajo.
+    Considerando esa arquitectura, decidimos analizar otros valores de learning rate a fin de observar si es posible converger m\'as r\'apido. Los resultados se encuentran en la Figura \ref{fig:p2-f2-gammasVarios}. Si bien es claro que cuanto menor es $\gamma$, m\'as r\'apido obtenemos un error menor en este caso, si observamos los errores de validaci\'on, se puede ver c\'omo el mismo aumenta. Esto es un indicador de overfitting en el entrenamiento. En consecuencia, los mejores resultados son para $\gamma=0.1$ ya que converge sin tanta variaci\'on como 0.15 pero mantiene un error de validaci\'on bajo.
+    
+    \FloatBarrier
     
     \begin{figure}[H]
         \centering
