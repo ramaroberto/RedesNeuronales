@@ -6,7 +6,7 @@
   \subsection{Implementacion de la red neuronal}
     La implementación de la red neuronal se realizó en MatLab. Decidimos que era el entorno más apropiado para el trabajo, ya que por tratarse de un trabajo de experimentación no estábamos buscando performance y nos brinda diversas comodidades en operaciones con matrices. 
     
-    Se utilizó la implementación de la red neuronal como se presentó en clase, y se agrupó cada parte de la misma en una clase definida en MatLab, bajo el nombre de \textbf{MyMultiPerceptron}. Puntualmente aplicamos aprendizaje incremental para el entrenamiento e implementamos la modificación del \textbf{momentum} para que la red pueda converger más rápidamente. Tanto el momentum ($\alpha$) como el learning rate ($\gamma$) no se modifican durante el entrenamiento.
+    Se utilizó la implementación de la red neuronal como se presentó en clase, y se agrupó cada parte de la misma en una clase definida en MatLab, bajo el nombre de \textbf{MyMultiPerceptron}. Puntualmente aplicamos aprendizaje incremental para el entrenamiento e implementamos la modificación del \textbf{momentum} para que la red pueda converger más rápidamente. Tanto el momentum ($\alpha$) como el learning rate ($\gamma$) no se modifican durante el entrenamiento. Los pesos de las matrices son inicializados tom\'andolos de una distribuci\'on normal.
     
     A modo de dejar bien asentada la implementación, la presentamos a continuación en formato de pseudocódigo. Sin embargo, no daremos mayores explicaciones ya que no presenta ninguna innovación. La función de activación fue reemplazada correspondientemente según el modo en el que la red neuronal estuviese corriendo, daremos más detalles en la sección que especifica sus opciones.
   
