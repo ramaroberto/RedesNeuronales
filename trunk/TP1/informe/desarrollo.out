@@ -1,0 +1,10 @@
+\BOOKMARK [1][-]{section.1}{Desarrollo}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Implementacion de la red neuronal}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Preprocesamiento de los datos}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Generaci\363n de instancias de prueba}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Variantes consideradas}{section.1}% 5
+\BOOKMARK [3][-]{subsubsection.1.4.1}{Arquitectura adecuada al problema}{subsection.1.4}% 6
+\BOOKMARK [3][-]{subsubsection.1.4.2}{\311pocas necesarias para obtener un buen resultados}{subsection.1.4}% 7
+\BOOKMARK [3][-]{subsubsection.1.4.3}{Utilizaci\363n de distintos valores de learning rate}{subsection.1.4}% 8
+\BOOKMARK [3][-]{subsubsection.1.4.4}{Normalizaci\363n de los datos}{subsection.1.4}% 9
+\BOOKMARK [3][-]{subsubsection.1.4.5}{Momentum}{subsection.1.4}% 10

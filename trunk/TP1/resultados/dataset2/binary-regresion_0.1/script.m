@@ -13,14 +13,14 @@
     end
 
 
-parfor f = 1:4
-%for f = 1:1
+%parfor f = 1:4
+for f = [1,3,4]
 	f
-	for max_epocas = 500:500:2000
-%	for max_epocas = 100
+%	for max_epocas = 500:500:2000
+	for max_epocas = 2000
 		test_error_filename = ['../resultados/dataset' num2str(dataset) '/binary-regresion_0.1/test' num2str(dataset) '_error' num2str(f) '.txt'];
-		for neurons1 = 2:2:14
-%		for neurons1 = 5			
+%		for neurons1 = 2:2:14
+		parfor neurons1 = 16:1:20			
 			neurons1
 			
 			train_filename = ['../partitions/dataset' num2str(dataset) '/primerosFolds/train_fold' num2str(f) '_dataset' num2str(dataset) '.txt'];

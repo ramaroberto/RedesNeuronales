@@ -103,7 +103,7 @@ ylim([0 ySupD1]);
 
 h_legend = legend('5 neuronas','10 neuronas','15 neuronas','20 neuronas','25 neuronas','Location','NorthEastoutside');
 
-xlabel('Cantidad de neuronas en la unica capa oculta','FontSize',tam_labels,'FontWeight','bold');
+xlabel('Cantidad de epocas en el entrenamiento','FontSize',tam_labels,'FontWeight','bold');
 ylabel('Error en el conjunto de test','FontSize',tam_labels,'FontWeight','bold');
 set(gca,'XTick',escalaXD1);
 set(gca,'YTick',escalaYD1);
@@ -138,8 +138,8 @@ xlim([1 15]);
 ylim([0 ySupD2]);
 
 h_legend = legend('500 epocas','1000 epocas','1500 epocas','2000 epocas','Location','NorthEastoutside');
-
 xlabel('Cantidad de epocas en el entrenamiento','FontSize',tam_labels,'FontWeight','bold');
+xlabel('Cantidad de neuronas en la unica capa oculta','FontSize',tam_labels,'FontWeight','bold');
 ylabel('Error en el conjunto de test','FontSize',tam_labels,'FontWeight','bold');
 set(gca,'XTick',escalaXD2);
 set(gca,'YTick',escalaYD2);

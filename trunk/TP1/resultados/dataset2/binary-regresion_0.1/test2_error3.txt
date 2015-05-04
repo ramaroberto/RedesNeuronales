@@ -26,3 +26,9 @@ fold3_8_binary-regresion_2000_0.1	2.191
 fold3_10_binary-regresion_2000_0.1	1.7222
 fold3_12_binary-regresion_2000_0.1	1.8526
 fold3_14_binary-regresion_2000_0.1	1.6741
+fold3_16_binary-regresion_2000_0.1	1.8169
+fold3_17_binary-regresion_2000_0.1	1.8287
+fold3_18_binary-regresion_2000_0.1	1.8108
+fold3_19_binary-regresion_2000_0.1	1.2576
+fold3_20_binary-regresion_2000_0.1	1.6263
+fold3_20_binary-regresion_2000_0.01	2.343

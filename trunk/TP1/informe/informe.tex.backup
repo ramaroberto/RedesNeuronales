@@ -1,0 +1,62 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc} % para poder usar tildes en archivos UTF-8
+\usepackage[spanish]{babel} % para que comandos como \today den el resultado en castellano
+\usepackage{a4wide} % márgenes un poco más anchos que lo usual
+\usepackage{caratula}
+
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+% \usepackage{subfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{subfiles}
+
+
+\begin{document}
+
+\titulo{Trabajo Práctico 1}
+\subtitulo{}
+
+\fecha{5/5/2015}
+
+\materia{Redes Neuronales Artificiales}
+\grupo{}
+
+\integrante{Landini, Federico Nicolás}{034/11}{federico91\_fnl@yahoo.com.ar}
+\integrante{Rama Vilariño, Roberto Alejandro}{490/11}{bertoski@gmail.com}
+
+\maketitle
+
+\subfile{introduccion.tex}
+\newpage
+
+\subfile{desarrollo.tex}
+\newpage
+
+\subfile{resultados.tex}
+\newpage
+
+\subfile{conclusiones.tex}
+\newpage
+
+\subfile{opciones.tex}
+\newpage
+
+
+
+\begin{thebibliography}{9}
+  \bibitem{hertz}
+    John A. Hertz, Anders S. Krogh, Richard G. Palmer,
+    \emph{Introduction To The Theory Of Neural Computation},
+    Westview Press,
+    June 24, 1991.
+  \bibitem{haykin}
+    Simon O. Haykin,
+    \emph{Neural Networks and Learning Machines},
+    Prentice Hall,
+    3rd Edition,
+    November 28, 2008.
+\end{thebibliography}
+
+\end{document}
