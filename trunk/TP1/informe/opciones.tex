@@ -3,59 +3,56 @@
   
   \section{Opciones de uso}
   
-    El código principal para el funcionamiento de la red se encuentra en MyMultiPerceptron.m como fue explicado en el Desarrollo del trabajo. Sin embargo, existen dos archivos que buscan facilitar la obtenci\'on de resultados de entrenamiento y validaci\'on de la red. A continuaci\'on detallamos las funciones en esos dos archivos.
+    El código principal para el funcionamiento de la red se encuentra en MyMultiPerceptron.m como fue explicado en el desarrollo del trabajo. Sin embargo, existen dos archivos que buscan facilitar la obtenci\'on de resultados de entrenamiento y validaci\'on de la red. A continuaci\'on detallamos las funciones en esos dos archivos.
     
-    La primera, training, realiza el entrenamiento de una red dado un conjunto de parámetros elegidos y genera un gráfico del error según la época.
+    \subsection{Training}
+    
+    Realiza el entrenamiento de una red dado un conjunto de parámetros elegidos y genera un gráfico del error según la época.
+    
+    ~
     
     \verb|function [ep_errors, final_error] = training(training_filename, hlayers, mode, | \\
-    \verb|                  output_filename, epochs, max_error, gamma, graph_filename)|
+    \verb|           output_filename, epochs, max_error, gamma, graph_filename, momentum)|
     
-    \smallskip
-    \verb|training_filename| es el nombre del archivo a utilizar para entrenar. Por ejemplo, uno de los generados en las particiones.
+    \begin{itemize}
+     \item \verb|training_filename| es el nombre del archivo a utilizar para entrenar. Por ejemplo, uno de los generados en las particiones.
+     
+     \item \verb|hlayers| es el vector con las capas ocultas que se quiere en la red. Por ejemplo, \verb|[2]| si se quieren dos neuronas en la capa oculta. Notemos que las cantidades de neuronas en las capas ocultas son independientes de las cantidades de entradas y salidas, las cuales son inferidas directamente de las dimensiones de los datasets.
     
-    \smallskip
-    \verb|hlayers| es el vector con las capas ocultas que se quiere en la red, por ejemplo, \verb|[2]| si se quieren dos neuronas en la capa oculta. Notemos que las cantidades de neuronas en las capas ocultas son independientes de las cantidades de entradas y salidas.
+     \item \verb|mode| es alguna variante para indicar la elección entre binaria o bipolar o regresión. Sus opciones son: ``bipolar'', ``binary'', ``bipolar-regresion'', ``binary-regresion''. Los \'ultimos dos difieren en los primeros utilizando una funcion lineal en la ultima capa. Este modo es necesario para el ejercicio 2.
     
-    \smallskip
-    \verb|mode| es alguna variante para indicar la elección entre binaria o bipolar o regresión.
+     \item \verb|output_filename| es el nombre del archivo donde se guardarán los parámetros de la red entrenada.
     
-    \smallskip
-    \verb|output_filename| es el nombre del archivo donde se guardarán los parámetros de la red entrenada.
+     \item \verb|epochs| es el número máximo de épocas que se admite en el entrenamiento.
     
-    \smallskip
-    \verb|epochs| es el número máximo de épocas que se admite en el entrenamiento.
+     \item \verb|max_error| es el error m\'aximo que se admite en el entrenamiento. Si el error de la red esta por debajo de este valor, el entrenamiento se detiene.
     
-    \smallskip
-    \verb|max_error| es el error que se considera como tope para continuar entrenando a la red.
+     \item \verb|gamma| es el learning rate.
     
-    \smallskip
-    \verb|gamma| es el learning rate.
-    
-    \smallskip
-    \verb|graph_filename| es el nombre del archivo donde se guardará el gráfico de error en función de las épocas.
+     \item \verb|graph_filename| es el nombre del archivo donde se guardará el gráfico de error en función de las épocas.
+     
+     \item \verb|momentum| es el valor del momentum. Este par\'ametro es opcional, de no ingresarse el valor se define en cero.
 
-    \smallskip
-    \verb|ep_errors| es el vector que guarda para cada época el error en esa etapa para el conjunto de entrenamiento.
+     \item \verb|ep_errors| es el vector que guarda para cada época el error en esa etapa para el conjunto de entrenamiento mientras que \verb|final_error| es el \'ultimo valor del vector anterior.
     
-    \smallskip
-    \verb|final_error| es el valor del error para la última iteración.
+    \end{itemize}
     
-    \bigskip
+    \subsection{Testing}
     
-    La segunda, testing, lee los datos sobre una red entrenada y calcula el error sobre un conjunto de datos de testing.
+    Lee los datos sobre una red entrenada y calcula el error sobre un conjunto de datos de testing.
+    
+    ~
     
     \verb|function error = testing(testing_filename, input_filename, gamma)|
     
-    \smallskip
-    \verb|testing_filename| es el nombre del archivo sobre el cual se testeará la red.
-    
-    \smallskip
-    \verb|input_filename| es el archivo con los parámetros de la red entrenada.
-    
-    \smallskip
-    \verb|gamma| se utiliza para crear la instancia de la red.
-    
-    \smallskip
-    \verb|error| es el cálculo del error sobre el conjunto de validación.
+    \begin{itemize}
+      \item \verb|testing_filename| es el nombre del archivo sobre el cual se testeará la red.
+      
+      \item \verb|input_filename| es el archivo con los parámetros de la red entrenada.
+      
+      \item \verb|gamma| se utiliza para crear la instancia de la red.
+      
+      \item \verb|error| es el cálculo del error sobre el conjunto de validación.
+    \end{itemize}
     
 \end{document}
