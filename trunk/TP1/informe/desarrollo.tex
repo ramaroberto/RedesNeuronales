@@ -3,7 +3,7 @@
   
   \section{Desarrollo}
   
-  \subsection{Implementacion de la red neuronal}
+  \subsection{Implementación de la red neuronal}
     La implementación de la red neuronal se realizó en MatLab. Decidimos que era el entorno más apropiado para el trabajo, ya que por tratarse de un trabajo de experimentación no estábamos buscando performance y nos brinda diversas comodidades en operaciones con matrices. 
     
     Se utilizó la implementación de la red neuronal como se presentó en clase, y se agrupó cada parte de la misma en una clase definida en MatLab, bajo el nombre de \textbf{MyMultiPerceptron}. Puntualmente aplicamos aprendizaje incremental para el entrenamiento e implementamos la modificación del \textbf{momentum} para que la red pueda converger más rápidamente. Tanto el momentum ($\alpha$) como el learning rate ($\gamma$) no se modifican durante el entrenamiento. Los pesos de las matrices son inicializados tom\'andolos de una distribuci\'on normal.
@@ -98,10 +98,10 @@
     
   \subsection{Variantes consideradas}
 
-    El desarrollo del trabajo consisti\'o fundamentalmente en analizar distintas variantes para la red a fin de obtener par\'ametros que permitiesen obtener buenos resultados en cada problema. Para ello, cada uno de los mismos fue tratado de manera independiente y se realizaron distintas pruebas que se detallan a continuaci\'on.
+    El desarrollo del trabajo consisti\'o fundamentalmente en analizar distintas variantes para la red a fin de obtener par\'ametros que permitiesen obtener los mejores resultados en cada problema. Para ello, cada uno de los mismos fue tratado de manera independiente y se realizaron distintas pruebas que se detallan a continuaci\'on.
 
     \subsubsection{Arquitectura adecuada al problema}
-      Uno de los aspectos fundamentales sobre el funcionamiento de una red neuronal es su configuraci\'on respecto de la cantidad de capas y de neuronas en cada una de ellas. Durante el desarrollo consideramos distintas configuraciones, pero dado que los problemas son simples una \'unica capa oculta debería ser suficiente dado que esto es cierto para la mayoria de los problemas\cite{nnwithJava}. Finalmente nos queda elegir la cantidad de neuronas en dicha capa. 
+      Uno de los aspectos fundamentales sobre el funcionamiento de una red neuronal es su configuraci\'on respecto de la cantidad de capas y de neuronas en cada una de ellas. Durante el desarrollo consideramos distintas configuraciones, pero dado que los problemas son simples, una \'unica capa oculta debería ser suficiente dado que la mayoria de los problemas puede ser resuelto con una única capa oculta\cite{nnwithJava}. Finalmente nos queda elegir la cantidad de neuronas en dicha capa. 
       
       Para tener un punto de referencia sobre el cual comenzar a evaluar los rendimientos de las arquitecturas consideramos una heurística que nos sugiere elegir una cantidad de neuronas en la capa oculta igual a la cantidad de entradas más la cantidad de salidas sobre dos\cite{nnwithJava}.
       
@@ -110,14 +110,14 @@
       Para el problema 2, dado que hay 8 entradas y 2 salidas, evaluamos una capa oculta con cantidades en el conjunto $\{2,4,6,8,10,12,14\}$.
     
     
-    \subsubsection{\'Epocas necesarias para obtener un buen resultados}
-      Otro punto clave en el entrenamiento de la red es la cantidad de \'epocas a utilizar. Para evaluar este aspecto consideramos distintas cantidades para cada una de las arquitecturas mencionadas previamente. Los maximos de las mismas fueron elegidas a partir de que observamos que la red convergia suficientemente bien en dichos valores. El momentum durante estas pruebas se encontraba desactivado ($\alpha = 0$).
+    \subsubsection{\'Epocas necesarias para obtener un buen resultado}
+      Otro punto clave en el entrenamiento de la red es la cantidad de \'epocas a utilizar. Para evaluar este aspecto consideramos distintas cantidades para cada una de las arquitecturas mencionadas previamente. Los máximos de las mismas fueron elegidos a partir de que observamos que la red convergía suficientemente bien en dichos valores. El momentum durante estas pruebas se encontraba desactivado ($\alpha = 0$).
       
       Para el problema 1, entrenamos usando $10, 20, 30, 40, 50, 60, 70, 80, 90, 100$ \'epocas y para el problema 2 fueron $500, 1000, 1500, 2000$.
     
     
     \subsubsection{Utilizaci\'on de distintos valores de learning rate}
-      Una vez escojidas arquitecturas y cantidades de iteraciones que permitieron obtener buenos resultados realizamos variaciones en el learning rate. Realizamos evaluaciones utilizando los valores $\gamma = 0.1, 0.2, 0.3, 0.4, 0.5 $.
+      Una vez escogidas arquitecturas y cantidades de iteraciones que permitieron obtener buenos resultados realizamos variaciones en el learning rate. Realizamos evaluaciones utilizando los valores $\gamma = 0.1, 0.2, 0.3, 0.4, 0.5 $.
     
     \subsubsection{Normalización de los datos}
       En el primer dataset solamente era posible normalizar los datos de entrada ya que la salida corresponde a un problema de clasificación. Sin embargo, en el segundo caso, donde se trata de un problema regresión, la salida puede normalizarse para el entrenamiento, lo que puede producir cambios significativos en la red. Evaluamos este punto para corroborar si se encontraban diferencias significativas.
