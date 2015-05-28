@@ -1,0 +1,1 @@
+fold3_20_binary-regresion_2000_0.01	2.275

@@ -1,0 +1,132 @@
+\documentclass[informe.tex]{subfiles}
+\begin{document}
+  
+  \section{Desarrollo}
+  
+  \subsection{Implementación de la red neuronal}
+    La implementación de la red neuronal se realizó en MatLab. Decidimos que era el entorno más apropiado para el trabajo, ya que por tratarse de un trabajo de experimentación no estábamos buscando performance y nos brinda diversas comodidades en operaciones con matrices. 
+    
+    Se utilizó la implementación de la red neuronal como se presentó en clase, y se agrupó cada parte de la misma en una clase definida en MatLab, bajo el nombre de \textbf{MyMultiPerceptron}. Puntualmente aplicamos aprendizaje incremental para el entrenamiento e implementamos la modificación del \textbf{momentum} para que la red pueda converger más rápidamente. Tanto el momentum ($\alpha$) como el learning rate ($\gamma$) no se modifican durante el entrenamiento. Los pesos de las matrices son inicializados tom\'andolos de una distribuci\'on normal.
+    
+    A modo de dejar bien asentada la implementación, la presentamos a continuación en formato de pseudocódigo. Sin embargo, no daremos mayores explicaciones ya que no presenta ninguna innovación. La función de activación fue reemplazada correspondientemente según el modo en el que la red neuronal estuviese corriendo, daremos más detalles en la sección que especifica sus opciones.
+  
+    \vspace{15pt}
+    
+      \begin{minipage}{0.5\textwidth}
+	  \begin{algorithmic}
+	    \Function{feedForward}{w, $x$} 
+	      \State $y =$ propagateFeed(w, $x$)
+	      \State  \Return $y_{|y|}$
+	    \EndFunction
+	  \end{algorithmic}
+	  
+	  \vspace{5pt}
+	  
+	  \begin{algorithmic}
+	  \Function{propagateFeed}{w, $x$}
+	    \State $y_1 = x$
+	    \For{$i = [1..|$w$|]$}
+	      \State $y_{i+1} = $activation($[y_i\ 1]\ *\ $w$_i$)
+	    \EndFor
+	    \State \Return $y$
+	    \EndFunction
+	  \end{algorithmic}
+	  
+	  \vspace{5pt}
+	  
+	  \begin{algorithmic}
+	  \Function{train}{w, data, err$_{min}$, ep$_{max}$, $\gamma$, $\alpha$}
+	    \State $\Delta lw = \emptyset$
+	    \While{$e\ >$ err$_{min}\ \wedge$ $t\ <$ ep$_{max}$}
+	      \State $e = 0$
+	      \State $t = t+1$
+	      \For{$x,z \in $ data}
+		\State $y =$ propagateFeed($x$)
+		\State $[fe\ \Delta w] = $ correction(w, $y$, $z$, $\gamma$)
+		\State w $=$ adaptation(w, $\Delta w$, $\Delta lw$, $\alpha$)
+		\State $\Delta lw = \Delta w$
+		\State $e = e + fe$
+	      \EndFor
+	    \EndWhile
+	  \EndFunction
+	  \end{algorithmic}
+      \end{minipage}
+      \begin{minipage}{0.5\textwidth}
+	  \begin{algorithmic}
+	  \Function{correction}{w, $y$, $z$, $\gamma$}
+	    \State $\Delta w = \emptyset$
+	    \State $re = z - y_{|y|}$
+	    \State $fe = ||re||_1 / |re|$
+	    \For{$i = [|w|..1]$}
+	      \State $re = re\ .*$ activation'($y_{i+1}$)
+	      \State $\Delta w_i = \gamma\ *\ [y_i\ 1]'\ *\ re$
+	      \State $re = re\ *$ w$_{[1..|w|-1]}$
+	    \EndFor
+	    \State \Return $[fe\ \Delta w]$
+	  \EndFunction
+	  \end{algorithmic}
+	  
+	  \vspace{5pt}
+
+	  \begin{algorithmic}
+	  \Function{adaptation}{w, $\Delta w$, $\Delta lw$, $\alpha$}
+	    \For{$i = [1..|w|]$}
+	      \State w$_i =$ w$_i + \Delta w + \alpha * \Delta lw$
+	    \EndFor
+	    \State \Return w
+	  \EndFunction
+	  \end{algorithmic}
+	  
+	  \vspace{100pt}
+      \end{minipage}
+    
+    \vspace{15pt}
+
+    
+    
+  \subsection{Preprocesamiento de los datos}
+  
+    A fin de lograr que todas las características observadas tengan la misma influencia en la red (y evitar que la influencia de alguna característica con amplitud y valor absoluto en sus valores sea mayor que la de una con análogos menores), analizamos los resultados al hacer un preprocesamiento de cada caraterística en las bases de datos.
+    
+  
+  \subsection{Generación de instancias de prueba}
+
+    Con el objetivo de evaluar diferentes arquitecturas de redes decidimos particionar el conjunto de datos disponibles (realizando la misma operación para cada dataset) utilizando k-fold cross-validation para disminuir los efectos de tomar conjuntos poco representativos y analizar el funcionamiento de una determinada selección de parámetros sobre distintas particiones de los datos. Sin embargo, considerando que debemos realizar una serie de pruebas en un tiempo acotado, decidimos acotarlas de la siguiente manera.
+    
+    Particionamos la totalidad de los datos en cuatro partes, cada una considerando el 25\% de los mismos. Dada esa partición generamos 4 folds diferentes. Así, entrenamos con el 75\% y testeamos en el 25\% restante con cada una de las variantes.
+    
+    
+  \subsection{Variantes consideradas}
+
+    El desarrollo del trabajo consisti\'o fundamentalmente en analizar distintas variantes para la red a fin de obtener par\'ametros que permitiesen obtener los mejores resultados en cada problema. Para ello, cada uno de los mismos fue tratado de manera independiente y se realizaron distintas pruebas que se detallan a continuaci\'on.
+
+    \subsubsection{Arquitectura adecuada al problema}
+      Uno de los aspectos fundamentales sobre el funcionamiento de una red neuronal es su configuraci\'on respecto de la cantidad de capas y de neuronas en cada una de ellas. Durante el desarrollo consideramos distintas configuraciones, pero dado que los problemas son simples, una \'unica capa oculta debería ser suficiente dado que la mayoria de los problemas puede ser resuelto con una única capa oculta\cite{nnwithJava}. Finalmente nos queda elegir la cantidad de neuronas en dicha capa. 
+      
+      Para tener un punto de referencia sobre el cual comenzar a evaluar los rendimientos de las arquitecturas consideramos una heurística que nos sugiere elegir una cantidad de neuronas en la capa oculta igual a la cantidad de entradas más la cantidad de salidas sobre dos\cite{nnwithJava}.
+      
+      En el caso del conjunto de datos del problema 1, dado que hay 30 entradas y 1 salida, evaluamos arquitecturas donde variamos las neuronas de la capa oculta en el conjunto $\{5,10,15,20,25\}$. 
+      
+      Para el problema 2, dado que hay 8 entradas y 2 salidas, evaluamos una capa oculta con cantidades en el conjunto $\{2,4,6,8,10,12,14\}$.
+    
+    
+    \subsubsection{\'Epocas necesarias para obtener un buen resultado}
+      Otro punto clave en el entrenamiento de la red es la cantidad de \'epocas a utilizar. Para evaluar este aspecto consideramos distintas cantidades para cada una de las arquitecturas mencionadas previamente. Los máximos de las mismas fueron elegidos a partir de que observamos que la red convergía suficientemente bien en dichos valores. El momentum durante estas pruebas se encontraba desactivado ($\alpha = 0$).
+      
+      Para el problema 1, entrenamos usando $10, 20, 30, 40, 50, 60, 70, 80, 90, 100$ \'epocas y para el problema 2 fueron $500, 1000, 1500, 2000$.
+    
+    
+    \subsubsection{Utilizaci\'on de distintos valores de learning rate}
+      Una vez escogidas arquitecturas y cantidades de iteraciones que permitieron obtener buenos resultados realizamos variaciones en el learning rate. Realizamos evaluaciones utilizando los valores $\gamma = 0.1, 0.2, 0.3, 0.4, 0.5 $.
+    
+    \subsubsection{Normalización de los datos}
+      En el primer dataset solamente era posible normalizar los datos de entrada ya que la salida corresponde a un problema de clasificación. Sin embargo, en el segundo caso, donde se trata de un problema regresión, la salida puede normalizarse para el entrenamiento, lo que puede producir cambios significativos en la red. Evaluamos este punto para corroborar si se encontraban diferencias significativas.
+      
+    \subsubsection{Momentum}
+      Una vez elegida la arquitectura a utilizar en el problema 1, evaluamos la misma fijando una cantidad de \'epocas suficientes para asegurar su convergencia y variando el momentum para examinar sus efectos. Los valores elegidos para evaluar este punto fueron los contenidos en el conjunto 
+      $$\alpha = \{ i*0.05\ |\ i \in [1, 19] \subset N \}$$
+      
+    \subsubsection{Sigmoide bipolar vs. Sigmoide binario}
+      No incluimos pruebas con el sigmoide bipolar en la experimentaci\'on ya que en una primera experimentaci\'on preliminar la red neuronal con el sigmoide binario se comport\'o mucho mejor en ambos ejercicios que con el sigmoide bipolar. Para ser m\'as precisos, hubo una reducci\'on del error del $\%50$ utilizando el sigmoide binario bajo los mismos p\'arametros.
+  
+\end{document}

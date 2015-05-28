@@ -1,0 +1,27 @@
+function error = testing(testing_filename, input_filename, gamma)
+    
+    % Se usa solamente en el dataset de cancer
+    bipolar = false;
+    % Lectura de entrada y salida
+    [xs zs] = read(testing_filename, bipolar);
+    
+    % Filtrado y normalizacion de los datos de entrada
+    xs = normalizar(xs);
+    
+    % Cargo parametros de la red
+    [input, hlayers, output, weights, mode] = cargar(input_filename);
+    arq = [input hlayers output];
+    
+    % Creacion y entrenamiento de la neuronal network
+    mp = MyMultiPerceptron(arq, gamma, char(mode));
+    mp.weights = weights;
+    
+    % Evaluacion de los datos de testing
+    error = 0;
+    for i = 1:size(xs, 1)
+        e_vector = abs(zs(i,:)-mp.feedForward(xs(i,:)));
+        e_num = sum(e_vector)/length(e_vector);
+        error = error + e_num;
+    end
+    error = error / size(xs, 1);
+end

@@ -1,8 +1,8 @@
-valores='bin'; % 'bin' o 'bip'
+valores='bip'; % 'bin' o 'bip'
 cantEntrada=2; % 2 o 3 o 4 o 6
     
 
-maxEpochs=1000;
+maxEpochs=10000;
 epsilon=0.01;
 error=999;
 
@@ -95,27 +95,29 @@ andorEntrada = [[l,l];[l,h];[h,l];[h,h]]; %% AND + OR
 andorSalida = [[l,l];[l,h];[l,h];[h,h]]; %% AND + OR
 
 
-%capas = [cantEntrada, cantEnCapaOculta];
-%[e,t,W_list] = learning(input, output, epsilon, maxEpochs, capas);
+%capas = [2];
+%[Error,e,t,W_list] = learning(input, output, epsilon, maxEpochs, capas);
+%
+%for i = 1:size(input,1)
+%	Y = activation(input(i,:), W_list);
+%	out = Y{3}
+%	expected = output(i)
+%end
 %e
 %t
-
-%for i = 1:size(input,1)
-%	input(i,:)
-%	Y = activation(input(i,:), W_list);
-%	Y{3}
-%	output(i)
-%end
+%X = [1:length(Error)];
+%plot(X,Error);
 
 
 capas = [];
-[e,t,W_list] = learning(andorEntrada,andorSalida,epsilon,maxEpochs,capas);
-e
-t
+[Error,e,t,W_list] = learning(andorEntrada,andorSalida,epsilon,maxEpochs,capas);
 
 for i = 1:size(andorEntrada,1)
-	andorEntrada(i,:);
 	Y = activation(andorEntrada(i,:), W_list);
-	Y{size(Y,2)}
-	andorSalida(i,:)
+	out = Y{size(Y,2)}
+	expected = andorSalida(i,:)
 end
+e
+t
+X = [1:length(Error)];
+plot(X,Error);

@@ -1,0 +1,340 @@
+\documentclass[informe.tex]{subfiles}
+\begin{document}
+  
+  \section{Resultados}
+  
+    Uno de los primeros experimentos realizados fue variar la cantidad de neuronas en una sola capa oculta para cada problema considerando las cantidades de épocas mencionadas anteriormente. Luego, variamos el learning rate ($\gamma$) y el momentum para el caso del problema 1. En el problema 2 no realizamos an\'alisis del momentum, ya que los resultados obtenidos en el problema 1 respecto al mismo nos parecieron suficientes.
+    
+    A continuación presentamos resultados sobre dichos experimentos.
+    
+    \subsection{Problema 1}
+ 
+      \begin{figure}[H]
+	\begin{center}
+	    \hspace*{-2cm}
+	    \includegraphics[width=20cm]{graficos/d1_01.pdf}
+	    \caption{Promedio de error entre los 4 folds para el dataset 1 calculado sobre el conjunto de test usando $\gamma=0.1$}
+	    \label{fig:errorTest-d1}
+	\end{center}
+      \end{figure}
+      
+      \newpage
+      \subsubsection{An\'alisis de learning rate ($\gamma$)}
+    
+      Dado que según la Figura \ref{fig:errorTest-d1} las configuraciones con 5 y 10 neuronas no presentan tan buenos resultados, mostramos a continuación (Figura \ref{fig:p1-f1-gamma01}) gráficos sobre la convergencia del error en función de las épocas usando las otras arquitecturas evaluadas. Para ello mostramos el fold 1 pero los demás presentan un comportamiento similar.
+      
+      \FloatBarrier
+      \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_15_binary_100_01.pdf}
+                \caption{Usando 15 neuronas.}
+                \label{fig:d1-f1-01-n15}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_20_binary_100_01.pdf}
+                \caption{Usando 20 neuronas.}
+                \label{fig:d1-f1-01-n20}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_25_binary_100_01.pdf}
+                \caption{Usando 25 neuronas.}
+                \label{fig:d1-f1-01-n25}
+        \end{subfigure}
+        
+        \caption{Error durante el entrenamiento en el fold 1 del problema 1 usando una sola capa oculta y $\gamma=0.1$.}\label{fig:p1-f1-gamma01}
+    \end{figure}
+    \FloatBarrier
+    
+    Considerando esos resultados, decidimos analizar qué sucedía al utilizar valores de $\gamma$ mayores ya que tal vez era posible converger más rápidamente. Los resultados se encuentran en las Figuras \ref{fig:p1-f1-gamma02}, \ref{fig:p1-f1-gamma03}, \ref{fig:p1-f1-gamma04} y \ref{fig:p1-f1-gamma05}, nuevamente para 15, 20 y 25 neuronas.
+    
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_15_binary_100_02.pdf}
+                \caption{Usando 15 neuronas.}
+                \label{fig:d1-f1-02-n15}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_20_binary_100_02.pdf}
+                \caption{Usando 20 neuronas.}
+                \label{fig:d1-f1-02-n20}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_25_binary_100_02.pdf}
+                \caption{Usando 25 neuronas.}
+                \label{fig:d1-f1-02-n25}
+        \end{subfigure}
+        
+        \caption{Error durante el entrenamiento en el fold 1 del problema 1 usando una sola capa oculta y $\gamma=0.2$.}\label{fig:p1-f1-gamma02}
+    \end{figure}    
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_15_binary_100_03.pdf}
+                \caption{Usando 15 neuronas.}
+                \label{fig:d1-f1-03-n15}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_20_binary_100_03.pdf}
+                \caption{Usando 20 neuronas.}
+                \label{fig:d1-f1-03-n20}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_25_binary_100_03.pdf}
+                \caption{Usando 25 neuronas.}
+                \label{fig:d1-f1-03-n25}
+        \end{subfigure}
+        
+        \caption{Error durante el entrenamiento en el fold 1 del problema 1 usando una sola capa oculta y $\gamma=0.3$.}\label{fig:p1-f1-gamma03}
+    \end{figure}    
+    
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_15_binary_100_04.pdf}
+                \caption{Usando 15 neuronas.}
+                \label{fig:d1-f1-04-n15}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_20_binary_100_04.pdf}
+                \caption{Usando 20 neuronas.}
+                \label{fig:d1-f1-04-n20}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_25_binary_100_04.pdf}
+                \caption{Usando 25 neuronas.}
+                \label{fig:d1-f1-04-n25}
+        \end{subfigure}
+        
+        \caption{Error durante el entrenamiento en el fold 1 del problema 1 usando una sola capa oculta y $\gamma=0.4$.}\label{fig:p1-f1-gamma04}
+    \end{figure}    
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_15_binary_100_05.pdf}
+                \caption{Usando 15 neuronas.}
+                \label{fig:d1-f1-05-n15}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_20_binary_100_05.pdf}
+                \caption{Usando 20 neuronas.}
+                \label{fig:d1-f1-05-n20}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold1_25_binary_100_05.pdf}
+                \caption{Usando 25 neuronas.}
+                \label{fig:d1-f1-05-n25}
+        \end{subfigure}
+        
+        \caption{Error durante el entrenamiento en el fold 1 del problema 1 usando una sola capa oculta y $\gamma=0.5$.}\label{fig:p1-f1-gamma05}
+    \end{figure}    
+    
+    \FloatBarrier
+    
+    \begin{table}[H]
+      \begin{center}
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	& 15 neuronas & 20 neuronas & 25 neuronas \\ 
+	\hline
+	$\gamma=0.1$ & 0.0590 & 0.0594 & 0.0468 \\
+	\hline
+	$\gamma=0.2$ & 0.0502 & 0.0469 & 0.0554 \\
+	\hline
+	$\gamma=0.3$ & 0.0485 & 0.0497 & 0.0448 \\
+	\hline
+	$\gamma=0.4$ & 0.0443 & 0.0521 & 0.0468 \\
+	\hline     
+	$\gamma=0.5$ & 0.0447 & 0.0465 & 0.0481 \\
+	\hline      
+	\end{tabular}
+	\caption{Error de validación promedio luego de 100 iteraciones del problema 1.}
+	\label{tab:error-d1-f1}
+      \end{center}
+    \end{table}
+    
+    En general, se puede observar una convergencia más rpida a medida que aumentamos el learning rate. Sin embargo, no debemos olvidar que a medida que aumentamos el mismo también incrementa el riesgo de que la red no converja.
+    
+
+    \subsubsection{An\'alisis de momentum ($\alpha$)}
+    
+    Para analizar el momentum decidimos utilizar la arquitectura de 20 neuronas, ya que tiene una buena convergencia y conserva más generalización que la arquitectura de 25 neuronas. El learning rate fue fijado en 0.1 ($\gamma = 0.1$) y los resultados son los promedios de los resultados de los 4 folds.
+    
+    \begin{table}[H]
+      \begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|}
+	\hline
+	$\alpha$ & Error & Diferencia & $\alpha$ & Error & Diferencia  \\ 
+	\hline
+	0.00 & 0.0594 & 0.0000 & 0.50 & 0.0564 & -0.0030 \\
+	\hline
+	0.05 & 0.0524 & -0.0069 & 0.55 & 0.0520 & -0.0074 \\
+	\hline
+	0.10 & 0.0550 & -0.0043 & 0.60 & 0.0544 & -0.0050 \\
+	\hline
+	0.15 & 0.0542 & -0.0051 & 0.65 & 0.0511 & -0.0082 \\
+	\hline
+	0.20 & 0.0602 & 0.0007 & 0.70 & 0.0505 & -0.0089 \\
+	\hline
+	0.25 & 0.0543 & -0.0051 & 0.75 & 0.0537 & -0.0056 \\
+	\hline
+	0.30 & 0.0534 & -0.0059 & 0.80 & 0.0574 & -0.0019 \\
+	\hline
+	0.35 & 0.0565 & -0.0029 & 0.85 & 0.0602 & 0.0007 \\
+	\hline
+	0.40 & 0.0590 & -0.0004 & 0.90 & 0.0533 & -0.0061 \\
+	\hline
+	0.45 & 0.0628 & 0.0034 & 0.95 & 0.0565 & -0.0028 \\
+	\hline
+	\end{tabular}
+	\caption{Error de validación promedio con 100 iteraciones y una capa oculta de 20 neuronas.}
+	\label{tab:error-d1-f1}
+      \end{center}
+    \end{table}
+    
+    Como se puede observar, con casi todos los valores de momentum se observa una mejoría significativa respecto a la corrida sin el mismo, ocrriendo los máximos entre $\alpha = [0.55\ 0.70]$.
+    
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.30\textwidth}
+                \includegraphics[width=\textwidth]{graficos/cmp_momentum_0.pdf}
+                \caption{$\alpha = 0$}
+                \label{fig:cmp_momentum_0}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.30\textwidth}
+                \includegraphics[width=\textwidth]{graficos/cmp_momentum_07.pdf}
+                \caption{$\alpha = 0.70$}
+                \label{fig:cmp_momentum_07}
+        \end{subfigure}
+        \caption{Error durante el entrenamiento sin momentum y con el valor de momentum fijado en $0,70$. Se puede observar una convergencia m\'as r\'apida en el segundo caso.}\label{fig:p1-f1-gamma01}
+    \end{figure}
+    
+    \subsection{Problema 2}
+    
+      \begin{figure}[H]
+	\begin{center}
+	    \hspace*{-2cm}
+	    \includegraphics[width=20cm]{graficos/d2_01.pdf}
+	    \caption{Promedio de error entre los 4 folds para el dataset 2 calculado sobre el conjunto de test usando $\gamma=0.1$}
+	    \label{fig:errorTest-d2}
+	\end{center}
+      \end{figure}
+      
+      \newpage
+      A continuación (Figura \ref{fig:p2-f2-gamma01}) mostramos los errores de entrenamiento en función de la época al entrenar las redes con diversas cantidades de neuronas en el fold 2 aunque comportamientos similares fueron observados en el resto de los folds. Se puede observar cómo la cantidad de neuronas en la capa oculta juega un papel esencial en el error obtenido. Dado que cuanto mayor es el número de neuronas, mejores resultados obtenemos, decidimos analizar los resultados usando 16, 17, 18, 19 y 20 neuronas, mostrados en la Figura \ref{fig:p2-f2-gamma01-segundaParte}.
+      
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_2_binary-regresion_2000_01.pdf}
+                \caption{Usando 2 neuronas.}
+                \label{fig:d2-f2-2k-01-n2}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_4_binary-regresion_2000_01.pdf}
+                \caption{Usando 4 neuronas.}
+                \label{fig:d2-f2-2k-01-n4}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_6_binary-regresion_2000_01.pdf}
+                \caption{Usando 6 neuronas.}
+                \label{fig:d2-f2-2k-01-n6}
+        \end{subfigure}
+        
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_8_binary-regresion_2000_01.pdf}
+                \caption{Usando 8 neuronas.}
+                \label{fig:d2-f2-2k-01-n8}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_10_binary-regresion_2000_01.pdf}
+                \caption{Usando 10 neuronas.}
+                \label{fig:d2-f2-2k-01-n10}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_12_binary-regresion_2000_01.pdf}
+                \caption{Usando 12 neuronas.}
+                \label{fig:d2-f2-2k-01-n12}
+        \end{subfigure}
+        
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_14_binary-regresion_2000_01.pdf}
+                \caption{Usando 14 neuronas.}
+                \label{fig:d2-f2-2k-01-n14}
+        \end{subfigure}
+        
+        \caption{Error durante el entrenamiento en el fold 2 del problema 2 usando una sola capa oculta y $\gamma=0.1$.}\label{fig:p2-f2-gamma01}
+    \end{figure}
+    
+    
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_16_binary-regresion_2000_01.pdf}
+                \caption{Usando 16 neuronas.}
+                \label{fig:d2-f2-2k-01-n16}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_17_binary-regresion_2000_01.pdf}
+                \caption{Usando 17 neuronas.}
+                \label{fig:d2-f2-2k-01-n17}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_18_binary-regresion_2000_01.pdf}
+                \caption{Usando 18 neuronas.}
+                \label{fig:d2-f2-2k-01-n18}
+        \end{subfigure}
+        
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_19_binary-regresion_2000_01.pdf}
+                \caption{Usando 19 neuronas.}
+                \label{fig:d2-f2-2k-01-n19}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_20_binary-regresion_2000_01.pdf}
+                \caption{Usando 20 neuronas.}
+                \label{fig:d2-f2-2k-01-n20}
+        \end{subfigure}
+        
+        \caption{Error durante el entrenamiento en el fold 2 del problema 2 usando una sola capa oculta y $\gamma=0.1$ segunda parte. Error en el conjunto de test (promedio entre los cuatro folds): 1,758475, 1,926875, 1,82305, 1,4711275 y 1,38239 respectivamente.}\label{fig:p2-f2-gamma01-segundaParte}
+    \end{figure}
+    
+    
+    Tomando los resultados de las Figuras \ref{fig:p2-f2-gamma01} y \ref{fig:p2-f2-gamma01-segundaParte} se puede ver que los errores (tanto en entrenamiento como en validaci\'on) m\'as bajos se obtienen usando 20 neuronas, además de un comportamiento estable por lo que decidimos no buscar configuraciones con más neuronas.
+    
+    Considerando esa arquitectura, decidimos analizar otros valores de learning rate a fin de observar si es posible converger m\'as r\'apido. Los resultados se encuentran en la Figura \ref{fig:p2-f2-gammasVarios}. Si bien es claro que cuanto menor es $\gamma$, m\'as r\'apido obtenemos un error menor en este caso, si observamos los errores de validaci\'on, se puede ver c\'omo el mismo aumenta. Esto es un indicador de overfitting en el entrenamiento. En consecuencia, los mejores resultados son para $\gamma=0.1$ ya que converge sin tanta variaci\'on como 0.15 pero mantiene un error de validaci\'on bajo.
+    
+    \FloatBarrier
+    
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_20_binary-regresion_2000_015.pdf}
+                \caption{Con $\gamma=0.15$. Error en validación: 1.3657}
+                \label{fig:d2-f2-2k-015-n20}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_20_binary-regresion_2000_005.pdf}
+                \caption{Con $\gamma=0.05$. Error en validación: 1.5752}
+                \label{fig:d2-f2-2k-005-n20}
+        \end{subfigure}
+        
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_20_binary-regresion_2000_001.pdf}
+                \caption{Con $\gamma=0.01$. Error en validación: 1.5528}
+                \label{fig:d2-f2-2k-001-n20}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/error_fold2_20_binary-regresion_2000_0005.pdf}
+                \caption{Con $\gamma=0.005$. Error en validación: 1.6481}
+                \label{fig:d2-f2-2k-0005-n20}
+        \end{subfigure}
+        \caption{Error durante el entrenamiento en el fold 2 del problema 2 usando una sola capa oculta de 20 neuronas variando el valor de $\gamma$.}\label{fig:p2-f2-gammasVarios}
+        
+    \end{figure}
+    
+    
+\end{document}

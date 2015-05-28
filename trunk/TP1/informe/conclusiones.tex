@@ -1,0 +1,35 @@
+\documentclass[informe.tex]{subfiles}
+\begin{document}
+  
+  \section{Conclusiones}
+    
+    \subsection{Problema 1}
+      
+      Concluimos, observando los resultados, que una \'unica capa oculta con 20 o 25 neuronas es suficiente para obtener una clasificaci\'on casi perfecta de los datos de test, dado un tiempo de entrenamiento adecuado. 
+      
+      Para este problema, parece ser que la red neuronal presenta un buen comportamiento con valores de learning rate y momentum altos, por lo que pueden aprovecharse para reducir el tiempo de entrenamiento o producir una precisi\'on mayor en el mismo tiempo. Sin embargo, no consideramos adecuado incrementar demasiado estos valores, ya que la red puede terminar no convergiendo debido al incremento excesivo de los mismos en alg\'un caso remoto.
+      
+      Recomendamos entonces, una configuraci\'on de 20 neuronas en una \'unica capa oculta y un entrenamiento con un valor de learning rate de 0.20, un valor de momentum de 0.70 y 1000 \'epocas.
+      
+  
+    \subsection{Problema 2}
+      
+      A partir de los resultados analizados, es posible ver que un número de neuronas igual a 20 permite obtener bajo error en la validación. Podrían analizarse variantes con más neuronas o bien arquitecturas con menos neuronas pero ubicadas en más de una capa lo cual queda como trabajo futuro.
+      
+      Si bien el error en la validación varía un poco según la cantidad de épocas utilizadas para el entrenamiento, valores mayores en general permiten obtener mejores resultados. Observando los gráficos correspondientes a la arquitectura con 20 neuronas se puede apreciar que con 500 épocas el error en el entrenamiento comienza a estabilizarse, sin embargo continúa disminuyendo hasta 1500 épocas, punto a partir del cual la disminución es cada vez menos apreciable.
+      
+      Respecto del learning rate, por lo mencionado en la sección de resultados, el mejor valor entre aquellos considerados para la experimentación es 0.1 ya que proporciona un balance entre velocidad de convergencia y un bajo riesgo de que la red no converja.
+  
+    \subsection{Trabajo futuro}
+    
+      Dado el tiempo acotado para realizar pruebas con los conjuntos de datos, quedan planteados como posibles trabajos futuros el an\'alisis de arquitecturas con más capas ocultas, distintos criterios de inicializaci\'on de pesos, cambios din\'amicos en el learning rate y momentum dependientes del error observado, cambios en la funci\'on de error y distintos tipos de training (actualmente sólo probamos uno).
+      
+      Si bien utilizar una sola capa en general debería dar buenos resultados, es posible que usando más de una capa sea posible converger a las soluciones obtenidas en la experimentación con una menor cantidad de iteraciones o bien utilizando menos neuronas en total y en menos tiempo.
+      
+      Otra variante a evaluar es tratar de obtener un learning rate para cada problema que permita obtener buenos resultados m\'as r\'apidamente. Si bien se evaluaron distintos valores, es posible continuar analizando algunos otros y combinar otras arquitecturas con otros learning rates.
+      
+      Lo mismo podría plantearse en el problema 1 sobre el uso de momentum. En el problema 2, queda como trabajo a futuro evaluar si utilizar esta técnica permite una convergencia más rápida sin producir overfitting, aunque inferimos que un valor bajo del mismo ayudar\'ia a la red en su convergencia.
+      
+      Adem\'as, como observamos cierta dependencia en la convergencia de la red y su velocidad sobre la inicializaci\'on de los pesos, creemos que sería interesante investigar alg\'un m\'etodo que realice una cantidad de entrenamientos previos y cortos con el fin de quedarse con aquella inicializaci\'on que presente el menor error durante dichos entrenamientos.
+
+\end{document}
