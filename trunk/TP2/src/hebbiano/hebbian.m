@@ -1,4 +1,4 @@
-function [weights, razon, epoca] = hebbian( dataset, cantNeuronas, criterioParada, regla, maxEpocas, learningRate, alpha )
+function [weights, razon, epocaOError] = hebbian( dataset, cantNeuronas, criterioParada, regla, maxEpocas, learningRate, alpha )
 	if criterioParada == 'pesos'
 		criterio = true;
 	elseif criterioParada == 'ortog'
@@ -11,7 +11,6 @@ function [weights, razon, epoca] = hebbian( dataset, cantNeuronas, criterioParad
 	sumaDeDeltas = 0;
 	salir = false;
 	weights = 0.1 * randn(size(dataset,2), cantNeuronas);
-	%weights = ones(size(dataset,2), cantNeuronas);
 	M = cantNeuronas;
 	N = size(dataset,2);
 
@@ -56,6 +55,7 @@ function [weights, razon, epoca] = hebbian( dataset, cantNeuronas, criterioParad
 			if sumaDeDeltas < epsilon
 				salir = true;
 				razon = 'deltaWMenorEpsilon';
+				epocaOError = epoca;
 			end
 		else % O sea mirar si los vectores son bastante ortogonales
 			j1 = 1;
@@ -76,6 +76,7 @@ function [weights, razon, epoca] = hebbian( dataset, cantNeuronas, criterioParad
 			if ningunoMayor % O sea que son ortogonales segun epsilon
 				salir = true;
 				razon = 'ortogonalidad';
+				epocaOError = epoca;
 			end
 		end
 
@@ -84,4 +85,5 @@ function [weights, razon, epoca] = hebbian( dataset, cantNeuronas, criterioParad
 
 	if ~salir
 		razon = 'maxEpocas';
+		epocaOError = sumaDeDeltas;
 	end
