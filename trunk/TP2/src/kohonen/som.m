@@ -1,4 +1,4 @@
-function [w, activated] = som( dataset, M1, M2, maxEpocas, learningRate, alpha, sigma )
+function [w] = som( dataset, M1, M2, maxEpocas, learningRate, alpha, sigma )
 	% Setear parametros
 	epsilon = 0.001;
 	epoca = 0;
@@ -6,25 +6,25 @@ function [w, activated] = som( dataset, M1, M2, maxEpocas, learningRate, alpha, 
 	w = 0.1 * randn(N,M1*M2);
 	deltaw = zeros(N,M1*M2);
 
-	activated = zeros(1,M1*M2);
+	%activated = zeros(1,M1*M2);
 
 	% Entrenamiento
 	while epoca < maxEpocas
 		for d = 1:size(dataset,1)
-			%yMonio = resta(x',w);
-			%y = (yMonio == min(yMonio));
-			%jEstrella = find(y);
+			x = dataset(d,:);
+			yMonio = resta(x',w);
+			y = (yMonio == min(yMonio));
+			jEstrella = find(y);
 			%activated(jEstrella) = activated(jEstrella)+1;
 			% NOTA: No hay que reandomizar el orden del entrenamiento en cada epoca
-			x = dataset(d,:);
-			jEstrella = activar(x, w);
+			%jEstrella = activar(x, w);
 			D = distanciasAjEstrella(jEstrella, M1*M2, M2, sigma);
 			deltaW = calculoDeltaW(learningRate, D, resta(x',w));
 			w = w + deltaw;
 		end
 		epoca = epoca+1
 	end
-	activated = activated/epoca;
+	%activated = activated/epoca;
 
 function [D] = distanciasAjEstrella(jEstrella, M, M2, sigma)
 	for j = 1:M
