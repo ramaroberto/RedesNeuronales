@@ -1,7 +1,7 @@
 function [weights, razon, epocaOError] = hebbian( dataset, cantNeuronas, criterioParada, regla, maxEpocas, learningRate, alpha )
-	if criterioParada == 'pesos'
+	if criterioParada == 'p' % Por pesos
 		criterio = true;
-	elseif criterioParada == 'ortog'
+	elseif criterioParada == 'o' % Por ortogonalidad
 		criterio = false;
 	end
 
@@ -25,13 +25,13 @@ function [weights, razon, epocaOError] = hebbian( dataset, cantNeuronas, criteri
 			for j = [1:M]
 				xMonio = x-x;
 				for i = [1:N]
-					if regla == 'hb'
+					if regla == 'h'
 						Q = 0;
-					elseif regla == 'o1'
+					elseif regla == '1'
 						Q = 1;
-					elseif regla == 'sg'
+					elseif regla == 's'
 						Q = j;
-					elseif regla == 'oM'
+					elseif regla == 'M'
 						Q = M;
 					end
 
