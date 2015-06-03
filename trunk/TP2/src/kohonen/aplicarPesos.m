@@ -5,13 +5,16 @@ function [activados] = aplicarPesos(weights, input, M1, M2)
 		for i = 0:M1-1
 			for j = 1:M2
 				jEstrella = activar(input(instancia,2:end), weights);
-				jEstrellaI = idivide(uint8(jEstrella),uint8(M1));
+				jEstrellaI = idivide(uint8(jEstrella),uint8(M1),'floor');
 				jEstrellaJ = mod(jEstrella,M2);
 				cantidades(jEstrellaI+1,jEstrellaJ+1,input(instancia,1)) = cantidades(jEstrellaI+1,jEstrellaJ+1,input(instancia,1))+1;
 			end
 		end
 	end
 	% Buscar la dominante en cada posicion
+    M1
+    M2
+    size(cantidades)
 	for i = 1:M1
 		for j = 1:M2
 			[val,index] = max(cantidades(i,j,:));
