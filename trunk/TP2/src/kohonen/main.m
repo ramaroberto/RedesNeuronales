@@ -19,7 +19,7 @@ function [weights, epoca] = main(calcularPesos, cantEpocas, cantFolds)
 					test = csvread(testFilename, 0, 0);
 
 					if calcularPesos
-						[weights] = som( trainInput, M1, M2, cantEpocas, learningRate, alpha, sigma );
+						[weights] = som( trainInput, M1, M2, cantEpocas, learningRate, sigma );
 						csvwrite(weightsFilename,weights);
 					else
 						weights = csvread(weightsFilename);
