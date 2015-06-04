@@ -4,14 +4,14 @@ function [weights, razon, epocaOError] = main(calcularPesos, cantEpocas, cantFol
 	learningRate = 0.001;
 	alpha = 0;
 
-	for criterioParada = ['o','p']
-		for regla = ['1','s','M']
-			for repeticion = 1:5
+	for repeticion = 1:5
+		for criterioParada = ['o','p']
+			for regla = ['1','s','M']
 				for fold = 1:cantFolds
 					trainFilename = ['../particiones/train_fold' num2str(fold) '.csv'];
 					testFilename = ['../particiones/test_fold' num2str(fold) '.csv'];
-					weightsFilename = ['../weights/hebbiano_fold' num2str(fold) '_' criterioParada '_' regla '_' num2str(alpha) '_rep' num2str(repeticion) '.csv'];
-					figureFilename = ['graphs/fold' num2str(fold) '_' criterioParada '_' regla '_' num2str(alpha) '_rep' num2str(repeticion) '.fig'];
+					weightsFilename = ['../weights/hebbiano_fold' num2str(fold) '_criterioParada' criterioParada '_regla' regla '_alpha' num2str(alpha) '_rep' num2str(repeticion) '.csv'];
+					figureFilename = ['graphs/fold' num2str(fold) '_criterioParada' criterioParada '_regla' regla '_alpha' num2str(alpha) '_rep' num2str(repeticion) '.fig'];
 					datosFilename = ['graphs/datosCorridasHebbiano.txt'];
 
 					trainInput = csvread(trainFilename, 0, 1);
