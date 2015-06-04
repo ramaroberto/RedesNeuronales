@@ -1,6 +1,5 @@
-function [w] = som( dataset, M1, M2, maxEpocas, learningRate, sigma )
+function [w] = som( dataset, M1, M2, maxEpocas, learningRate, sigma, autoajuste )
 	% Setear parametros
-	%epsilon = 0.001;
 	epoca = 0;
 	N = size(dataset,2);
 	w = 0.1 * randn(N,M1*M2);
@@ -24,16 +23,25 @@ function [w] = som( dataset, M1, M2, maxEpocas, learningRate, sigma )
 			deltaW = calculoDeltaW(learningRate, D, yMonio);
 			w = w + deltaw;
 		end
+
 		epoca = epoca+1;
+
+		if autoajuste
+			learningRate = epoca^(-0.5);
+			sigma = 0.5*M2*epoca^(-1/3);
+		end
 	end
 
 function [D] = distanciasAjEstrella(jEstrella, M, M2, sigma)
 	for j = 1:M
-		D(j) = exp(-((norm(P(j,M2)-P(jEstrella,M2),2))^2)/2*sigma^2);
+		[posJi,posJj] = P(j,M2);
+		[posJEi,posJEj] = P(jEstrella,M2);
+		v = [posJi-posJEi,posJj-posJEj];
+		D(j) = exp(-((norm(v,2))^2)/(2*sigma^2));
 	end
 
 function [i,j] = P(a,M2)
-	i = floor(a/M2);
+	i = fix(a/M2);
 	j = mod(a,M2);
 
 function [deltaW] = calculoDeltaW(learningRate, D, resta)
