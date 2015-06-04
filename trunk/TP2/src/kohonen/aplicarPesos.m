@@ -7,9 +7,7 @@ function [activados] = aplicarPesos(weights, input, M1, M2)
 			cantidades(M1,M2,input(instancia,1)) = cantidades(M1,M2,input(instancia,1))+1;	
 		else
 			for itJE = 1:size(jEstrella)
-				jEstrella(itJE)
-				%jEstrellaI = idivide(uint8(jEstrella(itJE)),uint8(M2),'floor')
-				jEstrellaI = fix(jEstrella(itJE)/M2)
+				jEstrellaI = fix(jEstrella(itJE)/M2);
 				jEstrellaJ = mod(jEstrella(itJE),M2);
 				cantidades(jEstrellaI+1,jEstrellaJ+1,input(instancia,1)) = cantidades(jEstrellaI+1,jEstrellaJ+1,input(instancia,1))+1;
 			end
