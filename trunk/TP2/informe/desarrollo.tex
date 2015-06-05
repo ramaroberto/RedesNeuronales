@@ -2,14 +2,14 @@
 \begin{document}
   
   \section{Desarrollo}
-    \subsection{Reduccion de dimensionalidad}
-      \subsubsection{Analisis de componentes principales}
+    \subsection{Reducción de dimensionalidad}
+      \subsubsection{Análisis de componentes principales}
       \subsubsection{Reglas de Oja y Sanger}
-	La regla de Oja, encuentra un vector de pesos unitario que maximiza el output de la cuadratica media. Para datos con media cero este es solamente el componente principal. De todas formas, seria deseable tener una red de M-outputs que extraiga las primeras M componentes principales. Sanger y Oja diseñaron ambos redes neuronales de una sola capa y feed-forward para analisis de componentes principales que hacen esto.
+	La regla de Oja, encuentra un vector de pesos unitario que maximiza el output de la cuadratica media. Para datos con media cero este vector es solamente la componente principal. De todas formas, sería deseable tener una red de M-outputs que extraiga las primeras M componentes principales. Sanger y Oja diseñaron redes neuronales de una sola capa y feed-forward para análisis de componentes principales que hacen esto.
 	
 	~
 	
-	La regla de aprenzaje se Sanger es:
+	La regla de aprendizaje de Sanger es:
 
 	$$\Delta w_{ij} = \eta V_i(\xi_j \sum_{k=1}^{i} V_k w_{kj} )$$
 
@@ -17,7 +17,7 @@
 
 	$$\Delta w_{ij} = \eta V_i(\xi_j \sum_{k=1}^{N} V_k w_{kj} )$$
 
-	La unica diferencia entre ambas es el limite superior de la sumatoria. En ambos casos los $w_i$ vectores convergen vectores unitarios ortogonales, tal que $w^{T}_i w_j = \delta_{ij}$. En el caso de la regla de Sanger, los vectores de pesos se vuelven exactamente con las primeras M componentes principales, y es por esto que es mas util en aplicaciones ya que extrae los componentes principales en orden. Como nota de color, si algun algoritmo de este tipo es implementado en cerebros reales, probablemente sea mas parecido a la regla de Oja: no hay ninguna ventaja obvia para un animal en tener la informacion ordenada en base a los componentes principales. 
+	La única diferencia entre ambas es el límite superior de la sumatoria. En ambos casos los $w_i$ vectores convergen a vectores unitarios ortogonales, tales que $w^{T}_i w_j = \delta_{ij}$. En el caso de la regla de Sanger, los vectores de pesos se vuelven exactamente con las primeras M componentes principales, y es por esto que es mas util en aplicaciones ya que extrae los componentes principales en orden. Como nota de color, si algun algoritmo de este tipo es implementado en cerebros reales, probablemente sea mas parecido a la regla de Oja: no hay ninguna ventaja obvia para un animal en tener la informacion ordenada en base a los componentes principales. 
 
 	De todas formas, en ambos casos la salida proyecta un vector de entrada $\xi$ en el espacio de las $M$ componentes.
     \subsection{Mapeo de caracteristicas auto-organizado}

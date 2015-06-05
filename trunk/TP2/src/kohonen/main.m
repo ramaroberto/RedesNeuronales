@@ -2,17 +2,19 @@ function [weights, epoca] = main(calcularPesos, cantEpocas, cantFolds)
 	learningRate = 1;
 	sigma = 2;
 
-	%for repeticion = 1:5
-	for repeticion = 1:1
-		%for autoajuste = [false,true]
-		autoajuste = true;
+	for repeticion = 1:5
+	%for repeticion = 1:1
+		for autoajuste = [false,true]
 			for fold = 1:cantFolds
-				for M1 = 30
-					for M2 = 20
+				for M1 = [10,30,50,100]
+					M2 = M1;
+					%for M2 = 20
 						trainFilename = ['../particiones/train_fold' num2str(fold) '.csv'];
 						testFilename = ['../particiones/test_fold' num2str(fold) '.csv'];
 						weightsFilename = ['../weights/kohonen_fold' num2str(fold) '_' num2str(cantEpocas) '_' num2str(learningRate) '_' num2str(sigma) '_rep' num2str(repeticion) '.csv'];
-						figureFilename = ['graphs/fold' num2str(fold) '_' num2str(cantEpocas) '_' num2str(learningRate) '_' num2str(sigma) '_rep' num2str(repeticion) '.fig'];
+						figureTrainFilename = ['graphs/trainfold' num2str(fold) '_' num2str(learningRate) '_' num2str(sigma) '_' num2str(autoajuste) '_' num2str(M1) '_rep' num2str(repeticion) '.fig'];
+						figureTestFilename = ['graphs/testfold' num2str(fold) '_' num2str(learningRate) '_' num2str(sigma) '_' num2str(autoajuste) '_' num2str(M1) '_rep' num2str(repeticion) '.fig'];
+						datosFilename = ['graphs/datosCorridasKohonen.txt'];
 
 						trainInput = csvread(trainFilename, 0, 1);
 						train = csvread(trainFilename, 0, 0);
@@ -25,6 +27,9 @@ function [weights, epoca] = main(calcularPesos, cantEpocas, cantFolds)
 						else
 							weights = csvread(weightsFilename);
 						end
+						fileID = fopen(datosFilename,'a');
+						fprintf(fileID,'learningRate: %f \t sigma: %f \t autoajuste: %d \t M1,M2: %d \t fold: %d \t rep: %d \n', learningRate, sigma, autoajuste, M1, fold, repeticion);
+						fclose(fileID);
 
 						trainActivados = aplicarPesos(weights,train,M1,M2);
 						testActivados = aplicarPesos(weights,test,M1,M2);
@@ -34,8 +39,16 @@ function [weights, epoca] = main(calcularPesos, cantEpocas, cantFolds)
 						caxis([0 9]);
 						colormap(jet(10));
 						colorbar;
-					end
+						saveas(h,figureTrainFilename,'fig');
+
+						h = imagesc(testActivados);
+						axis square;
+						caxis([0 9]);
+						colormap(jet(10));
+						colorbar;
+						saveas(h,figureTestFilename,'fig');
+					%end
 				end
 			end
-		%end
+		end
 	end

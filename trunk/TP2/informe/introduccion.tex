@@ -3,15 +3,15 @@
   
   \section{Introducción}
   
-  En el presente trabajo se busca atacar un mismo problema utilizando dos modelos distintos de redes neuronales no supervizadas. El problema que intentamos resolver es la clasificacion de distintas empresas en categorias a partir de una breve descripcion. Dicha descripcion estara representada por una bag of words, que convierte un texto a un vector en donde cada posicion representara la cantidad de apariciones de una palabra en particular. Si bien esto nos permite una representacion espacial de un texto, perdemos la informacion del orden de las palabras.
+  En el presente trabajo se busca atacar un mismo problema utilizando dos modelos distintos de redes neuronales no supervisadas. El problema que intentamos resolver es la clasificación de distintas empresas en categorías a partir de una breve descripción. Dicha descripción estará representada por una {\it bag of words}, que convierte un texto a un vector en donde cada posición representará la cantidad de apariciones de una palabra en particular. Si bien esto nos permite una representacion espacial de un texto, perdemos la información del orden de las palabras.
   
   ~
 
-  El primero de los modelos se lo definira con la finalidad de que permita reducir la alta dimensionalidad de las entradas a solo 3 dimensiones. Esto lo lograremos utilizando las reglas basadas en aprendizaje Hebbiano de Oja y Sanger\cite{haykin}, con lo que obtendremos, a traves del entrenamiento de la red neuronal, una base de componentes principales. La misma nos permitira proyectar una entrada del espacio de alta dimensionalidad a un espacio de 3 dimensiones.
+  El primero de los modelos se lo definirá con la finalidad de que permita reducir la alta dimensionalidad de las entradas a sólo 3 dimensiones. Esto lo lograremos utilizando las reglas basadas en aprendizaje Hebbiano de Oja y Sanger\cite{haykin}, con lo que obtendremos, a traves del entrenamiento de la red neuronal, una base de componentes principales. La misma nos permitirá proyectar una entrada del espacio de alta dimensionalidad a un espacio de 3 dimensiones.
   
   ~
   
-  En el segundo modelo estara basado en aprendizaje competitivo\cite{haykin}. En este tipo de aprendizaje solo una unidad de salida, o una por grupo, esta activa a la vez. Las unidades de salida compiten por ser aquellas en activarse y el objetivo de estas redes es clusterizar o categorizar los datos de entrada. Entradas similares deberian clasificarse en la misma categoria, por lo que deberian activar la misma unidad de salida. En nuestro trabajo la red realizara mapeo de caracteristicas auto-organizado, utilizando el algoritmo de Kohonen.
+  El segundo modelo estará basado en aprendizaje competitivo\cite{haykin}. En este tipo de aprendizaje sólo una unidad de salida, o una por grupo, está activa a la vez. Las unidades de salida compiten por ser aquellas en activarse y el objetivo de estas redes es clusterizar o categorizar los datos de entrada. Entradas similares deberían clasificarse en la misma categoria, por lo que deberían activar la misma unidad de salida. En nuestro trabajo la red realizará un mapeo de características auto-organizado utilizando el algoritmo de Kohonen.
   
   ~
   
@@ -19,7 +19,7 @@
   
   ~
   
-  Durante las pruebas decidimos utilizar la técnica de cross-validation \cite{haykin}, con el fin de realizar un análisis más robusto respecto al rendimiento. Esta técnica nos permitió tener una idea más real del nivel de generalidad de los resultados obtenidos con las redes.
+  Durante las pruebas decidimos utilizar la técnica de cross-validation \cite{haykin}, con el fin de realizar un análisis más robusto respecto del rendimiento. Esta técnica nos permitió tener una idea más real del nivel de generalidad de los resultados obtenidos con las redes.
   
   
 \end{document}
