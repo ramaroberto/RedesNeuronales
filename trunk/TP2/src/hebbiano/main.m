@@ -4,9 +4,10 @@ function [weights, razon, epocaOError] = main(calcularPesos, cantEpocas, cantFol
 	learningRate = 0.001;
 	alpha = 0;
 
-	for repeticion = 1:5
-		for criterioParada = ['o','p']
-			for regla = ['1','s','M']
+	for repeticion = 1:1
+		%for criterioParada = ['o','p']
+		for criterioParada = ['p']
+			for regla = ['s','M']
 				for fold = 1:cantFolds
 					trainFilename = ['../particiones/train_fold' num2str(fold) '.csv'];
 					testFilename = ['../particiones/test_fold' num2str(fold) '.csv'];
