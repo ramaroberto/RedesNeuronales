@@ -17,3 +17,5 @@ criterioParada: o 	 regla: M 	 fold: 7 	 rep: 1 	 cantEpocas: 500 	 razon: ortog
 criterioParada: o 	 regla: M 	 fold: 8 	 rep: 1 	 cantEpocas: 500 	 razon: ortogonalidad 	 epocaOError: 25.000000 
 criterioParada: o 	 regla: M 	 fold: 9 	 rep: 1 	 cantEpocas: 500 	 razon: ortogonalidad 	 epocaOError: 1.000000 
 
+criterioParada: p 	 regla: s 	 fold: 1 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004782 
+criterioParada: p 	 regla: s 	 fold: 2 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004761 

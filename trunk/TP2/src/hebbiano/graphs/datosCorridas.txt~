@@ -1,6 +1,0 @@
-criterioParada: o 	 regla: 1 	 fold: 1 	 rep: 5 	 razón: maxEpocas 	 epocaOError: 0.003378 
-criterioParada: o 	 regla: 1 	 fold: 1 	 rep: 1 	 razón: maxEpocas 	 epocaOError: 0.001870 
-criterioParada: o 	 regla: 1 	 fold: 1 	 rep: 2 	 razón: maxEpocas 	 epocaOError: 0.001397 
-criterioParada: o 	 regla: 1 	 fold: 1 	 rep: 3 	 razón: maxEpocas 	 epocaOError: 0.002041 
-criterioParada: o 	 regla: 1 	 fold: 1 	 rep: 4 	 razón: maxEpocas 	 epocaOError: 0.003226 
-criterioParada: o 	 regla: 1 	 fold: 1 	 rep: 5 	 razón: maxEpocas 	 epocaOError: 0.001843 
