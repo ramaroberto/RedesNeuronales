@@ -11,11 +11,13 @@
       
       El l\'imite de cantidad de \'epocas elegido fue 500 considerando que es un n\'umero lo suficientemente grande para que el método converja. En todos los casos, si no se llega a que los vectores sean ortogonales o bien que $\delta W$ sea pequeño entonces el criterio de corte es alcanzar ese límite máximo de épocas. Además, el valor de epsilon elegido fue 0.001.
       
+      En todos los casos $A$ es ``Cantidad de veces con corte por máximo de épocas '', $B$ es ``Cantidad de veces con corte por ortogonalidad'', $C$ es ``Corte por épocas error mínimo'', $D$ es ``Corte por épocas error máximo'', $E$ es ``Corte por épocas error promedio'', $F$ es ``Corte por ortogonalidad cantidad de épocas mínima'', $G$ es ``Corte por ortogonalidad cantidad de épocas máxima'' y $H$ es ``Corte por ortogonalidad cantidad de épocas promedio''.
+      
       
       \begin{table}[h]
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
-	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $G$ \\ \hline
+	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
 	1& 1 & 0 & 0.004782 & 0.004782 & 0.004782 & -- & -- & -- \\ \hline
 	2& 1 & 0 & 0.004761 & 0.004761 & 0.004761 & -- & -- & -- \\ \hline
 	3& 1 & 0 & 0.004757 & 0.004757 & 0.004757 & -- & -- & -- \\ \hline
@@ -26,7 +28,7 @@
 	8& 1 & 0 & 0.004777 & 0.004777 & 0.004777 & -- & -- & -- \\ \hline
 	9& 0 & 1 & -- & -- & -- & 5 & 5 & 5 \\ \hline
 	\end{tabular}
-	\caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas. $A$ es ``Cantidad de veces con corte por máximo de épocas '', $B$ es ``Cantidad de veces con corte por ortogonalidad'', $C$ es ``Corte por épocas error mínimo'', $D$ es ``Corte por épocas error máximo'', $E$ es ``Corte por épocas error promedio'', $F$ es ``Corte por ortogonalidad cantidad de épocas mínima'', $G$ es ``Corte por ortogonalidad cantidad de épocas máxima'' y $H$ es ``Corte por ortogonalidad cantidad de épocas promedio''. }
+	\caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
 	\label{tab:ortogonalidad_sanger}
       \end{table}
 
@@ -34,7 +36,7 @@
       \begin{table}[h]
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
-	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $G$ \\ \hline
+	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
 	1& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
 	2& 0 & 1 & -- & -- & -- & 25 & 25 & 25 \\ \hline
 	3& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
@@ -45,12 +47,50 @@
 	8& 0 & 1 & -- & -- & -- & 25 & 25 & 25 \\ \hline
 	9& 0 & 1 & -- & -- & -- & 1 & 1 & 1 \\ \hline
 	\end{tabular}
-	\caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas. $A$ es ``Cantidad de veces con corte por máximo de épocas '', $B$ es ``Cantidad de veces con corte por ortogonalidad'', $C$ es ``Corte por épocas error mínimo'', $D$ es ``Corte por épocas error máximo'', $E$ es ``Corte por épocas error promedio'', $F$ es ``Corte por ortogonalidad cantidad de épocas mínima'', $G$ es ``Corte por ortogonalidad cantidad de épocas máxima'' y $H$ es ``Corte por ortogonalidad cantidad de épocas promedio''. }
+	\caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
 	\label{tab:ortogonalidad_oja}
       \end{table}
 
       
+      \begin{table}[h]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	1& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	2& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	3& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	4& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	5& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	6& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	7& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	8& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	9& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	\end{tabular}
+	\caption{Resultados para los 9 folds, usando $\delta W$ como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	\label{tab:pesos_sanger}
+      \end{table}      
       
+
+      \begin{table}[h]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	1& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	2& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	3& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	4& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	5& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	6& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	7& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	8& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	9& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	\end{tabular}
+	\caption{Resultados para los 9 folds, usando $\delta W$ como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	\label{tab:pesos_oja}
+      \end{table}            
+      
+      
+     \newpage 
     \subsection{Mapeo de características}
       Para realizar el modelo se consideraron distintos tamaños de mapa así como también la opción de tener parámetros de aprendizaje autoajustables. El objetivo es tener un criterio comparativo para determinar qué tamaño es suficiente en relación a la cantidad de parámetros de las instancias.
       
