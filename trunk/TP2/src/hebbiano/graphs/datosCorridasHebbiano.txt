@@ -19,3 +19,13 @@ criterioParada: o 	 regla: M 	 fold: 9 	 rep: 1 	 cantEpocas: 500 	 razon: ortog
 
 criterioParada: p 	 regla: s 	 fold: 1 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004782 
 criterioParada: p 	 regla: s 	 fold: 2 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004761 
+criterioParada: p 	 regla: s 	 fold: 3 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004757 
+criterioParada: p 	 regla: s 	 fold: 4 	 rep: 1 	 cantEpocas: 500 	 razon: deltaWMenorEpsilon 	 epocaOError: 0.000000 
+criterioParada: p 	 regla: s 	 fold: 5 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004759 
+criterioParada: p 	 regla: s 	 fold: 6 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004767 
+criterioParada: p 	 regla: s 	 fold: 7 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004805 
+criterioParada: p 	 regla: s 	 fold: 8 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004777 
+criterioParada: p 	 regla: s 	 fold: 9 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004733 
+criterioParada: p 	 regla: M 	 fold: 1 	 rep: 1 	 cantEpocas: 500 	 razon: deltaWMenorEpsilon 	 epocaOError: 0.000000 
+criterioParada: p 	 regla: M 	 fold: 2 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004724 
+criterioParada: p 	 regla: M 	 fold: 3 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004712 
