@@ -29,3 +29,4 @@ criterioParada: p 	 regla: s 	 fold: 9 	 rep: 1 	 cantEpocas: 500 	 razon: maxEp
 criterioParada: p 	 regla: M 	 fold: 1 	 rep: 1 	 cantEpocas: 500 	 razon: deltaWMenorEpsilon 	 epocaOError: 0.000000 
 criterioParada: p 	 regla: M 	 fold: 2 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004724 
 criterioParada: p 	 regla: M 	 fold: 3 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.004712 
+criterioParada: p 	 regla: M 	 fold: 4 	 rep: 1 	 cantEpocas: 500 	 razon: maxEpocas 	 epocaOError: 0.002974 
