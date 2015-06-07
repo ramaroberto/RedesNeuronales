@@ -15,97 +15,131 @@
       
       El l\'imite de cantidad de \'epocas elegido fue $500$ considerando que es un n\'umero lo suficientemente grande para que el método converja. En todos los casos, si no se llega a que los vectores sean ortogonales o bien que $\Delta W$ sea pequeño entonces el criterio de corte es alcanzar ese límite máximo de épocas. Además, el valor de epsilon elegido fue $0.001$.
 
-      En todos los casos 
-      \begin{itemize}
-       \item $A$ es ``Cantidad de veces con corte por máximo de épocas''
-       \item $B$ es ``Cantidad de veces con corte por ortogonalidad''
-       \item $C$ es ``Corte por épocas error mínimo''
-       \item $D$ es ``Corte por épocas error máximo''
-       \item $E$ es ``Corte por épocas error promedio''
-       \item $F$ es ``Corte por ortogonalidad cantidad de épocas mínima''
-       \item $G$ es ``Corte por ortogonalidad cantidad de épocas máxima''
-       \item $H$ es ``Corte por ortogonalidad cantidad de épocas promedio''
-      \end{itemize}
- 
+      \subsubsection{Resumen de resultados}
       
-      
-      \begin{table}[h]
-	\centering
-	\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
-	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
-	1& 1 & 0 & 0.004782 & 0.004782 & 0.004782 & -- & -- & -- \\ \hline
-	2& 1 & 0 & 0.004761 & 0.004761 & 0.004761 & -- & -- & -- \\ \hline
-	3& 1 & 0 & 0.004757 & 0.004757 & 0.004757 & -- & -- & -- \\ \hline
-	4& 1 & 0 & 0.003081 & 0.003081 & 0.003081 & -- & -- & -- \\ \hline
-	5& 0 & 1 & -- & -- & -- & 15 & 15 & 15 \\ \hline
-	6& 1 & 0 & 0.004767 & 0.004767 & 0.004767 & -- & -- & -- \\ \hline
-	7& 0 & 1 & -- & -- & -- & 13 & 13 & 13 \\ \hline
-	8& 1 & 0 & 0.004777 & 0.004777 & 0.004777 & -- & -- & -- \\ \hline
-	9& 0 & 1 & -- & -- & -- & 5 & 5 & 5 \\ \hline
-	\end{tabular}
-	\caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	\label{tab:ortogonalidad_sanger}
-      \end{table}
+	En todos los casos 
+	\begin{itemize}
+	\item $A$ es ``Cantidad de veces con corte por máximo de épocas''
+	\item $B$ es ``Cantidad de veces con corte por ortogonalidad''
+	\item $C$ es ``Corte por épocas error mínimo''
+	\item $D$ es ``Corte por épocas error máximo''
+	\item $E$ es ``Corte por épocas error promedio''
+	\item $F$ es ``Corte por ortogonalidad cantidad de épocas mínima''
+	\item $G$ es ``Corte por ortogonalidad cantidad de épocas máxima''
+	\item $H$ es ``Corte por ortogonalidad cantidad de épocas promedio''
+	\end{itemize}
+  
+	
+	
+	\begin{table}[H]
+	  \centering
+	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	  1& 1 & 0 & 0.004782 & 0.004782 & 0.004782 & -- & -- & -- \\ \hline
+	  2& 1 & 0 & 0.004761 & 0.004761 & 0.004761 & -- & -- & -- \\ \hline
+	  3& 1 & 0 & 0.004757 & 0.004757 & 0.004757 & -- & -- & -- \\ \hline
+	  4& 1 & 0 & 0.003081 & 0.003081 & 0.003081 & -- & -- & -- \\ \hline
+	  5& 0 & 1 & -- & -- & -- & 15 & 15 & 15 \\ \hline
+	  6& 1 & 0 & 0.004767 & 0.004767 & 0.004767 & -- & -- & -- \\ \hline
+	  7& 0 & 1 & -- & -- & -- & 13 & 13 & 13 \\ \hline
+	  8& 1 & 0 & 0.004777 & 0.004777 & 0.004777 & -- & -- & -- \\ \hline
+	  9& 0 & 1 & -- & -- & -- & 5 & 5 & 5 \\ \hline
+	  \end{tabular}
+	  \caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	  \label{tab:ortogonalidad_sanger}
+	\end{table}
 
-      
-      \begin{table}[h]
-	\centering
-	\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
-	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
-	1& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
-	2& 0 & 1 & -- & -- & -- & 25 & 25 & 25 \\ \hline
-	3& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
-	4& 0 & 1 & -- & -- & -- & 10 & 10 & 10 \\ \hline
-	5& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
-	6& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
-	7& 0 & 1 & -- & -- & -- & 24 & 24 & 24 \\ \hline
-	8& 0 & 1 & -- & -- & -- & 25 & 25 & 25 \\ \hline
-	9& 0 & 1 & -- & -- & -- & 1 & 1 & 1 \\ \hline
-	\end{tabular}
-	\caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	\label{tab:ortogonalidad_oja}
-      \end{table}
+	
+	\begin{table}[H]
+	  \centering
+	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	  1& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
+	  2& 0 & 1 & -- & -- & -- & 25 & 25 & 25 \\ \hline
+	  3& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
+	  4& 0 & 1 & -- & -- & -- & 10 & 10 & 10 \\ \hline
+	  5& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
+	  6& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
+	  7& 0 & 1 & -- & -- & -- & 24 & 24 & 24 \\ \hline
+	  8& 0 & 1 & -- & -- & -- & 25 & 25 & 25 \\ \hline
+	  9& 0 & 1 & -- & -- & -- & 1 & 1 & 1 \\ \hline
+	  \end{tabular}
+	  \caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	  \label{tab:ortogonalidad_oja}
+	\end{table}
 
-      
-      \begin{table}[h]
-	\centering
-	\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
-	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
-	1& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	2& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	3& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	4& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	5& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	6& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	7& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	8& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	9& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	\end{tabular}
-	\caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	\label{tab:pesos_sanger}
-      \end{table}      
-      
+	
+	\begin{table}[H]
+	  \centering
+	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	  1& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  2& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  3& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  4& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  5& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  6& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  7& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  8& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  9& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  \end{tabular}
+	  \caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	  \label{tab:pesos_sanger}
+	\end{table}      
+	
 
-      \begin{table}[h]
-	\centering
-	\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
-	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
-	1& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	2& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	3& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	4& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	5& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	6& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	7& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	8& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	9& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	\end{tabular}
-	\caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	\label{tab:pesos_oja}
-      \end{table}            
+	\begin{table}[H]
+	  \centering
+	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	  1& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  2& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  3& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  4& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  5& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  6& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  7& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  8& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  9& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  \end{tabular}
+	  \caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	  \label{tab:pesos_oja}
+	\end{table}            
+
+	
+      \subsubsection{Gráficos espaciales de algunos resultados}
+	\newgeometry{textwidth=21cm,textheight=21cm}
+	\begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglaM_alpha0_rep1_0P.png}
+                \caption{Vista en perspectiva.}
+        \end{subfigure}%
+        ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglaM_alpha0_rep1_1XZ.png}
+                \caption{Plano X-Z.}
+        \end{subfigure}
+        
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglaM_alpha0_rep1_2XY.png}
+                \caption{Plano X-Y.}
+        \end{subfigure}
+        ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglaM_alpha0_rep1_3YZ.png}
+                \caption{Plano Y-Z.}
+        \end{subfigure}
+        \caption{Gráfico espacial para blablabla}
+        \label{fig:blablabla}
+	\end{figure}
+      
+	\restoregeometry
       
       
-     \FloatBarrier
+      
     \subsection{Mapeo de características}
     
       En este caso, el analisis de este modelo se vuelve algo particular. Para realizar el mismo, decidimos utilizar dos metricas: la primera con el objetivo de obtener alguna nocion de desempe\~no de la red, y la segunda para conocer que tan distanciados estaban los distintos grupos de activacion luego del entrenamiento.
