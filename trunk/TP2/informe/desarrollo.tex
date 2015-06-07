@@ -3,17 +3,17 @@
   
   \section{Desarrollo}
     \subsection{Reducción de dimensionalidad}
-	El proposito de la reducción de dimensiones es intentar lidiar con el conocido ``curse of dimensionality''. El mismo, es un fenomeno que se da en espacios grandes de dimensiones en al aumentar el mismo,los datos se vuelven esparsos y se vuelve un problema grave para cualquier metodo que requiera significancia estadistica. Una de las formas de reducir la dimensionalidad del espacio, es a traves del analisis de componentes principales.
+	El propósito de la reducción de dimensiones es intentar lidiar con el conocido ``curse of dimensionality''. El mismo es un fenómeno que se da en espacios de grandes dimensiones donde los datos son esparsos y clasificar se vuelve un problema grave para cualquier método que requiera significancia estadística. Una de las formas de reducir la dimensionalidad del espacio es a través del análisis de componentes principales.
     
       \subsubsection{Análisis de componentes principales}
-	El an\'alisis de componentes principales es un proceso estadístico que usa una transformaci\'on ortogonal que convierte observaciones en un conjunto de variables linearmente no correlacionadas llamadas componentes principales. La transformación se define de modo que la primera componente principal tiene la mayor varianza entre todas las variables y cada una de las siguientes componentes tiene la mayor varianza posible entre todas las ortogonales a las componentes anteriores. Luego, el objetivo es calcular una cierta cantidad de componentes principales que contengan las mayor información respecto de los datos para poder expresarlos en función de dichos vectores pertenecientes a una base ortonormal.
+	El an\'alisis de componentes principales es un proceso estadístico que usa una transformaci\'on ortogonal que convierte observaciones en un conjunto de variables linearmente no correlacionadas llamadas componentes principales. La transformación se define de modo que la primera componente principal tiene la mayor varianza entre todas las variables y cada una de las siguientes componentes tiene la mayor varianza posible entre todas las ortogonales a las componentes anteriores. Luego, el objetivo es calcular una cierta cantidad de componentes principales que contengan la mayor información respecto de los datos para poder expresarlos en función de dichos vectores pertenecientes a una base ortonormal.
 	
       \subsection{Regla de Oja}
-	La regla de Oja es una modificacion a la regla de aprendizaje Hebbiano que previene la divergencia. Mediante la modificacion, el vector de pesos se aproxima a una longitud constante $|w|=1$, sin la necesidad de realizar ninguna normalizacion. Por otra parte, el vector $w$ ciertamente se acerca al autovector $C$ con el autovalor $\delta_{max}$ mas alto, es decir el autovector principal. Esta regla tambien es llamada ``Oja1'', ya que solamente nos da el primer autovector o componente principal.
+	La regla de Oja es una modificación a la regla de aprendizaje Hebbiano que previene la divergencia. Mediante la modificación, el vector de pesos se aproxima a una longitud constante $|w|=1$, sin la necesidad de realizar ninguna normalización. Por otra parte, el vector $w$ ciertamente se acerca al autovector $C$ con el autovalor $\delta_{max}$ más alto, es decir el autovector principal. Esta regla también es llamada ``Oja1'', ya que solamente nos da el primer autovector o componente principal.
 	
 	~
 	
-	Como en este trabajo nos interesa las primeras tres componentes principales, no analizaremos la eficacia de esta regla, si no que iremos con su version $M$.
+	Como en este trabajo nos interesan las primeras tres componentes principales, no analizaremos la eficacia de esta regla, si no que iremos con su version $M$.
       
       \subsubsection{Reglas de Oja y Sanger}
 	Como expresamos anteriormente, es deseable tener una red de M-salidas que extraiga las primeras M componentes principales. Sanger y Oja diseñaron redes neuronales de una sola capa y feed-forward para análisis de componentes principales que se encargan de llevar a cargo esta tarea.
@@ -27,8 +27,10 @@
 	Mientras que la de Oja es:
 
 	$$\Delta w_{ij} = \eta V_i(\xi_j \sum_{k=1}^{N} V_k w_{kj} )$$
+	
+	Donde $V$ es el vector obtenido al multiplicar la instancia de entrada por la matriz de pesos, $\eta$ es el learning rate 
 
-	La única diferencia entre ambas es el límite superior de la sumatoria. En ambos casos los $w_i$ vectores convergen a vectores unitarios ortogonales, tales que $w^{T}_i w_j = \delta_{ij}$. En el caso de la regla de Sanger, los vectores de pesos se aproximan exactamente a las primeras $M$ componentes principales, y es por esto que es mas \'util en aplicaciones ya que extrae los mismos en orden. Como nota de color, si algun algoritmo es utilizado en cerebros de seres viviantes, probablemente sea mas parecido a la regla de Oja: no hay ninguna ventaja obvia para un ser en tener la informacion ordenada en base a los componentes principales. 
+	La única diferencia entre ambas es el límite superior de la sumatoria. En ambos casos los $w_i$ vectores convergen a vectores unitarios ortogonales, tales que $w^{T}_i w_j = \delta_{ij}$. En el caso de la regla de Sanger, los vectores de pesos se aproximan exactamente a las primeras $M$ componentes principales, y es por esto que es mas \'util en aplicaciones ya que extrae los mismos en orden. Como nota de color, si algún algoritmo es utilizado en cerebros de seres vivientes, probablemente sea más parecido a la regla de Oja: no hay ninguna ventaja obvia para un ser en tener la información ordenada en base a las componentes principales. 
 
 	De todas formas, en ambos casos la salida proyecta un vector de entrada $\xi$ en el espacio de las $M$ componentes.
 	
