@@ -2,14 +2,20 @@
 \begin{document}
   
   \section{Resultados}
-    Para analizar los distintos métodos decidimos generar 9 folds con los datos de manera que cada entrenamiento se hiciera con 800 entradas y la validación con las 100 restantes dado que el conjunto provisto es de 900 datos. Además, cada experimento fue repetido 5 veces a fin de tener diferentes corridas de cada caso y observar si se produc\'ian diferentes resultados con cada una.
+    Para analizar los distintos métodos decidimos generar 9 folds con los datos. Teniendo un conjunto provisto es de 900 datos, cada entrenamiento se realiz\'o con 800 entradas y la validación con las 100 restantes. Además, cada experimento fue repetido 5 veces a fin de tener diferentes corridas de cada caso y observar si se produc\'ian diferentes resultados con cada una.
     
     \subsection{Reducción de dimensiones}
       Para analizar este modelo se consideraron los dos criterios de parada mencionados anteriormente: componentes principales ortogonales y $\delta W$ nulo. Para cada una de esas opciones se usaron las reglas de Oja y de Sanger de modo de poder probar las distintas combinaciones y comparar sus resultados. 
       
-      Para cada experimento se realizó un gráfico en el cual cada instancia se indica en un espacio tridimensional correspondiente a las tres componentes principales con diferentes colores según la clase. Allí, cada clase de entre las posibles (1 al 9) recibe un color y las instancias de entrenamiento son representadas con un círculo mientras que las de validación se indican con un triángulo. El objetivo entonces es observar cuál es la distribución de las instancias en ese espacio.
+      ~
       
-      El l\'imite de cantidad de \'epocas elegido fue 500 considerando que es un n\'umero lo suficientemente grande para que el método converja. En todos los casos, si no se llega a que los vectores sean ortogonales o bien que $\delta W$ sea pequeño entonces el criterio de corte es alcanzar ese límite máximo de épocas. Además, el valor de epsilon elegido fue 0.001.
+      En cada experimento se realizó un gráfico en el cual cada instancia se indica en un espacio tridimensional correspondiente a las tres componentes principales con diferentes colores según la clase. Allí, cada clase de entre las posibles (1 al 9) recibe un color y las instancias de entrenamiento son representadas con un círculo mientras que las de validación se indican con un triángulo. El objetivo entonces es observar cuál es la distribución de las instancias en ese espacio.
+      
+      ~
+      
+      El l\'imite de cantidad de \'epocas elegido fue $500$ considerando que es un n\'umero lo suficientemente grande para que el método converja. En todos los casos, si no se llega a que los vectores sean ortogonales o bien que $\Delta W$ sea pequeño entonces el criterio de corte es alcanzar ese límite máximo de épocas. Además, el valor de epsilon elegido fue $0.001$.
+      
+      ~
       
       En todos los casos $A$ es ``Cantidad de veces con corte por máximo de épocas '', $B$ es ``Cantidad de veces con corte por ortogonalidad'', $C$ es ``Corte por épocas error mínimo'', $D$ es ``Corte por épocas error máximo'', $E$ es ``Corte por épocas error promedio'', $F$ es ``Corte por ortogonalidad cantidad de épocas mínima'', $G$ es ``Corte por ortogonalidad cantidad de épocas máxima'' y $H$ es ``Corte por ortogonalidad cantidad de épocas promedio''.
       
@@ -90,11 +96,48 @@
       \end{table}            
       
       
-     \newpage 
+     \FloatBarrier
     \subsection{Mapeo de características}
-      Para realizar el modelo se consideraron distintos tamaños de mapa así como también la opción de tener parámetros de aprendizaje autoajustables. El objetivo es tener un criterio comparativo para determinar qué tamaño es suficiente en relación a la cantidad de parámetros de las instancias.
+    
+      En este caso, el analisis de este modelo se vuelve algo particular. Para realizar el mismo, decidimos utilizar dos metricas: la primera con el objetivo de obtener alguna nocion de desempe\~no de la red, y la segunda para conocer que tan distanciados estaban los distintos grupos de activacion luego del entrenamiento.
       
-      Por otro lado, una vez generados los mapas con el conjunto de entrenamiento, el objetivo es catalogar las instancias del conjunto de validación usando los pesos y el mapa entrenados. 
+      % TODO: (Para Rober) Explicar que son los dominantes en la seccion de desarrollo.
+      
+      \subsubsection{Distancia a dominantes}
+      
+      A la primera la llamaremos ``distancia a dominantes'' (DD) y representar\'a la distancia relativa media entre los dominantes del set de validaci\'on y el set de activaci\'on. Para generar su calculo, tomamos cada uno de los dominantes del mapa de validacion y buscamos el dominante mas cercano en el mapa de entrenamiento, en el mejor caso esta distancia es cero. 
+      
+      ~
+      
+      Obteniendo todas las distancias entre los distintos dominantes calcularemos su media y luego la normalizaremos diviendola por la distancia maxima que puede existir; esto es $||(M_1,M_2)||$, es decir la distancia entre las esquinas de la matriz de pesos.
+      
+      $$DD(DTr, DTe, W, M_1, M_2) = \frac{dM(mAct(DTr,W), mAct(DTe,W))}{||(M_1,M_2)||}$$
+      
+      Donde $DTr$ es el dataset de entrenamiento, $DTe$ es el dataset de validacion, $W$ es la matriz de pesos y $M_1, M_2$  son las dimensiones de la ultima. Se supone que $mAct$ calcula los mapas de dominantes para los datos otorgados y que $dM$ calcula la distancia media entre dichos dominantes.
+      
+      \subsubsection{Factor de cruce}
+      
+      La segunda ser\'a denominada como ``factor de cruce'' (FC) y nos dara una nocion de cuantas neuronas se activan mas de una clase. Esto nos sirve para observar de que forma la red neuronal esta respondiendo a distintos impulsos. Inferimos que es deseable que este factor sea bajo, ya que lo ideal seria que las distintas clases activen grupos de neuronas disjuntas.
+      
+      ~
+      
+      Para calcular este factor, nos armaremos un mapa de la red neuronal en donde tendremos registradas las cantidades de veces que se activo una neurona en las 9 clases distintas. En un escenario ideal, ningun numero deberia ser mayor a 1, ya que indicaria que una neurona se activo para mas de una clase.
+      
+      ~
+      
+      Una vez calculado este mapa sumaremos todos los valores de la matriz, le restaremos la cantidad de neuronas que no eran cero dentro del mapa (por lo que en el caso ideal el factor nos daria cero) y lo dividiremos por esa misma cantidad.
+      
+      $$FD(D, W) = \frac{sumActCruz(D, W) - noSonCero(D, W)}{noSonCero(D, W)}$$
+      
+      Donde $D$ representa los datos a utilizar y $W$ la matriz de pesos de la red neuronal ya entrenada. Se supone que $sumActCruz$ internamente calcula las activaciones, al igual que $noSonCero$ calcula la cantidad de neuronas que se activaron.
+      
+      ~
+      \subsubsection{Analisis de resultados}
+      Analizar los resultados de las metricas decidimos generar 9 folds distintos para luego promediar los resultados de los mismos. Cada fold tendra un set de entrenamiento y uno de validación generados al azar.
+    
+      %Para realizar el modelo se consideraron distintos tamaños de mapa así como también la opción de tener parámetros de aprendizaje autoajustables. El objetivo es tener un criterio comparativo para determinar qué tamaño es suficiente en relación a la cantidad de parámetros de las instancias.
+      
+      %Por otro lado, una vez generados los mapas con el conjunto de entrenamiento, el objetivo es catalogar las instancias del conjunto de validación usando los pesos y el mapa entrenados. 
       
 
 \end{document}
