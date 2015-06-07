@@ -22,11 +22,11 @@
 	
 	La regla de aprendizaje de Sanger es:
 
-	$$\Delta w_{ij} = \eta V_i(\xi_j \sum_{k=1}^{i} V_k w_{kj} )$$
+	$$\Delta w_{ij} = \eta V_i(x_i - \sum_{k=1}^{i} V_k w_{kj} )$$
 
 	Mientras que la de Oja es:
 
-	$$\Delta w_{ij} = \eta V_i(\xi_j \sum_{k=1}^{N} V_k w_{kj} )$$
+	$$\Delta w_{ij} = \eta V_i(x_i - \sum_{k=1}^{N} V_k w_{kj} )$$
 	
 	Donde $V$ es el vector obtenido al multiplicar la instancia de entrada por la matriz de pesos, $\eta$ es el learning rate 
 
