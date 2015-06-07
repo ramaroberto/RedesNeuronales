@@ -5,13 +5,24 @@
     Para analizar los distintos métodos decidimos generar 9 folds con los datos de manera que cada entrenamiento se hiciera con 800 entradas y la validación con las 100 restantes dado que el conjunto provisto es de 900 datos. Además, cada experimento fue repetido 5 veces a fin de tener diferentes corridas de cada caso y observar si se produc\'ian diferentes resultados con cada una.
     
     \subsection{Reducción de dimensiones}
-      Para analizar este modelo se consideraron los dos criterios de parada mencionados anteriormente: componentes principales ortogonales y $\delta W$ nulo. Para cada una de esas opciones se usaron las reglas de Oja y de Sanger de modo de poder probar las distintas combinaciones y comparar sus resultados. 
+      Para analizar este modelo se consideraron los dos criterios de parada mencionados anteriormente: componentes principales ortogonales y $\Delta W$ nulo. Para cada una de esas opciones se usaron las reglas de Oja y de Sanger de modo de poder probar las distintas combinaciones y comparar sus resultados. 
       
       Para cada experimento se realizó un gráfico en el cual cada instancia se indica en un espacio tridimensional correspondiente a las tres componentes principales con diferentes colores según la clase. Allí, cada clase de entre las posibles (1 al 9) recibe un color y las instancias de entrenamiento son representadas con un círculo mientras que las de validación se indican con un triángulo. El objetivo entonces es observar cuál es la distribución de las instancias en ese espacio.
       
-      El l\'imite de cantidad de \'epocas elegido fue 500 considerando que es un n\'umero lo suficientemente grande para que el método converja. En todos los casos, si no se llega a que los vectores sean ortogonales o bien que $\delta W$ sea pequeño entonces el criterio de corte es alcanzar ese límite máximo de épocas. Además, el valor de epsilon elegido fue 0.001.
+      El l\'imite de cantidad de \'epocas elegido fue 500 considerando que es un n\'umero lo suficientemente grande para que el método converja. En todos los casos, si no se llega a que los vectores sean ortogonales o bien que $\Delta W$ sea pequeño entonces el criterio de corte es alcanzar ese límite máximo de épocas. Además, el valor de epsilon elegido fue 0.001.
       
-      En todos los casos $A$ es ``Cantidad de veces con corte por máximo de épocas '', $B$ es ``Cantidad de veces con corte por ortogonalidad'', $C$ es ``Corte por épocas error mínimo'', $D$ es ``Corte por épocas error máximo'', $E$ es ``Corte por épocas error promedio'', $F$ es ``Corte por ortogonalidad cantidad de épocas mínima'', $G$ es ``Corte por ortogonalidad cantidad de épocas máxima'' y $H$ es ``Corte por ortogonalidad cantidad de épocas promedio''.
+      En todos los casos 
+      \begin{itemize}
+       \item $A$ es ``Cantidad de veces con corte por máximo de épocas''
+       \item $B$ es ``Cantidad de veces con corte por ortogonalidad''
+       \item $C$ es ``Corte por épocas error mínimo''
+       \item $D$ es ``Corte por épocas error máximo''
+       \item $E$ es ``Corte por épocas error promedio''
+       \item $F$ es ``Corte por ortogonalidad cantidad de épocas mínima''
+       \item $G$ es ``Corte por ortogonalidad cantidad de épocas máxima''
+       \item $H$ es ``Corte por ortogonalidad cantidad de épocas promedio''
+      \end{itemize}
+ 
       
       
       \begin{table}[h]
@@ -66,7 +77,7 @@
 	8& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
 	9& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
 	\end{tabular}
-	\caption{Resultados para los 9 folds, usando $\delta W$ como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	\caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
 	\label{tab:pesos_sanger}
       \end{table}      
       
@@ -85,7 +96,7 @@
 	8& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
 	9& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
 	\end{tabular}
-	\caption{Resultados para los 9 folds, usando $\delta W$ como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	\caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
 	\label{tab:pesos_oja}
       \end{table}            
       
