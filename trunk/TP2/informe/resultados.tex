@@ -5,7 +5,7 @@
     Para analizar los distintos métodos decidimos generar 9 folds con los datos. Teniendo un conjunto provisto es de 900 datos, cada entrenamiento se realiz\'o con 800 entradas y la validación con las 100 restantes. Además, cada experimento fue repetido 5 veces a fin de tener diferentes corridas de cada caso y observar si se produc\'ian diferentes resultados con cada una.
     
     \subsection{Reducción de dimensiones}
-      Para analizar este modelo se consideraron los dos criterios de parada mencionados anteriormente: componentes principales ortogonales y $\delta W$ nulo. Para cada una de esas opciones se usaron las reglas de Oja y de Sanger de modo de poder probar las distintas combinaciones y comparar sus resultados. 
+      Para analizar este modelo se consideraron los dos criterios de parada mencionados anteriormente: componentes principales ortogonales y $\Delta W$ nulo. Para cada una de esas opciones se usaron las reglas de Oja y de Sanger de modo de poder probar las distintas combinaciones y comparar sus resultados. 
       
       ~
       
@@ -14,89 +14,332 @@
       ~
       
       El l\'imite de cantidad de \'epocas elegido fue $500$ considerando que es un n\'umero lo suficientemente grande para que el método converja. En todos los casos, si no se llega a que los vectores sean ortogonales o bien que $\Delta W$ sea pequeño entonces el criterio de corte es alcanzar ese límite máximo de épocas. Además, el valor de epsilon elegido fue $0.001$.
-      
-      ~
-      
-      En todos los casos $A$ es ``Cantidad de veces con corte por máximo de épocas '', $B$ es ``Cantidad de veces con corte por ortogonalidad'', $C$ es ``Corte por épocas error mínimo'', $D$ es ``Corte por épocas error máximo'', $E$ es ``Corte por épocas error promedio'', $F$ es ``Corte por ortogonalidad cantidad de épocas mínima'', $G$ es ``Corte por ortogonalidad cantidad de épocas máxima'' y $H$ es ``Corte por ortogonalidad cantidad de épocas promedio''.
-      
-      
-      \begin{table}[h]
-	\centering
-	\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
-	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
-	1& 1 & 0 & 0.004782 & 0.004782 & 0.004782 & -- & -- & -- \\ \hline
-	2& 1 & 0 & 0.004761 & 0.004761 & 0.004761 & -- & -- & -- \\ \hline
-	3& 1 & 0 & 0.004757 & 0.004757 & 0.004757 & -- & -- & -- \\ \hline
-	4& 1 & 0 & 0.003081 & 0.003081 & 0.003081 & -- & -- & -- \\ \hline
-	5& 0 & 1 & -- & -- & -- & 15 & 15 & 15 \\ \hline
-	6& 1 & 0 & 0.004767 & 0.004767 & 0.004767 & -- & -- & -- \\ \hline
-	7& 0 & 1 & -- & -- & -- & 13 & 13 & 13 \\ \hline
-	8& 1 & 0 & 0.004777 & 0.004777 & 0.004777 & -- & -- & -- \\ \hline
-	9& 0 & 1 & -- & -- & -- & 5 & 5 & 5 \\ \hline
-	\end{tabular}
-	\caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	\label{tab:ortogonalidad_sanger}
-      \end{table}
 
+      \subsubsection{Resumen de resultados}
       
-      \begin{table}[h]
-	\centering
-	\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
-	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
-	1& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
-	2& 0 & 1 & -- & -- & -- & 25 & 25 & 25 \\ \hline
-	3& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
-	4& 0 & 1 & -- & -- & -- & 10 & 10 & 10 \\ \hline
-	5& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
-	6& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
-	7& 0 & 1 & -- & -- & -- & 24 & 24 & 24 \\ \hline
-	8& 0 & 1 & -- & -- & -- & 25 & 25 & 25 \\ \hline
-	9& 0 & 1 & -- & -- & -- & 1 & 1 & 1 \\ \hline
-	\end{tabular}
-	\caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	\label{tab:ortogonalidad_oja}
-      \end{table}
+	En todos los casos 
+	\begin{itemize}
+	\item $A$ es ``Cantidad de veces con corte por máximo de épocas''
+	\item $B$ es ``Cantidad de veces con corte por ortogonalidad''
+	\item $C$ es ``Corte por épocas error mínimo''
+	\item $D$ es ``Corte por épocas error máximo''
+	\item $E$ es ``Corte por épocas error promedio''
+	\item $F$ es ``Corte por ortogonalidad cantidad de épocas mínima''
+	\item $G$ es ``Corte por ortogonalidad cantidad de épocas máxima''
+	\item $H$ es ``Corte por ortogonalidad cantidad de épocas promedio''
+	\end{itemize}
+  
+	
+	
+	\begin{table}[H]
+	  \centering
+	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	  1& 1 & 0 & 0.004782 & 0.004782 & 0.004782 & -- & -- & -- \\ \hline
+	  2& 1 & 0 & 0.004761 & 0.004761 & 0.004761 & -- & -- & -- \\ \hline
+	  3& 1 & 0 & 0.004757 & 0.004757 & 0.004757 & -- & -- & -- \\ \hline
+	  4& 1 & 0 & 0.003081 & 0.003081 & 0.003081 & -- & -- & -- \\ \hline
+	  5& 0 & 1 & -- & -- & -- & 15 & 15 & 15 \\ \hline
+	  6& 1 & 0 & 0.004767 & 0.004767 & 0.004767 & -- & -- & -- \\ \hline
+	  7& 0 & 1 & -- & -- & -- & 13 & 13 & 13 \\ \hline
+	  8& 1 & 0 & 0.004777 & 0.004777 & 0.004777 & -- & -- & -- \\ \hline
+	  9& 0 & 1 & -- & -- & -- & 5 & 5 & 5 \\ \hline
+	  \end{tabular}
+	  \caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	  \label{tab:ortogonalidad_sanger}
+	\end{table}
 
-      
-      \begin{table}[h]
-	\centering
-	\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
-	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
-	1& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	2& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	3& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	4& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	5& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	6& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	7& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	8& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	9& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	\end{tabular}
-	\caption{Resultados para los 9 folds, usando $\delta W$ como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	\label{tab:pesos_sanger}
-      \end{table}      
-      
+	
+	\begin{table}[H]
+	  \centering
+	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	  1& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
+	  2& 0 & 1 & -- & -- & -- & 25 & 25 & 25 \\ \hline
+	  3& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
+	  4& 0 & 1 & -- & -- & -- & 10 & 10 & 10 \\ \hline
+	  5& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
+	  6& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
+	  7& 0 & 1 & -- & -- & -- & 24 & 24 & 24 \\ \hline
+	  8& 0 & 1 & -- & -- & -- & 25 & 25 & 25 \\ \hline
+	  9& 0 & 1 & -- & -- & -- & 1 & 1 & 1 \\ \hline
+	  \end{tabular}
+	  \caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	  \label{tab:ortogonalidad_oja}
+	\end{table}
 
-      \begin{table}[h]
-	\centering
-	\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
-	Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
-	1& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	2& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	3& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	4& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	5& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	6& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	7& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	8& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	9& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	\end{tabular}
-	\caption{Resultados para los 9 folds, usando $\delta W$ como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	\label{tab:pesos_oja}
-      \end{table}            
+	
+	\begin{table}[H]
+	  \centering
+	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	  1& 1 & 0 & 0.004782 & 0.004782 & 0.004782 & -- & -- & -- \\ \hline
+	  2& 1 & 0 & 0.004761 & 0.004761 & 0.004761 & -- & -- & -- \\ \hline
+	  3& 1 & 0 & 0.004757 & 0.004757 & 0.004757 & -- & -- & -- \\ \hline
+	  4& 0 & 1 & -- & -- & -- & -- & -- & -- \\ \hline
+	  5& 1 & 0 & 0.004759 & 0.004759 & 0.004759 & -- & -- & -- \\ \hline
+	  6& 1 & 0 & 0.004767 & 0.004767 & 0.004767 & -- & -- & -- \\ \hline
+	  7& 1 & 0 & 0.004805 & 0.004805 & 0.004805 & -- & -- & -- \\ \hline
+	  8& 1 & 0 & 0.004777 & 0.004777 & 0.004777 & -- & -- & -- \\ \hline
+	  9& 1 & 0 & 0.004733 & 0.004733 & 0.004733 & -- & -- & -- \\ \hline
+	  \end{tabular}
+	  \caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	  \label{tab:pesos_sanger}
+	\end{table}      
+	
+
+	\begin{table}[H]
+	  \centering
+	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	  1& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  2& 0 & 0 & 0.004724 & 0.004724 & 0.004724 & -- & -- & -- \\ \hline
+	  3& 0 & 0 & 0.004712 & 0.004712 & 0.004712 & -- & -- & -- \\ \hline
+	  4& 0 & 0 & 0.002974 & 0.002974 & 0.002974 & -- & -- & -- \\ \hline
+	  5& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  6& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  7& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  8& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  9& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  \end{tabular}
+	  \caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	  \label{tab:pesos_oja}
+	\end{table}            
+
+	
+	
+	
+      \subsubsection{Gráficos espaciales de algunos resultados}
+	A continuación presentamos algunos ejemplos de resultados que se repitieron entre los distintos folds. Dado que la cantidad de gr\'aficos correspondientes a todas las instancias es muy alta decidimos mostrar apenas los casos relevantes y que muestran patrones repetidos en general. En los gráficos se decidió mostrar apenas una porción del espacio con el objetivo de poder comparar los distintos gr\'aficos. Esto implica que en algunos casos algunas instancias no se puede ver dado que estaban ubicadas fuera del espacio representado, sin embargo, consideramos que esto no era un problema dado que eran muy pocas instancias y de este modo podemos comparar sin problemas todos los gr\'ficos.
+	
+	
+	\myparagraph{Particularidades con regla de Oja y criterio de ortogonalidad}
+	
+	Las Figuras \ref{fig:fold1_criterioParadao_reglaM_alpha0_rep1} y \ref{fig:fold2_criterioParadao_reglaM_alpha0_rep1} representan los dos tipos de comportamientos observados en la experimentación para esta combinación de técnicas. En la primera, es posible ver cómo hay algunas clases que tienen sus instancias fuertemente concentradas (las representadas con los colores rojo, celeste, verde y amarillo) mientras que las demás se encuentran más dispersas siendo la representada con el color azul la más alejada aunque un poco ``mezclada'' con las demás.
+	
+	Por otro lado, en la segunda figura es posible ver cómo las clases no se encuentran tan clusterizadas viendo por ejemplo que las instancias con color azul, si bien ocupando una porción importante del espacio sólo por ellas hay otro tanto de las mismas ``mezcladas'' con las otras instancias. Además, las instancias de color rojo, verde y amarillo, si bien están agrupadas un poco, no se encuentran tan concentradas en el mismo espacio como en el otro caso y ya ocupando posiciones más indistinguibles junto al resto de las clases que no presentan grandes cúmulos.
+	
+	Estos dos patrones se repitieron entre los distintos folds independientemente del criterio por el cual se produjo el corte en las épocas (ortogonalidad entre los vectores o máximo de épocas alcanzado).
+	
+	\begin{figure}[H]
+	\newgeometry{textwidth=21cm,textheight=21cm}
+        \centering
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglaM_alpha0_rep1_0P.png}
+                \caption{Vista en perspectiva.}
+        \end{subfigure}%
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglaM_alpha0_rep1_1XZ.png}
+                \caption{Plano X-Z.}
+        \end{subfigure}
+        
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglaM_alpha0_rep1_2XY.png}
+                \caption{Plano X-Y.}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglaM_alpha0_rep1_3YZ.png}
+                \caption{Plano Y-Z.}
+        \end{subfigure}
+	\restoregeometry
+        \caption{Gráfico espacial para el Fold 1 usando ortogonalidad como criterio de parada y la regla de Oja con learning rate 0.001 en la repetición 1.}
+        \label{fig:fold1_criterioParadao_reglaM_alpha0_rep1}
+	\end{figure}
       
       
-     \FloatBarrier
+	\begin{figure}[H]
+	\newgeometry{textwidth=21cm,textheight=21cm}
+        \centering
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold2_criterioParadao_reglaM_alpha0_rep1_0P.png}
+                \caption{Vista en perspectiva.}
+        \end{subfigure}%
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold2_criterioParadao_reglaM_alpha0_rep1_1XZ.png}
+                \caption{Plano X-Z.}
+        \end{subfigure}
+        
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold2_criterioParadao_reglaM_alpha0_rep1_2XY.png}
+                \caption{Plano X-Y.}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold2_criterioParadao_reglaM_alpha0_rep1_3YZ.png}
+                \caption{Plano Y-Z.}
+        \end{subfigure}
+	\restoregeometry
+        \caption{Gráfico espacial para el Fold 2 usando ortogonalidad como criterio de parada y la regla de Oja con learning rate 0.001 en la repetición 1.}
+        \label{fig:fold2_criterioParadao_reglaM_alpha0_rep1}
+	\end{figure}      
+      
+      
+      
+      
+      \myparagraph{Particularidades con regla de Sanger y criterio de ortogonalidad}
+      
+	Las Figuras \ref{fig:fold1_criterioParadao_reglas_alpha0_rep1} y \ref{fig:fold5_criterioParadao_reglas_alpha0_rep1} representan los dos tipos de comportamiento observados en general en todas las instancias experimentadas independientemente de si el criterio de corte fue que se alcanzó el máximo de épocas o que los vectores eran ortogonales. De manera similar a cuando se utiliza la regla de Oja, se puede ver aquí también dos -grupos de resultados similares. En la Figura \ref{fig:fold1_criterioParadao_reglas_alpha0_rep1} podemos ver que en general las instancias se encuentran agrupadas en una porción del espacio reducida y hay cúmulos de algunas clases como las representadas con los colores rojo, celeste, amarillo y verde. Otras clases como las expresadas con colores azul, violeta y rosa ocupan lugares espaciados y relativamente demarcados.
+	
+	En el caso de la Figura \ref{fig:fold5_criterioParadao_reglas_alpha0_rep1} las instancias se encuentran más separadas en general con cúmulos que agrupan varias clases por ejemplo donde se ubican las instancias rojas y celestes así como las amarillas y verdes. Respecto de las clases más separadas que ocupan espacios demarcados (azul y violeta), las mismas ocupan mayor espacio que en el otro caso.
+      
+      
+	\begin{figure}[H]
+	\newgeometry{textwidth=21cm,textheight=21cm}
+        \centering
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglas_alpha0_rep1_0P.png}
+                \caption{Vista en perspectiva.}
+        \end{subfigure}%
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglas_alpha0_rep1_1XZ.png}
+                \caption{Plano X-Z.}
+        \end{subfigure}
+        
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglas_alpha0_rep1_2XY.png}
+                \caption{Plano X-Y.}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglas_alpha0_rep1_3YZ.png}
+                \caption{Plano Y-Z.}
+        \end{subfigure}
+	\restoregeometry
+        \caption{Gráfico espacial para el Fold 1 usando ortogonalidad como criterio de parada y la regla de Sanger con learning rate 0.001 en la repetición 1.}
+        \label{fig:fold1_criterioParadao_reglas_alpha0_rep1}
+	\end{figure}
+      
+	
+	\begin{figure}[H]
+	\newgeometry{textwidth=21cm,textheight=21cm}
+        \centering
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold5_criterioParadao_reglas_alpha0_rep1_0P.png}
+                \caption{Vista en perspectiva.}
+        \end{subfigure}%
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold5_criterioParadao_reglas_alpha0_rep1_1XZ.png}
+                \caption{Plano X-Z.}
+        \end{subfigure}
+        
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold5_criterioParadao_reglas_alpha0_rep1_2XY.png}
+                \caption{Plano X-Y.}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold5_criterioParadao_reglas_alpha0_rep1_3YZ.png}
+                \caption{Plano Y-Z.}
+        \end{subfigure}
+	\restoregeometry
+        \caption{Gráfico espacial para el Fold 5 usando ortogonalidad como criterio de parada y la regla de Sanger con learning rate 0.001 en la repetición 1.}
+        \label{fig:fold5_criterioParadao_reglas_alpha0_rep1}
+	\end{figure}
+      
+      
+      
+      
+      
+      
+      
+      
+      \myparagraph{Particularidades con regla de Oja y criterio de $\Delta W$}
+      
+	\begin{figure}[H]
+	\newgeometry{textwidth=21cm,textheight=21cm}
+        \centering
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglaM_alpha0_rep1_0P.png}
+                \caption{Vista en perspectiva.}
+        \end{subfigure}%
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglaM_alpha0_rep1_1XZ.png}
+                \caption{Plano X-Z.}
+        \end{subfigure}
+        
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglaM_alpha0_rep1_2XY.png}
+                \caption{Plano X-Y.}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglaM_alpha0_rep1_3YZ.png}
+                \caption{Plano Y-Z.}
+        \end{subfigure}
+	\restoregeometry
+        \caption{Gráfico espacial para el Fold 1 usando $\Delta W$ como criterio de parada y la regla de Oja con learning rate 0.001 en la repetición 1.}
+        \label{fig:fold1_criterioParadap_reglaM_alpha0_rep1}
+	\end{figure}
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+	\begin{figure}[H]
+	\newgeometry{textwidth=21cm,textheight=21cm}
+        \centering
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglas_alpha0_rep1_0P.png}
+                \caption{Vista en perspectiva.}
+        \end{subfigure}%
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglas_alpha0_rep1_1XZ.png}
+                \caption{Plano X-Z.}
+        \end{subfigure}
+        
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglas_alpha0_rep1_2XY.png}
+                \caption{Plano X-Y.}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglas_alpha0_rep1_3YZ.png}
+                \caption{Plano Y-Z.}
+        \end{subfigure}
+	\restoregeometry
+        \caption{Gráfico espacial para el Fold 1 usando $\Delta W$ como criterio de parada y la regla de Sanger con learning rate 0.001 en la repetición 1.}
+        \label{fig:fold1_criterioParadap_reglas_alpha0_rep1}
+	\end{figure}
+      
+      
+      
     \subsection{Mapeo de características}
     
       En este caso, el analisis de este modelo se vuelve algo particular. Para realizar el mismo, decidimos utilizar dos metricas: la primera con el objetivo de obtener alguna nocion de desempe\~no de la red, y la segunda para conocer que tan distanciados estaban los distintos grupos de activacion luego del entrenamiento.
