@@ -17,7 +17,7 @@ function [weights, razon, epocaOError] = usarHebbiano(criterioParada, regla, lea
 		weights = csvread(weightsFilename);
 	end
 	fileID = fopen(datosFilename,'a');
-	fprintf(fileID,'criterioParada: %s \t regla: %s \t rep: %d \t cantEpocas: %d \t razon: %s \t epocaOError: %f \n', criterioParada, regla, repeticion, cantEpocas, razon, epocaOError);
+	fprintf(fileID,'criterioParada: %s \t regla: %s \t cantEpocas: %d \t razon: %s \t epocaOError: %f \n', criterioParada, regla, cantEpocas, razon, epocaOError);
 	fclose(fileID);
 
 	trainProcesado = aplicarPesos(weights,trainInput);
