@@ -18,9 +18,9 @@ function [w] = som( dataset, M1, M2, maxEpocas, learningRate, sigma, autoajuste 
 			
             % Correccion
 			D = distanciasAjEstrella(jEstrella, M1*M2, M2, sigma);
+            deltaW = calculoDeltaW(learningRate, D, yMonio);
             
             % Aprendizaje
-			deltaW = calculoDeltaW(learningRate, D, yMonio);
 			w = w + deltaw;
 		end
 
@@ -33,20 +33,32 @@ function [w] = som( dataset, M1, M2, maxEpocas, learningRate, sigma, autoajuste 
 	end
 
 function [D] = distanciasAjEstrella(jEstrella, M, M2, sigma)
-	for j = 1:M
-		[posJi,posJj] = P(j,M2);
-		[posJEi,posJEj] = P(jEstrella,M2);
-		v = [posJi-posJEi,posJj-posJEj];
-		D(j) = exp(-((norm(v,2))^2)/(2*sigma^2));
-	end
+
+	%for j = 1:M
+	%	[posJi,posJj] = P(j,M2);
+	%	[posJEi,posJEj] = P(jEstrella,M2);
+	%	v = [posJi-posJEi,posJj-posJEj];
+        
+	%	D(j) = exp(-((norm(v,2))^2)/(2*sigma^2));
+    %end
+    
+    %reescritura matricial
+    jPE = ones(M,1) * [fix(jEstrella/M2) mod(jEstrella, M2)];
+    new_v = [fix((1:M)'/M2) mod((1:M)',M2)] - jPE;
+    v_norm_2 = abs(sum(new_v.^2,2));
+    D = exp(-v_norm_2/(2*sigma^2))';
 
 function [i,j] = P(a,M2)
 	i = fix(a/M2);
 	j = mod(a,M2);
 
 function [deltaW] = calculoDeltaW(learningRate, D, resta)
-	for i = 1:size(resta,1)
-		for j = 1:size(resta,2)
-			deltaW(i,j) = learningRate * D(j) * resta(i,j);
-		end
-	end
+	%for i = 1:size(resta,1)
+	%	for j = 1:size(resta,2)
+	%		deltaW(i,j) = learningRate * D(j) * resta(i,j);
+	%	end
+    %end
+    
+    %reescritura matricial
+    deltaW = learningRate * D .* resta;
+    
