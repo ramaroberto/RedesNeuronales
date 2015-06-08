@@ -8,7 +8,7 @@
       \subsubsection{Análisis de componentes principales}
 	El an\'alisis de componentes principales es un proceso estadístico que usa una transformaci\'on ortogonal que convierte observaciones en un conjunto de variables linearmente no correlacionadas llamadas componentes principales. La transformación se define de modo que la primera componente principal tiene la mayor varianza entre todas las variables y cada una de las siguientes componentes tiene la mayor varianza posible entre todas las ortogonales a las componentes anteriores. Luego, el objetivo es calcular una cierta cantidad de componentes principales que contengan la mayor información respecto de los datos para poder expresarlos en función de dichos vectores pertenecientes a una base ortonormal.
 	
-      \subsection{Regla de Oja}
+      \subsubsection{Regla de Oja1}
 	La regla de Oja es una modificación a la regla de aprendizaje Hebbiano que previene la divergencia. Mediante la modificación, el vector de pesos se aproxima a una longitud constante $|w|=1$, sin la necesidad de realizar ninguna normalización. Por otra parte, el vector $w$ ciertamente se acerca al autovector $C$ con el autovalor $\delta_{max}$ más alto, es decir el autovector principal. Esta regla también es llamada ``Oja1'', ya que solamente nos da el primer autovector o componente principal.
 	
 	~
@@ -28,11 +28,15 @@
 
 	$$\Delta w_{ij} = \eta V_i(x_i - \sum_{k=1}^{N} V_k w_{kj} )$$
 	
-	Donde $V$ es el vector obtenido al multiplicar la instancia de entrada por la matriz de pesos, $\eta$ es el learning rate 
+	Donde $V$ es el vector obtenido al multiplicar la instancia de entrada por la matriz de pesos y $\eta$ es el learning rate.
+	
+	~
 
 	La única diferencia entre ambas es el límite superior de la sumatoria. En ambos casos los $w_i$ vectores convergen a vectores unitarios ortogonales, tales que $w^{T}_i w_j = \delta_{ij}$. En el caso de la regla de Sanger, los vectores de pesos se aproximan exactamente a las primeras $M$ componentes principales, y es por esto que es mas \'util en aplicaciones ya que extrae los mismos en orden. Como nota de color, si algún algoritmo es utilizado en cerebros de seres vivientes, probablemente sea más parecido a la regla de Oja: no hay ninguna ventaja obvia para un ser en tener la información ordenada en base a las componentes principales. 
+	
+	~
 
-	De todas formas, en ambos casos la salida proyecta un vector de entrada $\xi$ en el espacio de las $M$ componentes.
+	De todas formas, en ambos casos la salida proyecta un vector de entrada $x_i$ en el espacio de las $M$ componentes.
 	
       \subsubsection{Criterios de convergencia}
 	Para determinar que el algoritmo convergió a vectores ortogonales correspondientes a las primeras componentes principales, utilizamos dos criterios diferentes. Por un lado, calcular el producto entre los vectores obtenidos en cada iteración y ver que el resultado sea menor a un epsilon pequeño. Si todos los productos de los vectores entre sí son pequeños entonces se puede decir que los mismos son suficientemente ortogonales y entonces dejar de iterar. El otro criterio considerado observa los valores de los $\delta W$. Si dicha matriz tiene una norma Frobenius menor a un epsilon pequeño entonces se asume que el aprendizaje que se puede obtener de allí es mínimo y por ende no tiene sentido continuar iterando.
@@ -40,6 +44,7 @@
     \subsection{Mapeo de caracteristicas auto-organizado}
 	Los mapas de características auto-organizados sirven para generar una representación de un espacio de muestras de gran dimensionalidad en otra de menor preservando propiedades topológicas del espacio de entrada. De alguna manera podr\'ia decirse que los SOMs (Self-Organizing Maps) son la versión en dos dimensiones de PCA (Principal Component Analysis).
 	
+	\newpage
 	\subsubsection{Pseudoc\'odigo}
 	
 	A modo de dejar bien asentada la implementación, la presentamos a continuación en formato de pseudocódigo. Sin embargo, no daremos mayores explicaciones ya que no presenta ninguna innovación.
@@ -59,7 +64,7 @@
 		  \For{$x \in D$}
 		    \State $\tilde{y}= $resta($x$,$W$)
 		    \State $j^* =$ indiceDeMinimo($\tilde{y}$)
-		    \State $Di = $ distancias($j^*$, $M_1*M_2$, $M_2$, $\sigma$)
+		    \State $Di = $ dists($j^*$, $M_1*M_2$, $M_2$, $\sigma$)
 		    \State $\Delta W =$ correccion($Di$, $\tilde{y}$,$\gamma$)
 		    \State $W += \Delta W$
 		  \EndFor
@@ -79,7 +84,7 @@
 	\begin{minipage}{0.5\textwidth}	
 
 	  \begin{algorithmic}
-	  \Function{distancias}{$j^*$, $M$, $M_2$, $\sigma$}
+	  \Function{dists}{$j^*$, $M$, $M_2$, $\sigma$}
 	    \State $P(j, M_2) = (j/M_2, j$ mod $M_2)$
 	    \For{$j in [1,M]$}
 	      \State $C(j) = e^{-\frac{||P(j)-P(j^*)||^2}{2\sigma^2}}$
@@ -122,7 +127,7 @@
 	
 	Una vez completados estos nueve mapas generamos un \'ultimo mapa de neuronas. Este mapa contendr\'a en cada posicion un numero entre 0 y 9. El n\'umero 0 indicara que dicha neurona no se activo para ning\'un test, mientras que la presencia de un n\'umero entre 1 y 9 indicar\'a que dicha neurona se activo mas veces para esa clase, es decir que esa clase ``domina'' a la neurona.
 	
-	~
+	\newpage
 	
 	Presentamos el pseudocodigo y algunos ejemplos a continuacion con el fin de esclarecer el m\'etodo:
 	
