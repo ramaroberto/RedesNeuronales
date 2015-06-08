@@ -8,7 +8,7 @@
       \subsubsection{Análisis de componentes principales}
 	El an\'alisis de componentes principales es un proceso estadístico que usa una transformaci\'on ortogonal que convierte observaciones en un conjunto de variables linearmente no correlacionadas llamadas componentes principales. La transformación se define de modo que la primera componente principal tiene la mayor varianza entre todas las variables y cada una de las siguientes componentes tiene la mayor varianza posible entre todas las ortogonales a las componentes anteriores. Luego, el objetivo es calcular una cierta cantidad de componentes principales que contengan la mayor información respecto de los datos para poder expresarlos en función de dichos vectores pertenecientes a una base ortonormal.
 	
-      \subsection{Regla de Oja}
+      \subsubsection{Regla de Oja1}
 	La regla de Oja es una modificación a la regla de aprendizaje Hebbiano que previene la divergencia. Mediante la modificación, el vector de pesos se aproxima a una longitud constante $|w|=1$, sin la necesidad de realizar ninguna normalización. Por otra parte, el vector $w$ ciertamente se acerca al autovector $C$ con el autovalor $\delta_{max}$ más alto, es decir el autovector principal. Esta regla también es llamada ``Oja1'', ya que solamente nos da el primer autovector o componente principal.
 	
 	~
@@ -28,17 +28,165 @@
 
 	$$\Delta w_{ij} = \eta V_i(x_i - \sum_{k=1}^{N} V_k w_{kj} )$$
 	
-	Donde $V$ es el vector obtenido al multiplicar la instancia de entrada por la matriz de pesos, $\eta$ es el learning rate 
+	Donde $V$ es el vector obtenido al multiplicar la instancia de entrada por la matriz de pesos y $\eta$ es el learning rate.
+	
+	~
 
 	La única diferencia entre ambas es el límite superior de la sumatoria. En ambos casos los $w_i$ vectores convergen a vectores unitarios ortogonales, tales que $w^{T}_i w_j = \delta_{ij}$. En el caso de la regla de Sanger, los vectores de pesos se aproximan exactamente a las primeras $M$ componentes principales, y es por esto que es mas \'util en aplicaciones ya que extrae los mismos en orden. Como nota de color, si algún algoritmo es utilizado en cerebros de seres vivientes, probablemente sea más parecido a la regla de Oja: no hay ninguna ventaja obvia para un ser en tener la información ordenada en base a las componentes principales. 
+	
+	~
 
-	De todas formas, en ambos casos la salida proyecta un vector de entrada $\xi$ en el espacio de las $M$ componentes.
+	De todas formas, en ambos casos la salida proyecta un vector de entrada $x_i$ en el espacio de las $M$ componentes.
 	
       \subsubsection{Criterios de convergencia}
 	Para determinar que el algoritmo convergió a vectores ortogonales correspondientes a las primeras componentes principales, utilizamos dos criterios diferentes. Por un lado, calcular el producto entre los vectores obtenidos en cada iteración y ver que el resultado sea menor a un epsilon pequeño. Si todos los productos de los vectores entre sí son pequeños entonces se puede decir que los mismos son suficientemente ortogonales y entonces dejar de iterar. El otro criterio considerado observa los valores de los $\delta W$. Si dicha matriz tiene una norma Frobenius menor a un epsilon pequeño entonces se asume que el aprendizaje que se puede obtener de allí es mínimo y por ende no tiene sentido continuar iterando.
 	
     \subsection{Mapeo de caracteristicas auto-organizado}
-	Los mapas de características auto-organizados sirven para generar una representación de un espacio de muestras de gran dimensionalidad en otra de menor preservando propiedades topológicas del espacio de entrada. De alguna manera podr\'ia decirse que los SOMs (Self-Organizing Maps) son la versión en dos dimensiones de PCA (Principal Component Analysis). Una vez entrenado el mapa, dada una instancia nueva se busca cuál neurona se activa más ante el estímulo que esa entrada genera y entonces se le asigna la clase correspondiente a la clase que más activó esa neurona en el período de entrenamiento.
+	Los mapas de características auto-organizados sirven para generar una representación de un espacio de muestras de gran dimensionalidad en otra de menor preservando propiedades topológicas del espacio de entrada. De alguna manera podr\'ia decirse que los SOMs (Self-Organizing Maps) son la versión en dos dimensiones de PCA (Principal Component Analysis).
+	
+	\newpage
+	\subsubsection{Pseudoc\'odigo}
+	
+	A modo de dejar bien asentada la implementación, la presentamos a continuación en formato de pseudocódigo. Sin embargo, no daremos mayores explicaciones ya que no presenta ninguna innovación.
+	
+	\vspace{10pt}
+	
+	\begin{minipage}{0.5\textwidth}
+	
+	  \begin{algorithmic}
+	      \Function{SoM}{$D$, $M_1$, $M_2$, $Ep_{max}$, $\gamma$, $\sigma$, $aj$}
+		\State $Ep = 0$
+		\State $N =$ cols(D)
+		\State $W = 0.1 * $randn(cols($D$), $M_1*M_2$)
+		\State $\Delta W =$zeros(cols($D$), $M_1*M_2$)
+		
+		\While{$Ep < Ep_{max}$}
+		  \For{$x \in D$}
+		    \State $\tilde{y}= $resta($x$,$W$)
+		    \State $j^* =$ indiceDeMinimo($\tilde{y}$)
+		    \State $Di = $ dists($j^*$, $M_1*M_2$, $M_2$, $\sigma$)
+		    \State $\Delta W =$ correccion($Di$, $\tilde{y}$,$\gamma$)
+		    \State $W += \Delta W$
+		  \EndFor
+		  \State $Ep += 1$
+		\EndWhile
+		
+		\If{$aj$}
+		  \State $\gamma = Ep^{-\frac{1}{2}}$
+		  \State $\sigma = \frac{1}{2} * M_2 * Ep^{-\frac{1}{3}}$
+		\EndIf
+		
+		\State \Return $W$
+	      \EndFunction
+	  \end{algorithmic}
+	  \vspace{20pt}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}	
+
+	  \begin{algorithmic}
+	  \Function{dists}{$j^*$, $M$, $M_2$, $\sigma$}
+	    \State $P(j, M_2) = (j/M_2, j$ mod $M_2)$
+	    \For{$j in [1,M]$}
+	      \State $C(j) = e^{-\frac{||P(j)-P(j^*)||^2}{2\sigma^2}}$
+	    \EndFor
+	    \State \Return $C$
+	  \EndFunction
+	  \end{algorithmic}
+
+	  \vspace{5pt}
+	  
+	  \begin{algorithmic}
+	  \Function{correccion}{$Di$, $\tilde{y}$,$\gamma$}
+	    \For{$i \in [1,filas(\tilde{y})]$}
+	      \For{$j \in [1,cols(\tilde{y})]$}
+		\State $\Delta W(i,j) = \gamma * Di(j) * \tilde{y}$
+	      \EndFor
+	    \EndFor
+	    \State \Return $\Delta W$
+	  \EndFunction
+	  \end{algorithmic}
+	  
+	  \vspace{5pt}
+	  
+	  \begin{algorithmic}
+	      \Function{resta}{$x$, $W$}
+		\For{$j \in [1,cols(W)]$}
+		  \State $\tilde{y}_j = ||x^t-$col$_j(W)||$
+		\EndFor
+		\State \Return $\tilde{y}$
+	      \EndFunction
+	  \end{algorithmic}
+	
+	\end{minipage}
+	
+	\subsubsection{Mapa de dominantes}
+      
+	Durante la experimentacion con esta red nos surgio la necesidad de crear una manera de analizar el comportamiento de la misma. Para esto, decidimos generar nueve ``mapas'' de neuronas, uno correspondiente a cada clase. En cada mapa, se encuentran registrados la cantidad de veces que se activo cada neurona para dicha clase, registrando las activaciones para cada entrada en el conjunto de datos.
+	
+	~
+	
+	Una vez completados estos nueve mapas generamos un \'ultimo mapa de neuronas. Este mapa contendr\'a en cada posicion un numero entre 0 y 9. El n\'umero 0 indicara que dicha neurona no se activo para ning\'un test, mientras que la presencia de un n\'umero entre 1 y 9 indicar\'a que dicha neurona se activo mas veces para esa clase, es decir que esa clase ``domina'' a la neurona.
+	
+	\newpage
+	
+	Presentamos el pseudocodigo y algunos ejemplos a continuacion con el fin de esclarecer el m\'etodo:
+	
+	~
+	
+	\begin{algorithmic}
+	    \Function{mapaDominantes}{$W$, $D$, $M_1$, $M_2$} 
+	      \State $MP =$ zeros($M_1$, $M_2$, $9$)
+	      \State $MD =$ zeros($M_1$, $M_2$)
+	      
+	      \For{$x \in D$}
+		\State $\tilde{y}= $resta($x$,$W$)
+		\State $j^* =$ indiceDeMinimo($\tilde{y}$)
+		\State $MC$($j^*/M_2$, $j^*$ mod $M_2$) $+= 1$ 
+	      \EndFor
+	      
+	      \For{$i \in [1,M_1]$}
+		\For{$j \in [1,M_2]$}
+		  \State $MD(i,j) =$ indiceMax($MC$($i$,$j$,$:$))
+		\EndFor
+	      \EndFor
+	      \State \Return $MD$
+	    \EndFunction
+	  \end{algorithmic}
+	  
+	%TODO: (Robert) Meter 9 mapas de calor de conteos y el mapa dominante resultante de una matriz de 10x10.
+	  
+% 	function [activados] = aplicarPesos(weights, input, M1, M2)
+% 	  cantidades = zeros(M1,M2,9);
+% 	  activados = zeros(M1,M2);
+% 	  for instancia = 1:size(input,1)
+% 		  jEstrella = activar(input(instancia,2:end), weights);
+% 		  if jEstrella == M1*M2
+% 			  cantidades(M1,M2,input(instancia,1)) = cantidades(M1,M2,input(instancia,1))+1;	
+% 		  else
+% 			  for itJE = 1:size(jEstrella)
+% 				  jEstrellaI = fix(jEstrella(itJE)/M2);
+% 				  jEstrellaJ = mod(jEstrella(itJE),M2);
+% 				  cantidades(jEstrellaI+1,jEstrellaJ+1,input(instancia,1)) = cantidades(jEstrellaI+1,jEstrellaJ+1,input(instancia,1))+1;
+% 			  end
+% 		  end
+% 	  end
+% 	  % Buscar la dominante en cada posicion
+% 	  for i = 1:M1
+% 		  for j = 1:M2
+% 			  [val,index] = max(cantidades(i,j,:));
+% 			  if val == 0
+% 				  activados(i,j) = 0;
+% 			  else	
+% 				  activados(i,j) = index;
+% 			  end
+% 		  end
+% 	  end
+% 
+% 	function [jEstrella] = activar(entrada, w)
+% 	  x = entrada;
+% 	  yMonio = resta(x',w);
+% 	  y = (yMonio == min(yMonio));
+% 	  jEstrella = find(y);
 	
 	\subsubsection{Autoajuste de los parámetros de aprendizaje}
 	  Para la experimentación decidimos considerar también la posibilidad de utilizar learning rate y $\sigma$ autoajustables según la época. La opción de autoajuste consiste en: $\alpha = t^{-0.5}$ y $\sigma = \frac{M_2}{2}t^{-\frac{1}{3}}$ donde $\alpha$ es el learning rate, $t$ es la época actual y $\sigma$ es el coeficiente que varía las amplitudes del efecto de propagación.
