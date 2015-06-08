@@ -2,7 +2,7 @@ function [weights, razon, epocaOError] = main(calcularPesos, cantEpocas, cantFol
 	learningRate = 0.001;
 	alpha = 0;
 
-	for repeticion = 2:5
+	for repeticion = 1:5
 		for criterioParada = ['o','p']
 			for regla = ['s','M']
 				for fold = 1:cantFolds
