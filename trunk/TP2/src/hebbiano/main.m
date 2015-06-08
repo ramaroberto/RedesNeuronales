@@ -1,12 +1,9 @@
 function [weights, razon, epocaOError] = main(calcularPesos, cantEpocas, cantFolds)
-	%criterioParada = 'ortog';
-	%regla = 'sg';
 	learningRate = 0.001;
 	alpha = 0;
 
-	for repeticion = 1:1
-		%for criterioParada = ['o','p']
-		for criterioParada = ['p']
+	for repeticion = 2:5
+		for criterioParada = ['o','p']
 			for regla = ['s','M']
 				for fold = 1:cantFolds
 					trainFilename = ['../particiones/train_fold' num2str(fold) '.csv'];
@@ -21,7 +18,7 @@ function [weights, razon, epocaOError] = main(calcularPesos, cantEpocas, cantFol
 					[testInput,media] = normalizarEntrada(testInput,true,media);
 					
 					if calcularPesos
-						[weights, razon, epocaOError] = hebbian(trainInput, 3, criterioParada, regla, cantEpocas, learningRate, alpha);
+						[weights, razon, epocaOError] = hebbianMatricial(trainInput, 3, criterioParada, regla, cantEpocas, learningRate, alpha);
 						csvwrite(weightsFilename,weights);
 					else
 						weights = csvread(weightsFilename);

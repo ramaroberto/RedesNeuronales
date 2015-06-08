@@ -11,7 +11,7 @@ function [weights, razon, epocaOError] = usarHebbiano(criterioParada, regla, lea
 	numberTest = result(1:3);
 	
 	if calcularPesos
-		[weights, razon, epocaOError] = hebbian(trainInput, 3, criterioParada, regla, cantEpocas, learningRate, alpha);
+		[weights, razon, epocaOError] = hebbianMatricial(trainInput, 3, criterioParada, regla, cantEpocas, learningRate, alpha);
 		csvwrite(weightsFilename,weights);
 	else
 		weights = csvread(weightsFilename);
