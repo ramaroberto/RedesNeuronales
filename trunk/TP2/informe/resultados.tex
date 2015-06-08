@@ -101,11 +101,9 @@
     
       En este caso, el analisis de este modelo se vuelve algo particular. Para realizar el mismo, decidimos utilizar dos metricas: la primera con el objetivo de obtener alguna nocion de desempe\~no de la red, y la segunda para conocer que tan distanciados estaban los distintos grupos de activacion luego del entrenamiento.
       
-      % TODO: (Para Rober) Explicar que son los dominantes en la seccion de desarrollo.
+      \subsubsection{Distancia a dominantes (DD)}
       
-      \subsubsection{Distancia a dominantes}
-      
-      A la primera la llamaremos ``distancia a dominantes'' (DD) y representar\'a la distancia relativa media entre los dominantes del set de validaci\'on y el set de activaci\'on. Para generar su calculo, tomamos cada uno de los dominantes del mapa de validacion y buscamos el dominante mas cercano en el mapa de entrenamiento, en el mejor caso esta distancia es cero. 
+      Representar\'a la distancia relativa media entre los dominantes del set de validaci\'on y el set de activaci\'on. Para generar su calculo, tomamos cada uno de los dominantes del mapa de validacion y buscamos el dominante mas cercano en el mapa de entrenamiento, en el mejor caso esta distancia es cero. 
       
       ~
       
@@ -115,9 +113,9 @@
       
       Donde $DTr$ es el dataset de entrenamiento, $DTe$ es el dataset de validacion, $W$ es la matriz de pesos y $M_1, M_2$  son las dimensiones de la ultima. Se supone que $mAct$ calcula los mapas de dominantes para los datos otorgados y que $dM$ calcula la distancia media entre dichos dominantes.
       
-      \subsubsection{Factor de cruce}
+      \subsubsection{Factor de cruce (FC)}
       
-      La segunda ser\'a denominada como ``factor de cruce'' (FC) y nos dara una nocion de cuantas neuronas se activan mas de una clase. Esto nos sirve para observar de que forma la red neuronal esta respondiendo a distintos impulsos. Inferimos que es deseable que este factor sea bajo, ya que lo ideal seria que las distintas clases activen grupos de neuronas disjuntas.
+      Esta metrica nos dara una nocion de cuantas neuronas se activan mas de una clase. Esto nos sirve para observar de que forma la red neuronal esta respondiendo a distintos impulsos. Inferimos que es deseable que este factor sea bajo, ya que lo ideal seria que las distintas clases activen grupos de neuronas disjuntas.
       
       ~
       
@@ -133,7 +131,7 @@
       
       ~
       \subsubsection{Analisis de resultados}
-      Analizar los resultados de las metricas decidimos generar 9 folds distintos para luego promediar los resultados de los mismos. Cada fold tendra un set de entrenamiento y uno de validación generados al azar.
+      Para analizar los resultados de las metricas decidimos generar 9 folds distintos para luego promediar los resultados de los mismos. Cada fold tendra un set de entrenamiento y uno de validación generados al azar.
     
       %Para realizar el modelo se consideraron distintos tamaños de mapa así como también la opción de tener parámetros de aprendizaje autoajustables. El objetivo es tener un criterio comparativo para determinar qué tamaño es suficiente en relación a la cantidad de parámetros de las instancias.
       
