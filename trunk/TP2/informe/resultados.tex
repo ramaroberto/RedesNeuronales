@@ -30,20 +30,20 @@
 	\end{itemize}
   
 	
-	
+	\myparagraph{Usando 500 épocas como máximo}
 	\begin{table}[H]
 	  \centering
 	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
 	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
-	  1& 1 & 0 & 0.004782 & 0.004782 & 0.004782 & -- & -- & -- \\ \hline
-	  2& 1 & 0 & 0.004761 & 0.004761 & 0.004761 & -- & -- & -- \\ \hline
-	  3& 1 & 0 & 0.004757 & 0.004757 & 0.004757 & -- & -- & -- \\ \hline
-	  4& 1 & 0 & 0.003081 & 0.003081 & 0.003081 & -- & -- & -- \\ \hline
-	  5& 0 & 1 & -- & -- & -- & 15 & 15 & 15 \\ \hline
-	  6& 1 & 0 & 0.004767 & 0.004767 & 0.004767 & -- & -- & -- \\ \hline
-	  7& 0 & 1 & -- & -- & -- & 13 & 13 & 13 \\ \hline
-	  8& 1 & 0 & 0.004777 & 0.004777 & 0.004777 & -- & -- & -- \\ \hline
-	  9& 0 & 1 & -- & -- & -- & 5 & 5 & 5 \\ \hline
+	  1& 4 & 1 & 0.004782 & 0.004782 & 0.004782 & 18 & 18 & 18 \\ \hline
+	  2& 4 & 1 & 0.004761 & 0.004761 & 0.004761 & 17 & 17 & 17 \\ \hline
+	  3& 4 & 1 & 0.004757 & 0.004757 & 0.004757 & 15 & 15 & 15 \\ \hline
+	  4& 5 & 0 & 0.003081 & 0.003081 & 0.003081 & -- & -- & -- \\ \hline
+	  5& 2 & 3 & 0.004759 & 0.004759 & 0.004759 & 11 & 17 & 14.33 \\ \hline
+	  6& 4 & 1 & 0.004767 & 0.004767 & 0.004767 & 17 & 17 & 17 \\ \hline
+	  7& 4 & 1 & 0.004805 & 0.004805 & 0.004805 & 13 & 13 & 13 \\ \hline
+	  8& 3 & 2 & 0.004777 & 0.004777 & 0.004777 & 17 & 27 & 22 \\ \hline
+	  9& 4 & 1 & 0.004733 & 0.004733 & 0.004733 & 5 & 5 & 5 \\ \hline
 	  \end{tabular}
 	  \caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
 	  \label{tab:ortogonalidad_sanger}
@@ -54,15 +54,15 @@
 	  \centering
 	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
 	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
-	  1& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
-	  2& 0 & 1 & -- & -- & -- & 25 & 25 & 25 \\ \hline
-	  3& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
-	  4& 0 & 1 & -- & -- & -- & 10 & 10 & 10 \\ \hline
-	  5& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
-	  6& 0 & 1 & -- & -- & -- & 27 & 27 & 27 \\ \hline
-	  7& 0 & 1 & -- & -- & -- & 24 & 24 & 24 \\ \hline
-	  8& 0 & 1 & -- & -- & -- & 25 & 25 & 25 \\ \hline
-	  9& 0 & 1 & -- & -- & -- & 1 & 1 & 1 \\ \hline
+	  1& 0 & 5 & -- & -- & -- & 22 & 27 & 23,6 \\ \hline
+	  2& 0 & 5 & -- & -- & -- & 20 & 30 & 26 \\ \hline
+	  3& 0 & 5 & -- & -- & -- & 23 & 31 & 25,6 \\ \hline
+	  4& 0 & 5 & -- & -- & -- & 10 & 30 & 21,4 \\ \hline
+	  5& 0 & 5 & -- & -- & -- & 18 & 27 & 22,8 \\ \hline
+	  6& 0 & 5 & -- & -- & -- & 21 & 27 & 23 \\ \hline
+	  7& 0 & 5 & -- & -- & -- & 13 & 27 & 20,4 \\ \hline
+	  8& 1 & 4 & 0.004718 & 0.004718 & 0.004718 & 22 & 30 & 25,5 \\ \hline
+	  9& 0 & 5 & -- & -- & -- & 1 & 25 & 17,4 \\ \hline
 	  \end{tabular}
 	  \caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
 	  \label{tab:ortogonalidad_oja}
@@ -73,15 +73,15 @@
 	  \centering
 	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
 	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
-	  1& 1 & 0 & 0.004782 & 0.004782 & 0.004782 & -- & -- & -- \\ \hline
-	  2& 1 & 0 & 0.004761 & 0.004761 & 0.004761 & -- & -- & -- \\ \hline
-	  3& 1 & 0 & 0.004757 & 0.004757 & 0.004757 & -- & -- & -- \\ \hline
-	  4& 0 & 1 & -- & -- & -- & -- & -- & -- \\ \hline
-	  5& 1 & 0 & 0.004759 & 0.004759 & 0.004759 & -- & -- & -- \\ \hline
-	  6& 1 & 0 & 0.004767 & 0.004767 & 0.004767 & -- & -- & -- \\ \hline
-	  7& 1 & 0 & 0.004805 & 0.004805 & 0.004805 & -- & -- & -- \\ \hline
-	  8& 1 & 0 & 0.004777 & 0.004777 & 0.004777 & -- & -- & -- \\ \hline
-	  9& 1 & 0 & 0.004733 & 0.004733 & 0.004733 & -- & -- & -- \\ \hline
+	  1& 5 & 0 & 0.004782 & 0.004782 & 0.004782 & -- & -- & -- \\ \hline
+	  2& 5 & 0 & 0.004761 & 0.004761 & 0.004761 & -- & -- & -- \\ \hline
+	  3& 5 & 0 & 0.004757 & 0.004757 & 0.004757 & -- & -- & -- \\ \hline
+	  4& 5 & 0 & 0.004767 & 0.004767 & 0.004767 & -- & -- & -- \\ \hline
+	  5& 5 & 0 & 0.004759 & 0.004759 & 0.004759 & -- & -- & -- \\ \hline
+	  6& 5 & 0 & 0.004767 & 0.004767 & 0.004767 & -- & -- & -- \\ \hline
+	  7& 5 & 0 & 0.004805 & 0.004805 & 0.004805 & -- & -- & -- \\ \hline
+	  8& 5 & 0 & 0.004777 & 0.004777 & 0.004777 & -- & -- & -- \\ \hline
+	  9& 5 & 0 & 0.004733 & 0.004733 & 0.004733 & -- & -- & -- \\ \hline
 	  \end{tabular}
 	  \caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
 	  \label{tab:pesos_sanger}
@@ -92,21 +92,100 @@
 	  \centering
 	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
 	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
-	  1& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	  2& 0 & 0 & 0.004724 & 0.004724 & 0.004724 & -- & -- & -- \\ \hline
-	  3& 0 & 0 & 0.004712 & 0.004712 & 0.004712 & -- & -- & -- \\ \hline
-	  4& 0 & 0 & 0.002974 & 0.002974 & 0.002974 & -- & -- & -- \\ \hline
-	  5& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	  6& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	  7& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	  8& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
-	  9& 0 & 0 & -- & -- & -- & -- & -- & -- \\ \hline
+	  1& 5 & 0 & 0.004730 & 0.004730 & 0.004730 & -- & -- & -- \\ \hline
+	  2& 5 & 0 & 0.004724 & 0.004724 & 0.004724 & -- & -- & -- \\ \hline
+	  3& 5 & 0 & 0.004712 & 0.004712 & 0.004712 & -- & -- & -- \\ \hline
+	  4& 5 & 0 & 0.002974 & 0.002974 & 0.002974 & -- & -- & -- \\ \hline
+	  5& 5 & 0 & 0.004703 & 0.004703 & 0.004703 & -- & -- & -- \\ \hline
+	  6& 5 & 0 & 0.004718 & 0.004718 & 0.004718 & -- & -- & -- \\ \hline
+	  7& 5 & 0 & 0.004750 & 0.004750 & 0.004750 & -- & -- & -- \\ \hline
+	  8& 5 & 0 & 0.004718 & 0.004718 & 0.004718 & -- & -- & -- \\ \hline
+	  9& 5 & 0 & 0.004699 & 0.004699 & 0.004699 & -- & -- & -- \\ \hline
 	  \end{tabular}
 	  \caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
 	  \label{tab:pesos_oja}
 	\end{table}            
 
 	
+	
+	
+	
+	
+	\myparagraph{Usando 250 épocas como máximo}
+	\begin{table}[H]
+	  \centering
+	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	  1& 5 & 0 & 0.004782 & 0.004782 & 0.004782 & -- & -- & -- \\ \hline
+	  2& 2 & 3 & 0.004761 & 0.004761 & 0.004761 & 13 & 21 & 16 \\ \hline
+	  3& 4 & 1 & 0.004757 & 0.004757 & 0.004757 & 16 & 16 & 16 \\ \hline
+	  4& 5 & 0 & 0.003081 & 0.003081 & 0.003081 & -- & -- & -- \\ \hline
+	  5& 3 & 2 & 0.004759 & 0.004759 & 0.004759 & 14 & 18 & 16 \\ \hline
+	  6& 4 & 1 & 0.004767 & 0.004767 & 0.004767 & 18 & 18 & 18 \\ \hline
+	  7& 4 & 1 & 0.004805 & 0.004805 & 0.004805 & 19 & 19 & 19 \\ \hline
+	  8& 4 & 1 & 0.004777 & 0.004777 & 0.004777 & 12 & 12 & 12 \\ \hline
+	  9& 5 & 0 & 0.004733 & 0.004733 & 0.004733 & -- & -- & -- \\ \hline
+	  \end{tabular}
+	  \caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	  \label{tab:ortogonalidad_sanger}
+	\end{table}
+
+	
+	\begin{table}[H]
+	  \centering
+	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	  1& 0 & 5 & -- & -- & -- & 19 & 26 & 23,2 \\ \hline
+	  2& 0 & 5 & -- & -- & -- & 21 & 30 & 24 \\ \hline
+	  3& 0 & 5 & -- & -- & -- & 16 & 26 & 22 \\ \hline
+	  4& 0 & 5 & -- & -- & -- & 19 & 29 & 24,6 \\ \hline
+	  5& 0 & 5 & -- & -- & -- & 14 & 27 & 21,8 \\ \hline
+	  6& 0 & 5 & -- & -- & -- & 19 & 25 & 22,6 \\ \hline
+	  7& 0 & 5 & -- & -- & -- & 18 & 34 & 25,6 \\ \hline
+	  8& 0 & 5 & -- & -- & -- & 22 & 28 & 24,8 \\ \hline
+	  9& 0 & 5 & -- & -- & -- & 22 & 29 & 24,8 \\ \hline
+	  \end{tabular}
+	  \caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	  \label{tab:ortogonalidad_oja}
+	\end{table}
+
+	
+	\begin{table}[H]
+	  \centering
+	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	  1& 5 & 0 & 0.004761 & 0.004782 & 0.0047778 & -- & -- & -- \\ \hline
+	  2& 5 & 0 & 0.004757 & 0.004761 & 0.0047606 & -- & -- & -- \\ \hline
+	  3& 5 & 0 & 0.004757 & 0.004757 & 0.004757 & -- & -- & -- \\ \hline
+	  4& 5 & 0 & 0.003081 & 0.003081 & 0.003081 & -- & -- & -- \\ \hline
+	  5& 5 & 0 & 0.004759 & 0.004759 & 0.004759 & -- & -- & -- \\ \hline
+	  6& 5 & 0 & 0.004767 & 0.004767 & 0.004767 & -- & -- & -- \\ \hline
+	  7& 5 & 0 & 0.004805 & 0.004805 & 0.004805 & -- & -- & -- \\ \hline
+	  8& 5 & 0 & 0.004777 & 0.004777 & 0.004777 & -- & -- & -- \\ \hline
+	  9& 5 & 0 & 0.004733 & 0.004733 & 0.004733 & -- & -- & -- \\ \hline
+	  \end{tabular}
+	  \caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	  \label{tab:pesos_sanger}
+	\end{table}      
+	
+
+	\begin{table}[H]
+	  \centering
+	  \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline
+	  Fold & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ \\ \hline
+	  1& 5 & 0 & 0.004730 & 0.004730 & 0.004730 & -- & -- & -- \\ \hline
+	  2& 5 & 0 & 0.004724 & 0.004724 & 0.004724 & -- & -- & -- \\ \hline
+	  3& 5 & 0 & 0.004712 & 0.004712 & 0.004712 & -- & -- & -- \\ \hline
+	  4& 5 & 0 & 0.002974 & 0.002974 & 0.002974 & -- & -- & -- \\ \hline
+	  5& 5 & 0 & 0.004703 & 0.004703 & 0.004703 & -- & -- & -- \\ \hline
+	  6& 5 & 0 & 0.004718 & 0.004718 & 0.004718 & -- & -- & -- \\ \hline
+	  7& 5 & 0 & 0.004750 & 0.004750 & 0.004750 & -- & -- & -- \\ \hline
+	  8& 5 & 0 & 0.004718 & 0.004718 & 0.004718 & -- & -- & -- \\ \hline
+	  9& 5 & 0 & 0.004699 & 0.004699 & 0.004699 & -- & -- & -- \\ \hline
+	  \end{tabular}
+	  \caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
+	  \label{tab:pesos_oja}
+	\end{table}
 	
 	
       \subsubsection{Gráficos espaciales de algunos resultados}

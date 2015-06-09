@@ -93,3 +93,6 @@ learningRate: 1.000000 	 sigma: 2.000000 	 autoajuste: 0 	 M1,M2: 100 	 fold: 5 
 learningRate: 1.000000 	 sigma: 2.000000 	 autoajuste: 0 	 M1,M2: 10 	 fold: 6 	 rep: 2 
 learningRate: 1.000000 	 sigma: 2.000000 	 autoajuste: 0 	 M1,M2: 30 	 fold: 6 	 rep: 2 
 learningRate: 1.000000 	 sigma: 2.000000 	 autoajuste: 0 	 M1,M2: 50 	 fold: 6 	 rep: 2 
+learningRate: 1.000000 	 sigma: 2.000000 	 autoajuste: 0 	 M1,M2: 100 	 fold: 6 	 rep: 2 
+learningRate: 1.000000 	 sigma: 2.000000 	 autoajuste: 0 	 M1,M2: 10 	 fold: 7 	 rep: 2 
+learningRate: 1.000000 	 sigma: 2.000000 	 autoajuste: 0 	 M1,M2: 30 	 fold: 7 	 rep: 2 
