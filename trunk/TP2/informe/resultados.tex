@@ -370,38 +370,43 @@
       
       \myparagraph{Particularidades con regla de Sanger y criterio de ortogonalidad}
       
-	Las Figuras \ref{fig:fold1_criterioParadao_reglas_alpha0_rep1} y \ref{fig:fold5_criterioParadao_reglas_alpha0_rep1} representan los dos tipos de comportamiento observados en general en todas las instancias experimentadas independientemente de si el criterio de corte fue que se alcanzó el máximo de épocas o que los vectores eran ortogonales. De manera similar a cuando se utiliza la regla de Oja, se puede ver aquí también dos -grupos de resultados similares. En la Figura \ref{fig:fold1_criterioParadao_reglas_alpha0_rep1} podemos ver que en general las instancias se encuentran agrupadas en una porción del espacio reducida y hay cúmulos de algunas clases como las representadas con los colores rojo, celeste, amarillo y verde. Otras clases como las expresadas con colores azul, magenta y rosa ocupan lugares espaciados y relativamente demarcados.
+	De manera similar al caso anterior, decidimos mostrar algunos de los resultados que de alguna manera representan a la mayoría. Vale aclarar que no se observaron diferencias significativas entre los casos en los cuales se convergió por criterio de ortogonalidad y por máximo de épocas.
 	
-	En el caso de la Figura \ref{fig:fold5_criterioParadao_reglas_alpha0_rep1} las instancias se encuentran más separadas en general con cúmulos que agrupan varias clases por ejemplo donde se ubican las instancias rojas y celestes así como las amarillas y verdes. Respecto de las clases más separadas que ocupan espacios demarcados (azul y magenta), las mismas ocupan mayor espacio que en el otro caso.
+	Por un lado, en la Figura \ref{fig:fold2_criterioParadao_reglas_alpha0_rep4} se ve cómo las distintas clases no se encuentran espacialmente muy dispersas. Apenas la clase azul está un poco alejada de las demás. El resto de las clases aparecen en pequeños cúmulos como la roja, violeta, magenta, verde, amarilla y marrón. Las restantes están un poco más dispersas.
+	
+	Por otro lado, en la Figura \ref{fig:fold1_criterioParadao_reglas_alpha0_rep4} se ve a simple vista cómo la clase azul ocupa un lugar más alejado del resto de las clases mientras que las otras clases aparecen más juntas entre sí. De todos modos es posible ver algunos cúmulos como el ocupado por las clases verde, amarilla y marrón. La clase roja, a diferencia del caso analizado anteriormente, aparece más dispersa.
       
+	~
+	
+	De manera análoga a lo observado al usar la regla de Oja, es posible ver que salvo casos particulares, tanto las instancias de entrenamiento como las de validación ocupan los mismos lugares en el espacio por lo que es posible que al realizar una clasificación posterior, el uso de las tres componentes principales permitan obtener buenos resultados. Al igual que antes, desde lo visual no se pueden diferenciar zonas claras para cada color aunque sí algunos cúmulos ocupados específicamente por ciertas clases.
       
 	\begin{figure}[H]
 	\newgeometry{textwidth=21cm,textheight=21cm}
         \centering
         \hspace*{-6.5cm}
         \begin{subfigure}[b]{0.49\textwidth}
-                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglas_alpha0_rep1_0P.png}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglas_alpha0_rep4_0P.png}
                 \caption{Vista en perspectiva.}
         \end{subfigure}%
         ~
         \begin{subfigure}[b]{0.49\textwidth}
-                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglas_alpha0_rep1_1XZ.png}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglas_alpha0_rep4_1XZ.png}
                 \caption{Plano X-Z.}
         \end{subfigure}
         
         \hspace*{-6.5cm}
         \begin{subfigure}[b]{0.49\textwidth}
-                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglas_alpha0_rep1_2XY.png}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglas_alpha0_rep4_2XY.png}
                 \caption{Plano X-Y.}
         \end{subfigure}
         ~
         \begin{subfigure}[b]{0.49\textwidth}
-                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglas_alpha0_rep1_3YZ.png}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadao_reglas_alpha0_rep4_3YZ.png}
                 \caption{Plano Y-Z.}
         \end{subfigure}
 	\restoregeometry
-        \caption{Gráfico espacial para el Fold 1 usando ortogonalidad como criterio de parada y la regla de Sanger con learning rate 0.001 en la repetición 1.}
-        \label{fig:fold1_criterioParadao_reglas_alpha0_rep1}
+        \caption{Gráfico espacial para el Fold 1 usando ortogonalidad como criterio de parada y la regla de Sanger con learning rate 0.001 en la repetición 4.}
+        \label{fig:fold1_criterioParadao_reglas_alpha0_rep4}
 	\end{figure}
       
 	
@@ -410,28 +415,28 @@
         \centering
         \hspace*{-6.5cm}
         \begin{subfigure}[b]{0.49\textwidth}
-                \includegraphics[width=\textwidth]{graficos/fold5_criterioParadao_reglas_alpha0_rep1_0P.png}
+                \includegraphics[width=\textwidth]{graficos/fold2_criterioParadao_reglas_alpha0_rep4_0P.png}
                 \caption{Vista en perspectiva.}
         \end{subfigure}%
         ~
         \begin{subfigure}[b]{0.49\textwidth}
-                \includegraphics[width=\textwidth]{graficos/fold5_criterioParadao_reglas_alpha0_rep1_1XZ.png}
+                \includegraphics[width=\textwidth]{graficos/fold2_criterioParadao_reglas_alpha0_rep4_1XZ.png}
                 \caption{Plano X-Z.}
         \end{subfigure}
         
         \hspace*{-6.5cm}
         \begin{subfigure}[b]{0.49\textwidth}
-                \includegraphics[width=\textwidth]{graficos/fold5_criterioParadao_reglas_alpha0_rep1_2XY.png}
+                \includegraphics[width=\textwidth]{graficos/fold2_criterioParadao_reglas_alpha0_rep4_2XY.png}
                 \caption{Plano X-Y.}
         \end{subfigure}
         ~
         \begin{subfigure}[b]{0.49\textwidth}
-                \includegraphics[width=\textwidth]{graficos/fold5_criterioParadao_reglas_alpha0_rep1_3YZ.png}
+                \includegraphics[width=\textwidth]{graficos/fold2_criterioParadao_reglas_alpha0_rep4_3YZ.png}
                 \caption{Plano Y-Z.}
         \end{subfigure}
 	\restoregeometry
-        \caption{Gráfico espacial para el Fold 5 usando ortogonalidad como criterio de parada y la regla de Sanger con learning rate 0.001 en la repetición 1.}
-        \label{fig:fold5_criterioParadao_reglas_alpha0_rep1}
+        \caption{Gráfico espacial para el Fold 2 usando ortogonalidad como criterio de parada y la regla de Sanger con learning rate 0.001 en la repetición 4.}
+        \label{fig:fold2_criterioParadao_reglas_alpha0_rep4}
 	\end{figure}
       
       
