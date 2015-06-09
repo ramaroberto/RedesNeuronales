@@ -46,7 +46,7 @@
 	  9& 4 & 1 & 0.004733 & 0.004733 & 0.004733 & 5 & 5 & 5 \\ \hline
 	  \end{tabular}
 	  \caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	  \label{tab:ortogonalidad_sanger}
+	  \label{tab:ortogonalidad_sanger500}
 	\end{table}
 
 	
@@ -65,7 +65,7 @@
 	  9& 0 & 5 & -- & -- & -- & 1 & 25 & 17,4 \\ \hline
 	  \end{tabular}
 	  \caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	  \label{tab:ortogonalidad_oja}
+	  \label{tab:ortogonalidad_oja500}
 	\end{table}
 
 	
@@ -84,7 +84,7 @@
 	  9& 5 & 0 & 0.004733 & 0.004733 & 0.004733 & -- & -- & -- \\ \hline
 	  \end{tabular}
 	  \caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	  \label{tab:pesos_sanger}
+	  \label{tab:pesos_sanger500}
 	\end{table}      
 	
 
@@ -103,12 +103,14 @@
 	  9& 5 & 0 & 0.004699 & 0.004699 & 0.004699 & -- & -- & -- \\ \hline
 	  \end{tabular}
 	  \caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	  \label{tab:pesos_oja}
+	  \label{tab:pesos_oja500}
 	\end{table}            
 
 	
 	
 	
+	
+	Dado que en muchos de los casos el corte se produjo por alcanzarse el máximo de épocas y que las distintas repeticiones produjeron un error idéntico, decidimos repetir la experimentación pero ahora con una cantidad de épocas máxima igual a 250 para ver si de esa manera se convergía a los mismos errores pero con una menor cantidad de épocas.
 	
 	
 	\myparagraph{Usando 250 épocas como máximo}
@@ -127,7 +129,7 @@
 	  9& 5 & 0 & 0.004733 & 0.004733 & 0.004733 & -- & -- & -- \\ \hline
 	  \end{tabular}
 	  \caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	  \label{tab:ortogonalidad_sanger}
+	  \label{tab:ortogonalidad_sanger250}
 	\end{table}
 
 	
@@ -146,7 +148,7 @@
 	  9& 0 & 5 & -- & -- & -- & 22 & 29 & 24,8 \\ \hline
 	  \end{tabular}
 	  \caption{Resultados para los 9 folds, usando ortogonalidad como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	  \label{tab:ortogonalidad_oja}
+	  \label{tab:ortogonalidad_oja250}
 	\end{table}
 
 	
@@ -165,7 +167,7 @@
 	  9& 5 & 0 & 0.004733 & 0.004733 & 0.004733 & -- & -- & -- \\ \hline
 	  \end{tabular}
 	  \caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Sanger. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	  \label{tab:pesos_sanger}
+	  \label{tab:pesos_sanger250}
 	\end{table}      
 	
 
@@ -184,8 +186,11 @@
 	  9& 5 & 0 & 0.004699 & 0.004699 & 0.004699 & -- & -- & -- \\ \hline
 	  \end{tabular}
 	  \caption{Resultados para los 9 folds, usando $\Delta W$ como criterio de parada y usando la regla de Oja. Las cantidades y promedios son sobre todas las repeticiones hechas.}
-	  \label{tab:pesos_oja}
+	  \label{tab:pesos_oja250}
 	\end{table}
+	
+	
+	Observando las Tablas \ref{tab:pesos_sanger500} y \ref{tab:pesos_oja500} es posible ver que en todos los casos los errores cometidos al llegar al máximo de épocas permitido es el mismo para todas las repeticiones de los experimentos. Observando los valores es posible ver que casi todos los valores están en torno a 0.0047 y 0.0048 y sólo uno en torno a 0.0029. Dado que el valor de epsilon tomado es 0.001, en todos los casos el criterio de corte efectivo acaba siendo el máximo de épocas. Dado el learning rate escogido (0.001) y las operaciones entre instancias de entrada y pesos, este error (correspondiente a la norma Frobenius de la matriz de delta pesos) es el mínimo alcanzado y por ende se puede decir que el algoritmo convergió. Es claro entonces que el epsilon elegido es muy pequeño para los valores en los que converge la red con estas instancias independientemente de si la regla utilizada es la de Oja o la de Sanger. Comparando ambas reglas, es posible ver que los valores con la regla de Oja son levemente menores.
 	
 	
       \subsubsection{Gráficos espaciales de algunos resultados}

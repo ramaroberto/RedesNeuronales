@@ -7,7 +7,8 @@ function [] = crearPngs()
 	%# process each file
 	for i=1:length(fNames)
 	    openfig(fNames{i});
-		set(findobj(0,'type','figure'),'visible','on');
+		set(findobj(0,'type','figure'),'visible','off');
+		%set(findobj(0,'type','figure'),'visible','on');
 		xlabel('X');
 		ylabel('Y');
 		zlabel('Z');
