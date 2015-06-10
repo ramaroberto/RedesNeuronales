@@ -234,7 +234,7 @@
 	
 	~
 	
-	En la Figura \ref{fig:fold5_criterioParadao_reglaM_alpha0_rep2} podemos ver que a diferencia de los casos anteriores la segunda componente principal separa notablemente a las instancias en dos partes como puede observarse en \ref{fig:fold5_criterioParadao_reglaM_alpha0_rep2_3YZ}. Si bien la vista en perspectiva indica que todas las instancias están mucho más juntas que en los casos anteriores, puede verse cómo según la segunda componente, para valores negativos se agrupan las clases amarilla, verde y marrón mientras que en valores cercanos al 0 y positivos están las demás. En este caso las clases azul y magenta no se encuentran tan diferenciadas por su posición de las demás pero nuevamente las clases roja y celeste aparecen en cúmulos bien demarcados aunque agrupadas también con las clases azul oscuro y violeta. 
+	En la Figura \ref{fig:fold5_criterioParadao_reglaM_alpha0_rep2} podemos ver que a diferencia de los casos anteriores la segunda componente principal separa notablemente a las instancias en dos partes como puede observarse en \ref{fig:fold5_criterioParadao_reglaM_alpha0_rep2} d. Si bien la vista en perspectiva indica que todas las instancias están mucho más juntas que en los casos anteriores, puede verse cómo según la segunda componente, para valores negativos se agrupan las clases amarilla, verde y marrón mientras que en valores cercanos al 0 y positivos están las demás. En este caso las clases azul y magenta no se encuentran tan diferenciadas por su posición de las demás pero nuevamente las clases roja y celeste aparecen en cúmulos bien demarcados aunque agrupadas también con las clases azul oscuro y violeta. 
 	
 	~
 	
@@ -329,6 +329,7 @@
         \begin{subfigure}[b]{0.49\textwidth}
                 \includegraphics[width=\textwidth]{graficos/fold5_criterioParadao_reglaM_alpha0_rep2_3YZ.png}
                 \caption{Plano Y-Z.}
+                \label{fig:fold5_criterioParadao_reglaM_alpha0_rep2_3YZ}
         \end{subfigure}
 	\restoregeometry
         \caption{Gráfico espacial para el Fold 5 usando ortogonalidad como criterio de parada y la regla de Oja con learning rate 0.001 en la repetición 2.}
@@ -450,7 +451,15 @@
       
 	A continuación presentamos resultados correspondientes al uso de la regla de Oja con el criterio de la matriz de delta de pesos. Recordando de las Tablas \ref{tab:pesos_oja500} y \ref{tab:pesos_oja250} que en casi todos los casos se produjo el corte por alcanzar un valor muy bajo en la matriz de pesos.
 	
-	En la Figura \ref{fig:fold1_criterioParadap_reglaM_alpha0_rep2} se observa el patrón más veces repetido entre los experimentos. En dicho gráfico se ve que las instancias de la clase azul ocupan una porción alejada del resto de las instancias mientras que el resto se ubican mucho más juntas. En ellas hay varios cúmulos donde se encuentran las clases roja y celeste juntas por un lado rodeadas de la magenta y un poco más alejadas las verde, amarilla y marrón. Las clases violeta, azul oscuro
+	En la Figura \ref{fig:fold1_criterioParadap_reglaM_alpha0_rep2} se observa el patrón más veces repetido entre los experimentos. En dicho gráfico se ve que las instancias de la clase azul ocupan una porción alejada del resto de las instancias mientras que el resto se ubican mucho más juntas. En ellas hay varios cúmulos donde se encuentran las clases roja y celeste juntas por un lado rodeadas de la magenta y un poco más alejadas las verde, amarilla y marrón. Las clases violeta y azul oscuro aparecen junto a los cúmulos pero más esparcidas en el espacio.
+	
+	La Figura \ref{fig:fold6_criterioParadap_reglaM_alpha0_rep3} presenta un caso particular en el cual varias instancias se ubican formando casi una línea recta sobre el eje X, correspondiente a la componente principal. Al igual que en los casos anteriores la clase azul ocupa un lugar más alejado que el resto de las clases. Principalmente las clases roja y magenta tienen a sus instancias ubicadas casi en línea recta indicando que el mayor peso para esas instancias es respecto de la componente principal. Observando el conjunto de entrenamiento y los resultados no se ve ninguna característica a simple vista de modo que intuímos que el resultado tiene que ver con el orden de entrenamiento y los pesos iniciales de la matriz de pesos.
+	
+	De manera similar al caso anterior, las clases amarilla, verde y marrón se ubican en los mismos cúmulos y por otro lado las instancias de la clase celeste aparecen bien concentradas. El resto de las clases aparecen distribuídas sin seguir ningún patrón fácilmente identificable en los gráficos.
+	
+	~
+	
+	Considerando las instancias de validación, en los gráficos no se ven muchas de ellas alejadas de las de entrenamiento ubicadas en lugares demasiado distintos. De manera visual, esto indica que la separación en tres dimensiones de esta técnica permite diferenciar bastante bien las clases. Es claro que no es posible asegurar este comportamiento de esta manera por lo que sería necesario aplicar posteriormente alguna técnica de clasificación para analizar cuantitativamente los resultados. La Principal ventaja de este conjunto de parámetros es que en una cantidad de épocas mucho menor se alcanzaron resultados muy similares a las combinaciones discutidas anteriormente.
       
 	\begin{figure}[H]
 	\newgeometry{textwidth=21cm,textheight=21cm}
@@ -507,11 +516,80 @@
                 \caption{Plano Y-Z.}
         \end{subfigure}
 	\restoregeometry
-        \caption{Gráfico espacial para el Fold 6 usando $\Delta W$ como criterio de parada y la regla de Sanger con learning rate 0.001 en la repetición 3.}
+        \caption{Gráfico espacial para el Fold 6 usando $\Delta W$ como criterio de parada y la regla de Oja con learning rate 0.001 en la repetición 3.}
         \label{fig:fold6_criterioParadap_reglaM_alpha0_rep3}
 	\end{figure}
       
       
+      
+      
+      \myparagraph{Particularidades con regla de Sanger y criterio de $\Delta W$}
+      
+	Los resultados usando la regla de Sanger con el criterio de delta pesos son, tal vez, los más homogéneos en el sentido que todos los gráficos tienen características similares. Como se puede ver en las Figuras \ref{fig:fold1_criterioParadap_reglas_alpha0_rep3} y \ref{fig:fold1_criterioParadap_reglas_alpha0_rep5}, si bien la ubicación espacial cambia, la posiciń relativa entre las instancias de las distintas clases es bastante similar. 
+	
+	En general, las instancias de la clase azul vuelven a aparecer alejadas del resto como en los casos anteriores. De manera similar las clases roja y celeste ocupan lugares similares y por otro lado lo mismo sucede con las amarilla, marrón y verde. Bajo esta combinación de parámetros sí sucede que la clase magenta aparece más dispersa, algo no tan común en los otros casos. Para el resto de las clases, las dispersiones son similares a casos anteriores ya discutidos.
+	
+	En este caso sucede también que las instancias de validación se encuentran cerca de las de entrenamiento correspondientes a la misma clase de modo que, al igual que antes, es un buen indicio para una futura clasificación.
+ 
+	\begin{figure}[H]
+	\newgeometry{textwidth=21cm,textheight=21cm}
+        \centering
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglas_alpha0_rep3_0P.png}
+                \caption{Vista en perspectiva.}
+        \end{subfigure}%
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglas_alpha0_rep3_1XZ.png}
+                \caption{Plano X-Z.}
+        \end{subfigure}
+        
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglas_alpha0_rep3_2XY.png}
+                \caption{Plano X-Y.}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglas_alpha0_rep3_3YZ.png}
+                \caption{Plano Y-Z.}
+        \end{subfigure}
+	\restoregeometry
+        \caption{Gráfico espacial para el Fold 1 usando $\Delta W$ como criterio de parada y la regla de Sanger con learning rate 0.001 en la repetición 3.}
+        \label{fig:fold1_criterioParadap_reglas_alpha0_rep3}
+	\end{figure}
+      
+      
+	\begin{figure}[H]
+	\newgeometry{textwidth=21cm,textheight=21cm}
+        \centering
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglas_alpha0_rep5_0P.png}
+                \caption{Vista en perspectiva.}
+        \end{subfigure}%
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglas_alpha0_rep5_1XZ.png}
+                \caption{Plano X-Z.}
+        \end{subfigure}
+        
+        \hspace*{-6.5cm}
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglas_alpha0_rep5_2XY.png}
+                \caption{Plano X-Y.}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.49\textwidth}
+                \includegraphics[width=\textwidth]{graficos/fold1_criterioParadap_reglas_alpha0_rep5_3YZ.png}
+                \caption{Plano Y-Z.}
+        \end{subfigure}
+	\restoregeometry
+        \caption{Gráfico espacial para el Fold 1 usando $\Delta W$ como criterio de parada y la regla de Sanger con learning rate 0.001 en la repetición 5.}
+        \label{fig:fold1_criterioParadap_reglas_alpha0_rep5}
+	\end{figure} 
+ 
       
     \subsection{Mapeo de características}
     
