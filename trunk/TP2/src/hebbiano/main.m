@@ -34,15 +34,15 @@ function [weights, razon, epocaOError] = main(calcularPesos, cantEpocas, cantFol
 					resTest = csvread(testFilename, 0, 0, [0 0 100-1 0]);
 					group = [resTrain;resTest];
 
-					colores = [	[1 0 1];
-								[0 1 1];
-								[1 0 0];
-								[0 1 0];
-								[0 0 1];
-								[1 1 0];
-								[0.5 0.5 0];
-								[0.5 0 0.5];
-								[0 0.5 0.5]];
+					colores = [	[1 0 1];		% magenta
+								[0 1 1];		% cian
+								[1 0 0];		% rojo
+								[0 1 0];		% verde
+								[0 0 1];		% azul
+								[1 1 0];		% amarillo
+								[0.5 0.5 0];	% marrón
+								[0.5 0 0.5];	% violeta
+								[0 0.5 0.5]];	% azul oscuro
 			    
 					h=figure('visible','off');
 					for idx = 1:9
