@@ -2,10 +2,10 @@ function [weights, epoca] = main(calcularPesos, cantEpocas, cantFolds)
 	learningRate = 1;
 	sigma = 2;
 
-	for repeticion = 1:2
+	for repeticion = 4:5
 		for autoajuste = [false,true]
 			for fold = 1:cantFolds
-				for M1 = [10,30,50,100]
+				for M1 = [10,30,50]
 					M2 = M1;
 					%for M2 = 20
 						trainFilename = ['../particiones/train_fold' num2str(fold) '.csv'];

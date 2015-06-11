@@ -34,9 +34,10 @@ function [weights, razon, epocaOError] = hebbianMatricial( dataset, cantNeuronas
             end
 			
 			weights = weights + deltaW;
-			if alpha ~= 0
-				learningRate = epoca^(-alpha);
-			end
+		end
+		
+		if alpha ~= 0
+			learningRate = epoca^(-alpha);
 		end
 		
 		sumaDeDeltas = norm(deltaW,'fro');
