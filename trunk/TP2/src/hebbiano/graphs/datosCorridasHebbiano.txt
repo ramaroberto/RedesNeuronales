@@ -361,3 +361,6 @@ criterioParada: p 	 regla: M 	 fold: 6	 rep: 5		 cantEpocas: 250 	 razon: maxEpo
 criterioParada: p 	 regla: M 	 fold: 7 	 rep: 5 	 cantEpocas: 250 	 razon: maxEpocas 	 epocaOError: 0.004750 
 criterioParada: p 	 regla: M 	 fold: 8 	 rep: 5 	 cantEpocas: 250 	 razon: maxEpocas 	 epocaOError: 0.004718 
 criterioParada: p 	 regla: M 	 fold: 9 	 rep: 5 	 cantEpocas: 250 	 razon: maxEpocas 	 epocaOError: 0.004699 
+
+
+

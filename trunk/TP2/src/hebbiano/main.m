@@ -1,6 +1,6 @@
 function [weights, razon, epocaOError] = main(calcularPesos, cantEpocas, cantFolds)
 	learningRate = 0.001;
-	alpha = 0;
+	alpha = 1;
 
 	for repeticion = 1:5
 		for criterioParada = ['o','p']
@@ -24,7 +24,7 @@ function [weights, razon, epocaOError] = main(calcularPesos, cantEpocas, cantFol
 						weights = csvread(weightsFilename);
 					end
 					fileID = fopen(datosFilename,'a');
-					fprintf(fileID,'criterioParada: %s \t regla: %s \t fold: %d \t rep: %d \t cantEpocas: %d \t razon: %s \t epocaOError: %f \n', criterioParada, regla, fold, repeticion, cantEpocas, razon, epocaOError);
+					fprintf(fileID,'criterioParada: %s \t regla: %s \t fold: %d \t rep: %d \t alpha: %d \t cantEpocas: %d \t razon: %s \t epocaOError: %f \n', criterioParada, regla, fold, repeticion, alpha, cantEpocas, razon, epocaOError);
 					fclose(fileID);
 
 					trainProcesado = aplicarPesos(weights,trainInput);

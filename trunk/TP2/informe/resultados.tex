@@ -590,6 +590,23 @@
         \label{fig:fold1_criterioParadap_reglas_alpha0_rep5}
 	\end{figure} 
  
+ 
+ 
+      Dados los resultados obtenidos en la experimentación y considerando que en general se obtuvieron los m\'aximos niveles de convergencia (dado que espacialmente los resultados con el m\'aximo de \'epocas fueron similares a cuando se cort\'o por el criterio, ya sea por pesos o por ortogonalidad), decidimos analizar la velocidad de convergencia al usar un m\'etodo adaptativo. 
+ 
+      Para ello utilizamos diferentes funciones para modificar el learning rate, sin embargo, los resultados obtenidos no fueron buenos. En todos los casos, o bien el algoritmo alcanzó los criterios de convergencia (ortogonalidad o pesos) con una \'epoca arrojando resultados incorrectos o bien el learning rate no permit\'ia la convergencia y acab\'abamos obteniendo valores Not a Number en la matriz de pesos. En el primer caso consideramos que se debe a que ante la primera época, luego de actualizar el learning rate los pesos se modifican de modo que satisfacen trivialmente los criterios. En el segundo caso se debe a que el learning rate es demasiado grande y hace que la matriz de pesos aumente y dada la realimentación positiva por los valores de los pesos entonces al actualizarlos éstos crezcan cada vez más.
+      
+      Las opciones consideradas fueron:
+      
+      \begin{itemize}
+	\item $\eta = epoca ^ {-\frac{1}{2}}$
+	\item $\eta = \alpha ^ {-epoca}$
+	\item $\eta = epoca ^ {-\alpha}$
+      \end{itemize}
+      
+      donde $\alpha$ fue un parámetro variado en valores mayores y menores a 1 y $epoca$ es la época actual.
+
+ 
       
     \subsection{Mapeo de características}
     
