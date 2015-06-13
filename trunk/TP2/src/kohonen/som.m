@@ -1,7 +1,7 @@
 function [w] = som( dataset, M1, M2, maxEpocas, learningRate, sigma, autoajuste, animate )
     
     if nargin < 8
-        animate = true;
+        animate = false;
     end
     
 	% Setear parametros
