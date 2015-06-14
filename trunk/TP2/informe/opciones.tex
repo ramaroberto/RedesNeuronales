@@ -2,6 +2,25 @@
 \begin{document}
   
   \section{Opciones de uso}
+
+    Ambos problemas fueron resueltos usando Matlab. Para ejecutarlos describimos a continuación las opciones posibles.
   
+    \subsection{Reducción de dimensionalidad}
+      Para la ejecución del código hay dos archivos .m, uno de ellos el que utilizamos para generar todos los resultados de manera autom\'atica: main.m el cual varía las repeticiones, criterio de parada, regla y folds. El otro permite correr una única instancia si se le dan los siguientes par\'ametros:
+      
+      \begin{itemize}
+	\item criterioParada: es 'p' o 'o' seg\'un se quiera corte por delta pesos u ortogonalidad
+	\item regla: es 's' o 'M' seg\'un se quiera usar Sanger u Oja (M)
+	\item learningRate: es el valor de learningRate a usar
+	\item alpha: es el valor en la f\'ormula learningRate = epoca\^(-alpha) para actualizar el learning rate. Si alpha es 0 entonces esa f\'ormula no se usa
+	\item calcularPesos: es un bool que cuando es true indica que se calcule la matriz de pesos mientras que cuando es false indica que se lea una matriz ya creada
+	\item cantEpocas: es la cantidad de \'epocas m\'axima que se admite (para tener otro criterio de corte)
+	\item trainFilename: es el nombre (path completo) del archivo donde est\'an las instancias de entrenamiento
+	\item testFilename: es el nombre (path completo) del archivo donde est\'an las instancias de validaci\'on
+	\item weightsFilename: es el nombre (path completo) del archivo donde se guardar\'a (o desde donde se leer\'a si calcularPesos=false) la matriz de pesos
+	\item datosFilename: es el nombre del archivo donde se escribir\'a la informaci\'on sobre la corrida
+	\item figureFilename: es el nombre del .fig que se crear\'a con el gr\'afico de las instancias
+      \end{itemize}
+      
     
 \end{document}
