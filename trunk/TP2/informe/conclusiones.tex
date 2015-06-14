@@ -2,11 +2,12 @@
 \begin{document}
   
   \section{Conclusiones}
+  
+  Considerando lo discutido en la sección de Resultados, haremos una breve recopilación de las conclusiones alcanzadas basadas en la experimentación realizada. 
 
     \subsection{Reducción de dimensiones}
-      Considerando lo discutido en la sección de Resultados, haremos una breve recopilación de las conclusiones alcanzadas basadas en la experimentación realizada. 
       
-      En relación a la ubicación espacial de las instancias al utilizar las tres primeras componentes principales calculadas no se vieron malos resultados en el sentido de instancias totalmente dispersas o instancias de validación muy alejadas de las instancias de entrenamiento. En líneas generales, todas las instancias de experimentación analizadas presentaban características similares: algunas clases bien clusterizadas y otras tal vez menos concentradas espacialmente. Sin embargo, dado que con ninguno de los casos analizados se obtuvieron separaciones espaciales considerables entre todas las clases no podemos afirmar que alguna combinación de parámetros haya funcionado mejor. Para afirmar esto, dados los resultados obtenidos sería necesario realizar un posprocesamiento de los resultados, por ejemplo aplicar k vecinos más cercanos sobre las instancias de validación para ver si con la transformación obtenida a partir de las componentes principales calculadas se puede clasificar bien.
+      En relación a la ubicación espacial de las instancias al utilizar las tres primeras componentes principales calculadas, no se vieron malos resultados en el sentido de instancias totalmente dispersas o instancias de validación muy alejadas de las instancias de entrenamiento. En líneas generales, todas las instancias de experimentación analizadas presentaban características similares: algunas clases bien clusterizadas y otras tal vez menos concentradas espacialmente. Sin embargo, dado que con ninguno de los casos analizados se obtuvieron separaciones espaciales considerables entre todas las clases no podemos afirmar que alguna combinación de parámetros haya funcionado mejor. Para afirmar esto, dados los resultados obtenidos sería necesario realizar un posprocesamiento de los resultados, por ejemplo aplicar k vecinos más cercanos sobre las instancias de validación para ver si con la transformación obtenida a partir de las componentes principales calculadas se puede clasificar bien.
       
       ~
       
@@ -23,8 +24,19 @@
       
       
     \subsection{Mapeo de características}
+    
+    En general, se vieron buenos resultados aceptables para todas las arquitecturas elegidas. La arquitectura que da resultados que no son tan aceptables es aquella mas chica, de 5x5, ya que su factor de cruce es demasiado alto y por lo tanto puede que no de una buena clasificaci\'on si se utiliza la red para ello. A partir de 10x10, el factor de cruce disminuye dr\'asticamente por lo que los resultados pasan a ser significativos.
+    
+    ~
+    
+    Creemos que una arquitectura de mas de 30x30 es excesiva para este problema, ya que comienzan a verse demasiadas neuronas que no se activan para ninguna clase, lo que significa que la cantidad de neuronas puede reducirse para obtener resultados similares y as\'i disminuir el tiempo de entrenamiento.
   
     \subsection{Posibles trabajos futuros}
     
-      En la reducción de dimensiones queda pendiente evaluar como criterio de corte para la matriz de delta pesos ver que dos matrices de épocas consecutivas sean prácticamente iguales ya que como se vio en la experimentación no se llega a que la matriz de delta pesos sea nula.
+    En la reducción de dimensiones queda pendiente evaluar como criterio de corte para la matriz de delta pesos ver que dos matrices de épocas consecutivas sean prácticamente iguales ya que, como se vio en la experimentación, no se llega a que la matriz de delta pesos sea nula.
+    
+    ~
+    
+    En cuanto al mapeo de características, quedan muchas experimentaciones por las cuales seguir investigando. Por ejemplo, experimentar con par\'ametros fijos ya que solamente lo hicimos con auto-ajustables, con distintas funciones de distancia y actualizaci\'on, con arquitecturas no cuadradas de neuronas; con una arquitectura de salida distinta, con tal de lograr un clasificador y con ello verificar precisi\'on, etc. Otra linea interesante a investigar es la posibilidad de efectuar una reducción de dimensionalidad antes de entrenar la red para realizar la clusterizaci\'on en un espacio que tenga menos dimensiones, y que por lo tanto lleve menos tiempo, verificando que la proyecci\'on del conjunto de entrenamiento en el subespacio nuevo no altera los resultados de la red neuronal.
+    
 \end{document}
