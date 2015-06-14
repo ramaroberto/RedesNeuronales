@@ -616,13 +616,13 @@
       
       Representar\'a la distancia relativa media entre los dominantes del set de validaci\'on y el set de activaci\'on. Para generar su calculo, tomamos cada uno de los dominantes del mapa de validacion y buscamos el dominante mas cercano en el mapa de entrenamiento, en el mejor caso esta distancia es cero. 
       
-      ~
+      $$DD_abs(DTr, DTe, W) = dM(mAct(DTr,W), mAct(DTe,W))$$
       
       Obteniendo todas las distancias entre los distintos dominantes calcularemos su media y luego la normalizaremos diviendola por la distancia maxima que puede existir; esto es $||(M_1,M_2)||$, es decir la distancia entre las esquinas de la matriz de pesos.
       
-      $$DD(DTr, DTe, W, M_1, M_2) = \frac{dM(mAct(DTr,W), mAct(DTe,W))}{||(M_1,M_2)||}$$
+      $$DD_rel(DTr, DTe, W, M_1, M_2) = \frac{DD_abs(DTr, DTe, W)}{||(M_1,M_2)||}$$
       
-      Donde $DTr$ es el dataset de entrenamiento, $DTe$ es el dataset de validacion, $W$ es la matriz de pesos y $M_1, M_2$  son las dimensiones de la ultima. Se supone que $mAct$ calcula los mapas de dominantes para los datos otorgados y que $dM$ calcula la distancia media entre dichos dominantes.
+      Donde $DTr$ es el dataset de entrenamiento, $DTe$ es el dataset de validacion, $W$ es la matriz de pesos y $M_1, M_2$  son las dimensiones de la ultima. Se supone que $mAct$ calcula los mapas de dominantes para los datos otorgados y que $dM$ calcula la distancia euclidiana media entre dichos dominantes. En otra variacion de la metrica, $dM$ puede calculado utilizando distancia Manhattan.
       
       \subsubsection{Factor de cruce (FC)}
       
@@ -642,11 +642,249 @@
       
       ~
       \subsubsection{Analisis de resultados}
-      Para analizar los resultados de las metricas decidimos generar 9 folds distintos para luego promediar los resultados de los mismos. Cada fold tendra un set de entrenamiento y uno de validación generados al azar.
-    
-      %Para realizar el modelo se consideraron distintos tamaños de mapa así como también la opción de tener parámetros de aprendizaje autoajustables. El objetivo es tener un criterio comparativo para determinar qué tamaño es suficiente en relación a la cantidad de parámetros de las instancias.
+      Para analizar los resultados de las metricas decidimos generar 9 folds distintos para luego promediar los resultados de los mismos. No vimos la necesidad de repetir los tests a diferencia del analisis anterior, ya que la red de kohonen da resultados mas estables. Cada fold estar\'a compuesto por un set de entrenamiento y uno de validaci\'on con instancias seleccionadas al azar. Para decidir que tama\~nos de redes analizar en los tests, decidimos realizar un analisis preliminar viendo como la red neuronal ``cubria'' el conjunto de entrenamiento con distinta cantidad de neuronas.
       
-      %Por otro lado, una vez generados los mapas con el conjunto de entrenamiento, el objetivo es catalogar las instancias del conjunto de validación usando los pesos y el mapa entrenados. 
+      ~
       
+      Para esto, realizamos un analisis de componentes pricipales de los datos y trasladamos los mismos a un espacio planar utilizando las dos primeras componentes como base del nuevo espacio. En un espacio mas grande cada neurona se mueve en una dimension mayor, pero suponemos que no hace falta una cantidad mayor de neuronas para cubrir de forma eficiente los datos en un espacio de mayor dimensionalidad; dicho de otra forma, la relacion se mantiene independiente de la dimensionalidad. Es por eso que este analisis nos parecio relevante como criterio.
+      
+      ~
+      
+      Durante este analisis preliminar, utilizamos el modo de auto-ajuste con 1000 epocas de entrenamiento. Analizamos arquitecturas cuadradas de neuronas, desde 5x5 hasta 50x50 con incrementos de 5 neuronas en cada paso y un experimento final con una red de 100x100 neuronas. Por lo que, realizamos un total de 11 experimentos preliminares.
+      
+      \newpage
+      \newgeometry{textwidth=21cm,textheight=25cm}
+      \begin{minipage}{0.30\textwidth}
+	\centering
+	\begin{figure}[H]
+	  \centering
+	  \includegraphics[height=4.5cm,keepaspectratio]{graficos/malla/5x5.png}
+                \caption{\small 25 (5x5) neuronas}
+	\end{figure}
+	
+	\begin{figure}[H]
+	  \centering
+	  \includegraphics[height=4.5cm,keepaspectratio]{graficos/malla/20x20.png}
+                \caption{\small 400 (20x20) neuronas}
+	\end{figure}
+	
+	\begin{figure}[H]
+	  \centering
+	  \includegraphics[height=4.5cm,keepaspectratio]{graficos/malla/35x35.png}
+                \caption{\small 1225 (35x35) neuronas}
+	\end{figure}
+      \end{minipage}
+      \begin{minipage}{0.33\textwidth}
+	\centering
+	\begin{figure}[H]
+	  \centering
+	  \includegraphics[height=4.5cm,keepaspectratio]{graficos/malla/10x10.png}
+                \caption{\small 100 (10x10) neuronas}
+	\end{figure}
+	
+	\begin{figure}[H]
+	  \centering
+	  \includegraphics[height=4.5cm,keepaspectratio]{graficos/malla/25x25.png}
+                \caption{\small 625 (25x25) neuronas}
+	\end{figure}
+	
+	\begin{figure}[H]
+	  \centering
+	  \includegraphics[height=4.5cm,keepaspectratio]{graficos/malla/40x40.png}
+                \caption{\small 1600 (40x40) neuronas}
+	\end{figure}
+      \end{minipage}
+       \begin{minipage}{0.30\textwidth}
+	\centering
+	\begin{figure}[H]
+	  \centering
+	  \includegraphics[height=4.5cm,keepaspectratio]{graficos/malla/15x15.png}
+                \caption{\small 225 (15x15) neuronas}
+	\end{figure}
+	
+	\begin{figure}[H]
+	  \centering
+	  \includegraphics[height=4.5cm,keepaspectratio]{graficos/malla/30x30.png}
+                \caption{\small 900 (30x30) neuronas}
+	\end{figure}
+	
+	\begin{figure}[H]
+	  \centering
+	  \includegraphics[height=4.5cm,keepaspectratio]{graficos/malla/45x45.png}
+                \caption{\small 2025 (45x45) neuronas}
+	\end{figure}
+      \end{minipage}
+      
+      \FloatBarrier
+      \vspace{15pt}
+      \FloatBarrier
+      
+      \begin{minipage}{0.45\textwidth}
+	 \centering
+	\begin{figure}[H]
+	  \centering
+	    \includegraphics[height=5cm,keepaspectratio]{graficos/malla/50x50.png}
+		  \caption{\small 2500 (50x50) neuronas}
+	\end{figure}
+      \end{minipage}
+      \begin{minipage}{0.45\textwidth}
+	 \centering
+	\begin{figure}[H]
+	  \centering
+	  \includegraphics[height=5cm,keepaspectratio]{graficos/malla/100x100.png}
+                \caption{\small 1000 (100x100) neuronas}
+	\end{figure}
+      \end{minipage}
+      
+       \restoregeometry
+       
+       Como se puede observar en los graficos obtenidos, las diferencias mas significativas en la forma que adquiere la red se pueden notar entre las redes de 5x5 hasta 30x30. Desde 30x30 en adelante no se notan diferencias mayores en la topologia de la red, si no que, expresado de alguna forma, es un incremento en la ``resolucion'' de la misma.
+       
+       ~
+       
+       Para decidir con cuantas epocas realizar la experimentación analizamos como la red de 30x30 (a la que encontramos como mas representativa) iba cambiando su forma al pasar las epocas. Mostramos a continuación los graficos correspondientes.       
+       
+       \FloatBarrier
+	\begin{minipage}{0.31\textwidth}
+	  \centering
+	  \begin{figure}[H]
+	    \centering
+	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/5.png}
+		  \caption{\small 5 epocas}
+	  \end{figure}
+	  
+	  \begin{figure}[H]
+	    \centering
+	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/50.png}
+		  \caption{\small 50 epocas}
+	  \end{figure}
+	  
+	  \begin{figure}[H]
+	    \centering
+	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/300.png}
+		  \caption{\small 300 epocas}
+	  \end{figure}
+	\end{minipage}
+	\begin{minipage}{0.33\textwidth}
+	  \centering
+	  \begin{figure}[H]
+	    \centering
+	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/10.png}
+		  \caption{\small 10 epocas}
+	  \end{figure}
+	  
+	  \begin{figure}[H]
+	    \centering
+	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/100.png}
+		  \caption{\small 100 epocas}
+	  \end{figure}
+	  
+	  \begin{figure}[H]
+	    \centering
+	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/500.png}
+		  \caption{\small 500 epocas}
+	  \end{figure}
+	\end{minipage}
+	\begin{minipage}{0.30\textwidth}
+	  \centering
+	  \begin{figure}[H]
+	    \centering
+	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/20.png}
+		  \caption{\small 20 epocas}
+	  \end{figure}
+	  
+	  \begin{figure}[H]
+	    \centering
+	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/200.png}
+		  \caption{\small 200 epocas}
+	  \end{figure}
+	  
+	  \begin{figure}[H]
+	    \centering
+	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/1000.png}
+		  \caption{\small 1000 epocas}
+	  \end{figure}
+	\end{minipage}
+       
+       \newpage
+       
+       Se puede observar que a partir de las 200 epocas procede mas como un ajuste fino, por lo que no hay cambios demasiados significativos en la topologia. Esto principalmente puede darse por la tecnica de autoajuste utilizada en la red. De todas formas, encontramos el limite de 300 epocas como un numero apropiado para la experimentaci\'on.
+       
+       ~
+       
+       Decidimos entonces, experimentar con las redes de 5x5, 10x10, 15x15, 20x20, 30x30 y 50x50, con autoajuste activado y tomando las metricas de distancia a dominantes, absoluta y relativa, con distancia euclidiana y Manhattan; y la metrica de factor de cruce. Se presentan los resultados obtenidos luego de realizar los promedios entre los 9 folds.
+       
+       \begin{table}[H]
+	  \centering
+	  \begin{tabular}{|l|l|l|l|l|l|} \hline
+	  Tam & DD$_{rel}$ & DD$_{abs}$ & DD$_{rel}(M)$ & DD$_{abs}(M)$  & FC \\ \hline
+	  5x5    & 0.055 & 0.392 & 0.044 & 0.445 & 2.421 \\ \hline
+	  10x10  & 0.033 & 0.466 & 0.027 & 0.542 & 0.972 \\ \hline
+	  15x15  & 0.024 & 0.503 & 0.019 & 0.584 & 0.499 \\ \hline
+	  20x20  & 0.022 & 0.615 & 0.018 & 0.720 & 0.328 \\ \hline
+	  30x30  & 0.018 & 0.759 & 0.015 & 0.899 & 0.186 \\ \hline
+	  50x50  & 0.017 & 1.201 & 0.014 & 1.432 & 0.108 \\ \hline
+	  \end{tabular}
+	  \caption{Resultados de experimentaci\'on de la red de \\ Kohonen para distintas arquitecturas}
+	  \label{tab:resultados_kohonen}
+	\end{table}
+	
+	Como se puede observar, efectivamente ocurre una reduccion en DD$_{rel}$, DD$_{rel}(M)$ y FC a medida que aumentamos el tama\~no de la red, mientras que DD$_{abs}$ y DD$_{abs}(M)$ crecen. Las reducciones en los valores ocurren porque, en terminos de las metricas elegidas, se genera una mejor clusterizaci\'on a medida que aumentamos el tama\~no de la red; es decir que los dominantes se vuelven relativamente mas cercanos a las instancias que representan y hay una mejor separacion entre los distintos clusters a nivel de activacion de neuronas. 
+	
+	Por otro lado, las distancias absolutas crecen porque existe una cantidad mayor de neuronas en el medio, lo que nos puede estar indicando una cantidad mayor de neuronas que no se activan para ninguna clase.
+	
+	~
+	
+	Observemos que ocurre si representamos los mapas de dominantes como mapas de calor. En este caso la clase 0 representa aquellas neuronas que no se activaron para ninguna clase.
+	
+       
+       \begin{minipage}{0.30\textwidth}
+	 \centering
+	 \begin{figure}[H]
+	  \centering
+	    \includegraphics[height=4cm,keepaspectratio]{graficos/calor/calor_5x5.png}
+		  \caption{\small 5x5}
+	 \end{figure}
+	 \begin{figure}[H]
+	  \centering
+	    \includegraphics[height=4cm,keepaspectratio]{graficos/calor/calor_20x20.png}
+		  \caption{\small 20x20}
+	 \end{figure}
+       \end{minipage}
+       \begin{minipage}{0.33\textwidth}
+	 \centering
+	 \begin{figure}[H]
+	  \centering
+	    \includegraphics[height=4cm,keepaspectratio]{graficos/calor/calor_10x10.png}
+		  \caption{\small 10x10}
+	 \end{figure}
+	 \begin{figure}[H]
+	  \centering
+	    \includegraphics[height=4cm,keepaspectratio]{graficos/calor/calor_30x30.png}
+		  \caption{\small 30x30}
+	 \end{figure}
+       \end{minipage}
+       \begin{minipage}{0.30\textwidth}
+	 \centering
+	 \begin{figure}[H]
+	  \centering
+	    \includegraphics[height=4cm,keepaspectratio]{graficos/calor/calor_15x15.png}
+		  \caption{\small 15x15}
+	 \end{figure}
+	 \begin{figure}[H]
+	  \centering
+	    \includegraphics[height=4cm,keepaspectratio]{graficos/calor/calor_50x50.png}
+		  \caption{\small 50x50}
+	 \end{figure}
+       \end{minipage}     
+       
+       \vspace{20pt}
+       
+       Se puede observar que los mapas concuerdan con los resultados analiticos obtenidos. Desde un principio se puede ver una clara clusterizaci\'on de la red, y a medida que aumentamos el tama\~no de la misma la cantidad de neuronas sin activacion crece. 
+       
+       ~
+       
+       Dados estos resultados creemos que la red de 15x15 es una buena arquitectura para modelar el problema, ya que genera una buena clusterizacion y tiene un factor de cruce aceptable, mientras que hay pocas neuronas que no se activan.
+	
 
 \end{document}
