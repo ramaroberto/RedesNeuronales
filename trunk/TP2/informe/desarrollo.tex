@@ -26,9 +26,9 @@
 
 	Mientras que la de Oja es:
 
-	$$\Delta w_{ij} = \eta V_i(x_i - \sum_{k=1}^{N} V_k w_{kj} )$$
+	$$\Delta w_{ij} = \eta V_i(x_i - \sum_{k=1}^{M} V_k w_{kj} )$$
 	
-	Donde $V$ es el vector obtenido al multiplicar la instancia de entrada por la matriz de pesos y $\eta$ es el learning rate.
+	Donde $V$ es el vector obtenido al multiplicar la instancia de entrada por la matriz de pesos, $M$ es la cantidad de neuronas y $\eta$ es el learning rate.
 	
 	~
 
@@ -41,7 +41,10 @@
       \subsubsection{Criterios de convergencia}
 	Para determinar que el algoritmo convergió a vectores ortogonales correspondientes a las primeras componentes principales, utilizamos dos criterios diferentes. Por un lado, calcular el producto entre los vectores obtenidos en cada iteración y ver que el resultado sea menor a un epsilon pequeño. Si todos los productos de los vectores entre sí son pequeños entonces se puede decir que los mismos son suficientemente ortogonales y entonces dejar de iterar. El otro criterio considerado observa los valores de los $\delta W$. Si dicha matriz tiene una norma Frobenius menor a un epsilon pequeño entonces se asume que el aprendizaje que se puede obtener de allí es mínimo y por ende no tiene sentido continuar iterando.
 	
-    \subsection{Mapeo de caracteristicas auto-organizado}
+	
+	
+	
+    \subsection{Mapeo de características auto-organizado}
 	Los mapas de características auto-organizados sirven para generar una representación de un espacio de muestras de gran dimensionalidad en otra de menor preservando propiedades topológicas del espacio de entrada. De alguna manera podr\'ia decirse que los SOMs (Self-Organizing Maps) son la versión en dos dimensiones de PCA (Principal Component Analysis).
 	
 	\newpage
@@ -121,15 +124,15 @@
 	
 	\subsubsection{Mapa de dominantes}
       
-	Durante la experimentacion con esta red nos surgio la necesidad de crear una manera de analizar el comportamiento de la misma. Para esto, decidimos generar nueve ``mapas'' de neuronas, uno correspondiente a cada clase. En cada mapa, se encuentran registrados la cantidad de veces que se activo cada neurona para dicha clase, registrando las activaciones para cada entrada en el conjunto de datos.
+	Durante la experimentación con esta red nos surgió la necesidad de crear una manera de analizar el comportamiento de la misma. Para esto, decidimos generar nueve ``mapas'' de neuronas, uno correspondiente a cada clase. En cada mapa, se encuentran registradas las cantidades de veces que se activó cada neurona para dicha clase, registrando las activaciones para cada entrada en el conjunto de datos.
 	
 	~
 	
-	Una vez completados estos nueve mapas generamos un \'ultimo mapa de neuronas. Este mapa contendr\'a en cada posicion un numero entre 0 y 9. El n\'umero 0 indicara que dicha neurona no se activo para ning\'un test, mientras que la presencia de un n\'umero entre 1 y 9 indicar\'a que dicha neurona se activo mas veces para esa clase, es decir que esa clase ``domina'' a la neurona.
+	Una vez completados estos nueve mapas generamos un \'ultimo mapa de neuronas. Este mapa contendr\'a en cada posición un número entre 0 y 9. El n\'umero 0 indicará que dicha neurona no se activó para ning\'un test, mientras que la presencia de un n\'umero entre 1 y 9 indicar\'a que dicha neurona se activó más veces para esa clase, es decir que esa clase ``domina'' a la neurona.
 	
 	\newpage
 	
-	Presentamos el pseudocodigo y algunos ejemplos a continuacion con el fin de esclarecer el m\'etodo:
+	Presentamos el pseudocódigo y algunos ejemplos a continuación con el fin de esclarecer el m\'etodo:
 	
 	~
 	

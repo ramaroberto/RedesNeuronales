@@ -2,7 +2,7 @@
 \begin{document}
   
   \section{Resultados}
-    Para analizar los distintos métodos decidimos generar 9 folds con los datos. Teniendo un conjunto provisto es de 900 datos, cada entrenamiento se realiz\'o con 800 entradas y la validación con las 100 restantes. Además, cada experimento fue repetido 5 veces a fin de tener diferentes corridas de cada caso y observar si se produc\'ian diferentes resultados con cada una.
+    Para analizar los distintos métodos decidimos generar 9 folds con los datos. Teniendo un conjunto provisto de 900 datos, cada entrenamiento se realiz\'o con 800 entradas y la validación con las 100 restantes. Además, cada experimento fue repetido 5 veces a fin de tener diferentes corridas de cada caso y observar si se produc\'ian diferentes resultados con cada una.
     
     \subsection{Reducción de dimensiones}
       Para analizar este modelo se consideraron los dos criterios de parada mencionados anteriormente: componentes principales ortogonales y $\Delta W$ nulo. Para cada una de esas opciones se usaron las reglas de Oja y de Sanger de modo de poder probar las distintas combinaciones y comparar sus resultados. 
@@ -21,12 +21,12 @@
 	\begin{itemize}
 	\item $A$ es ``Cantidad de veces con corte por máximo de épocas''
 	\item $B$ es ``Cantidad de veces con corte por ortogonalidad''
-	\item $C$ es ``Corte por épocas, norma Frobenius de matriz delta pesos mínima''
-	\item $D$ es ``Corte por épocas, norma Frobenius de matriz delta pesos máxima''
-	\item $E$ es ``Corte por épocas error promedio''
-	\item $F$ es ``Corte por ortogonalidad cantidad de épocas mínima''
-	\item $G$ es ``Corte por ortogonalidad cantidad de épocas máxima''
-	\item $H$ es ``Corte por ortogonalidad cantidad de épocas promedio''
+	\item $C$ es ``Corte por épocas, norma Frobenius de matriz delta pesos mínima entre las repeticiones''
+	\item $D$ es ``Corte por épocas, norma Frobenius de matriz delta pesos máxima entre las repeticiones''
+	\item $E$ es ``Corte por épocas error promedio entre las repeticiones''
+	\item $F$ es ``Corte por ortogonalidad cantidad de épocas mínima entre las repeticiones''
+	\item $G$ es ``Corte por ortogonalidad cantidad de épocas máxima entre las repeticiones''
+	\item $H$ es ``Corte por ortogonalidad cantidad de épocas promedio entre las repeticiones''
 	\end{itemize}
   
 	
@@ -192,7 +192,7 @@
 	
 	Observando las Tablas \ref{tab:pesos_sanger500} y \ref{tab:pesos_oja500} es posible ver que en todos los casos los errores cometidos al llegar al máximo de épocas permitido es el mismo para todas las repeticiones de los experimentos. Observando los valores es posible ver que casi todos los valores están en torno a 0.0047 y 0.0048 y sólo uno en torno a 0.0029. Dado que el valor de epsilon tomado es 0.001, en todos los casos el criterio de corte efectivo acaba siendo el máximo de épocas. Dado el learning rate escogido (0.001) y las operaciones entre instancias de entrada y pesos, este error (correspondiente a la norma Frobenius de la matriz de delta pesos) es el mínimo alcanzado y por ende se puede decir que el algoritmo convergió. Es claro entonces que el epsilon elegido es muy pequeño para los valores en los que converge la red con estas instancias independientemente de si la regla utilizada es la de Oja o la de Sanger. Comparando ambas reglas, es posible ver que los valores con la regla de Oja son levemente menores.
 	
-	Dado que con 500 épocas en todos los casos se llegó a que la red converja, decidimos repetir la experimentación usando como tope las 250 épocas. Observando las Tablas \ref{tab:pesos_sanger250} y \ref{tab:pesos_oja250} es posible ver que los valores de convergencia son prácticamente los mismos que usando 500 \'epocas. 
+	Dado que con 500 épocas en todos los casos se llegó a que la red converjiese, decidimos repetir la experimentación usando como tope 250 épocas. Observando las Tablas \ref{tab:pesos_sanger250} y \ref{tab:pesos_oja250} es posible ver que los valores de convergencia son prácticamente los mismos que usando 500 \'epocas. 
 	
 	~
 	
@@ -230,7 +230,7 @@
 	
 	~
 	
-	En la Figura \ref{fig:fold4_criterioParadao_reglaM_alpha0_rep3} vemos un caso no tan común en las experimentaciones realizadas pero también particular. Allí puede verse cómo nuevamente las clases azul y magenta ocupan porciones del espacio más alejadas pero en este caso bien delimitadas. Al igual que en el caso antes discutido, las clases verde, marrón y amarilla ocupan practicamente los mismos lugares pero esta vez un poco más alejadas del resto de las clases. En cuanto a las clases roja y celeste, nuevamente forman cúmulos en las mismas regiones pero la diferencia en este caso es que el resto de las clases también se aglomeran en esos mismos lugares, mostrando menos dispersión que en el caso anterior.
+	En la Figura \ref{fig:fold4_criterioParadao_reglaM_alpha0_rep3} vemos un caso no tan común en las experimentaciones realizadas pero también particular. Allí puede verse cómo nuevamente las clases azul y magenta ocupan porciones del espacio más alejadas pero en este caso bien delimitadas. Al igual que en el caso antes discutido, las clases verde, marrón y amarilla ocupan prácticamente los mismos lugares pero esta vez un poco más alejadas del resto de las clases. En cuanto a las clases roja y celeste, nuevamente forman cúmulos en las mismas regiones pero la diferencia en este caso es que el resto de las clases también se aglomeran en esos mismos lugares, mostrando menos dispersión que en el caso anterior.
 	
 	~
 	
@@ -453,13 +453,13 @@
 	
 	En la Figura \ref{fig:fold1_criterioParadap_reglaM_alpha0_rep2} se observa el patrón más veces repetido entre los experimentos. En dicho gráfico se ve que las instancias de la clase azul ocupan una porción alejada del resto de las instancias mientras que el resto se ubican mucho más juntas. En ellas hay varios cúmulos donde se encuentran las clases roja y celeste juntas por un lado rodeadas de la magenta y un poco más alejadas las verde, amarilla y marrón. Las clases violeta y azul oscuro aparecen junto a los cúmulos pero más esparcidas en el espacio.
 	
-	La Figura \ref{fig:fold6_criterioParadap_reglaM_alpha0_rep3} presenta un caso particular en el cual varias instancias se ubican formando casi una línea recta sobre el eje X, correspondiente a la componente principal. Al igual que en los casos anteriores la clase azul ocupa un lugar más alejado que el resto de las clases. Principalmente las clases roja y magenta tienen a sus instancias ubicadas casi en línea recta indicando que el mayor peso para esas instancias es respecto de la componente principal. Observando el conjunto de entrenamiento y los resultados no se ve ninguna característica a simple vista de modo que intuímos que el resultado tiene que ver con el orden de entrenamiento y los pesos iniciales de la matriz de pesos.
+	La Figura \ref{fig:fold6_criterioParadap_reglaM_alpha0_rep3} presenta un caso particular en el cual varias instancias se ubican formando casi una línea recta sobre el eje X. Al igual que en los casos anteriores la clase azul ocupa un lugar más alejado que el resto de las clases. Principalmente las clases roja y magenta tienen a sus instancias ubicadas casi en línea recta indicando que el mayor peso para esas instancias es respecto de una de las componentes. Observando el conjunto de entrenamiento y los resultados no se ve ninguna característica a simple vista de modo que intuímos que el resultado tiene que ver con el orden de entrenamiento y los pesos iniciales de la matriz de pesos.
 	
 	De manera similar al caso anterior, las clases amarilla, verde y marrón se ubican en los mismos cúmulos y por otro lado las instancias de la clase celeste aparecen bien concentradas. El resto de las clases aparecen distribuídas sin seguir ningún patrón fácilmente identificable en los gráficos.
 	
 	~
 	
-	Considerando las instancias de validación, en los gráficos no se ven muchas de ellas alejadas de las de entrenamiento ubicadas en lugares demasiado distintos. De manera visual, esto indica que la separación en tres dimensiones de esta técnica permite diferenciar bastante bien las clases. Es claro que no es posible asegurar este comportamiento de esta manera por lo que sería necesario aplicar posteriormente alguna técnica de clasificación para analizar cuantitativamente los resultados. La Principal ventaja de este conjunto de parámetros es que en una cantidad de épocas mucho menor se alcanzaron resultados muy similares a las combinaciones discutidas anteriormente.
+	Considerando las instancias de validación, en los gráficos no se ven muchas de ellas alejadas de las de entrenamiento. De manera visual, esto indica que la separación en tres dimensiones de esta técnica permite diferenciar bastante bien las clases. Es claro que no es posible asegurar este comportamiento de esta manera por lo que sería necesario aplicar posteriormente alguna técnica de clasificación para analizar cuantitativamente los resultados. La principal ventaja de este conjunto de parámetros es que en una cantidad de épocas mucho menor se alcanzaron resultados muy similares a las combinaciones discutidas anteriormente.
       
 	\begin{figure}[H]
 	\newgeometry{textwidth=21cm,textheight=21cm}
@@ -525,7 +525,7 @@
       
       \myparagraph{Particularidades con regla de Sanger y criterio de $\Delta W$}
       
-	Los resultados usando la regla de Sanger con el criterio de delta pesos son, tal vez, los más homogéneos en el sentido que todos los gráficos tienen características similares. Como se puede ver en las Figuras \ref{fig:fold1_criterioParadap_reglas_alpha0_rep3} y \ref{fig:fold1_criterioParadap_reglas_alpha0_rep5}, si bien la ubicación espacial cambia, la posiciń relativa entre las instancias de las distintas clases es bastante similar. 
+	Los resultados usando la regla de Sanger con el criterio de delta pesos son, tal vez, los más homogéneos en el sentido que todos los gráficos tienen características similares. Como se puede ver en las Figuras \ref{fig:fold1_criterioParadap_reglas_alpha0_rep3} y \ref{fig:fold1_criterioParadap_reglas_alpha0_rep5}, si bien la ubicación espacial cambia, la posición relativa entre las instancias de las distintas clases es bastante similar. 
 	
 	En general, las instancias de la clase azul vuelven a aparecer alejadas del resto como en los casos anteriores. De manera similar las clases roja y celeste ocupan lugares similares y por otro lado lo mismo sucede con las amarilla, marrón y verde. Bajo esta combinación de parámetros sí sucede que la clase magenta aparece más dispersa, algo no tan común en los otros casos. Para el resto de las clases, las dispersiones son similares a casos anteriores ya discutidos.
 	
@@ -594,7 +594,7 @@
  
       Dados los resultados obtenidos en la experimentación y considerando que en general se obtuvieron los m\'aximos niveles de convergencia (dado que espacialmente los resultados con el m\'aximo de \'epocas fueron similares a cuando se cort\'o por el criterio, ya sea por pesos o por ortogonalidad), decidimos analizar la velocidad de convergencia al usar un m\'etodo adaptativo. 
  
-      Para ello utilizamos diferentes funciones para modificar el learning rate, sin embargo, los resultados obtenidos no fueron buenos. En todos los casos, o bien el algoritmo alcanzó los criterios de convergencia (ortogonalidad o pesos) con una \'epoca arrojando resultados incorrectos o bien el learning rate no permit\'ia la convergencia y acab\'abamos obteniendo valores Not a Number en la matriz de pesos. En el primer caso consideramos que se debe a que ante la primera época, luego de actualizar el learning rate los pesos se modifican de modo que satisfacen trivialmente los criterios. En el segundo caso se debe a que el learning rate es demasiado grande y hace que la matriz de pesos aumente y dada la realimentación positiva por los valores de los pesos entonces al actualizarlos éstos crecen cada vez más.
+      Para ello utilizamos diferentes funciones para modificar el learning rate, sin embargo, los resultados obtenidos no fueron buenos. En todos los casos, o bien el algoritmo alcanzó los criterios de convergencia (ortogonalidad o pesos) con 1 \'epoca arrojando resultados incorrectos o bien el learning rate no permit\'ia la convergencia y acab\'abamos obteniendo valores Not a Number en la matriz de pesos. En el primer caso consideramos que se debe a que ante la primera época, luego de actualizar el learning rate los pesos se modifican de modo que satisfacen trivialmente los criterios. En el segundo caso se debe a que el learning rate es demasiado grande y hace que la matriz de pesos aumente y dada la realimentación positiva por los valores de los pesos entonces al actualizarlos éstos crecen cada vez más.
       
       Las opciones consideradas fueron:
       
@@ -610,40 +610,40 @@
       
     \subsection{Mapeo de características}
     
-      En este caso, el analisis de este modelo se vuelve algo particular. Para realizar el mismo, decidimos utilizar dos metricas: la primera con el objetivo de obtener alguna nocion de desempe\~no de la red, y la segunda para conocer que tan distanciados estaban los distintos grupos de activacion luego del entrenamiento.
+      En este caso, el análisis de este modelo se vuelve algo particular. Para realizar el mismo, decidimos utilizar dos métricas: la primera con el objetivo de obtener alguna noción de desempe\~no de la red, y la segunda para conocer que tan distanciados estaban los distintos grupos de activación luego del entrenamiento.
       
       \subsubsection{Distancia a dominantes (DD)}
       
-      Representar\'a la distancia relativa media entre los dominantes del set de validaci\'on y el set de activaci\'on. Para generar su calculo, tomamos cada uno de los dominantes del mapa de validacion y buscamos el dominante mas cercano en el mapa de entrenamiento, en el mejor caso esta distancia es cero. 
+      Representar\'a la distancia relativa media entre los dominantes del set de validaci\'on y el set de activaci\'on. Para generar su cálculo, tomamos cada uno de los dominantes del mapa de validación y buscamos el dominante más cercano en el mapa de entrenamiento, en el mejor caso esta distancia es cero. 
       
       $$DD_abs(DTr, DTe, W) = dM(mAct(DTr,W), mAct(DTe,W))$$
       
-      Obteniendo todas las distancias entre los distintos dominantes calcularemos su media y luego la normalizaremos diviendola por la distancia maxima que puede existir; esto es $||(M_1,M_2)||$, es decir la distancia entre las esquinas de la matriz de pesos.
+      Obteniendo todas las distancias entre los distintos dominantes calcularemos su media y luego la normalizaremos dividiéndola por la distancia máxima que puede existir; esto es $||(M_1,M_2)||$, es decir la distancia entre las esquinas de la matriz de pesos.
       
       $$DD_rel(DTr, DTe, W, M_1, M_2) = \frac{DD_abs(DTr, DTe, W)}{||(M_1,M_2)||}$$
       
-      Donde $DTr$ es el dataset de entrenamiento, $DTe$ es el dataset de validacion, $W$ es la matriz de pesos y $M_1, M_2$  son las dimensiones de la ultima. Se supone que $mAct$ calcula los mapas de dominantes para los datos otorgados y que $dM$ calcula la distancia euclidiana media entre dichos dominantes. En otra variacion de la metrica, $dM$ puede calculado utilizando distancia Manhattan.
+      Donde $DTr$ es el dataset de entrenamiento, $DTe$ es el dataset de validación, $W$ es la matriz de pesos y $M_1, M_2$  son las dimensiones de la última. Se supone que $mAct$ calcula los mapas de dominantes para los datos otorgados y que $dM$ calcula la distancia media entre dichos dominantes. En otra variacion de la metrica, $dM$ puede calculado utilizando distancia Manhattan.
       
       \subsubsection{Factor de cruce (FC)}
       
-      Esta metrica nos dara una nocion de cuantas neuronas se activan mas de una clase. Esto nos sirve para observar de que forma la red neuronal esta respondiendo a distintos impulsos. Inferimos que es deseable que este factor sea bajo, ya que lo ideal seria que las distintas clases activen grupos de neuronas disjuntas.
+      Esta métrica nos dará una noción de cuántas neuronas se activan con más de una clase. Esto nos sirve para observar de qué forma la red neuronal está respondiendo a distintos impulsos. Inferimos que es deseable que este factor sea bajo, ya que lo ideal sería que las distintas clases activen grupos de neuronas disjuntos.
       
       ~
       
-      Para calcular este factor, nos armaremos un mapa de la red neuronal en donde tendremos registradas las cantidades de veces que se activo una neurona en las 9 clases distintas. En un escenario ideal, ningun numero deberia ser mayor a 1, ya que indicaria que una neurona se activo para mas de una clase.
+      Para calcular este factor, nos armaremos un mapa de la red neuronal en donde tendremos registradas las cantidades de veces que se activó una neurona en las 9 clases distintas. En un escenario ideal, ningún número debería ser mayor a 1, ya que indicaría que una neurona se activó para más de una clase.
       
       ~
       
-      Una vez calculado este mapa sumaremos todos los valores de la matriz, le restaremos la cantidad de neuronas que no eran cero dentro del mapa (por lo que en el caso ideal el factor nos daria cero) y lo dividiremos por esa misma cantidad.
+      Una vez calculado este mapa sumaremos todos los valores de la matriz, le restaremos la cantidad de neuronas que no eran cero dentro del mapa (por lo que en el caso ideal el factor nos daría cero) y lo dividiremos por esa misma cantidad.
       
       $$FD(D, W) = \frac{sumActCruz(D, W) - noSonCero(D, W)}{noSonCero(D, W)}$$
       
       Donde $D$ representa los datos a utilizar y $W$ la matriz de pesos de la red neuronal ya entrenada. Se supone que $sumActCruz$ internamente calcula las activaciones, al igual que $noSonCero$ calcula la cantidad de neuronas que se activaron.
       
       ~
+
       \subsubsection{Analisis de resultados}
       Para analizar los resultados de las metricas decidimos generar 9 folds distintos para luego promediar los resultados de los mismos. No vimos la necesidad de repetir los tests a diferencia del analisis anterior, ya que la red de kohonen da resultados mas estables. Cada fold estar\'a compuesto por un set de entrenamiento y uno de validaci\'on con instancias seleccionadas al azar. Para decidir que tama\~nos de redes analizar en los tests, decidimos realizar un analisis preliminar viendo como la red neuronal ``cubria'' el conjunto de entrenamiento con distinta cantidad de neuronas.
-      
       ~
       
       Para esto, realizamos un analisis de componentes pricipales de los datos y trasladamos los mismos a un espacio planar utilizando las dos primeras componentes como base del nuevo espacio. En un espacio mas grande cada neurona se mueve en una dimension mayor, pero suponemos que no hace falta una cantidad mayor de neuronas para cubrir de forma eficiente los datos en un espacio de mayor dimensionalidad; dicho de otra forma, la relacion se mantiene independiente de la dimensionalidad. Es por eso que este analisis nos parecio relevante como criterio.

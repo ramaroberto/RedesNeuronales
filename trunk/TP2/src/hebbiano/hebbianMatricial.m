@@ -29,7 +29,6 @@ function [weights, razon, epocaOError] = hebbianMatricial( dataset, cantNeuronas
                 r = ones(M,1)*x - xMonio;
                 deltaW = (learningRate * r .* (y'*ones(1,N)))';
 			elseif regla == 'M'
-                %x_monio' = y*weights';
                 deltaW = learningRate * (x-y*weights')' * y;
             end
 			
