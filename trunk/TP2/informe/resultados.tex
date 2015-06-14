@@ -2,7 +2,7 @@
 \begin{document}
   
   \section{Resultados}
-    Para analizar los distintos métodos decidimos generar 9 folds con los datos. Teniendo un conjunto provisto de 900 datos, cada entrenamiento se realiz\'o con 800 entradas y la validación con las 100 restantes. Además, cada experimento fue repetido 5 veces a fin de tener diferentes corridas de cada caso y observar si se produc\'ian diferentes resultados con cada una.
+    Para analizar los distintos métodos decidimos generar 9 folds con los datos. Teniendo un conjunto provisto de 900 datos, cada entrenamiento se realiz\'o con 800 entradas y la validación con las 100 restantes. Además, en el caso de reducción de dimensiones, cada experimento fue repetido 5 veces a fin de tener diferentes corridas de cada caso y observar si se produc\'ian diferentes resultados con cada una.
     
     \subsection{Reducción de dimensiones}
       Para analizar este modelo se consideraron los dos criterios de parada mencionados anteriormente: componentes principales ortogonales y $\Delta W$ nulo. Para cada una de esas opciones se usaron las reglas de Oja y de Sanger de modo de poder probar las distintas combinaciones y comparar sus resultados. 
@@ -192,7 +192,7 @@
 	
 	Observando las Tablas \ref{tab:pesos_sanger500} y \ref{tab:pesos_oja500} es posible ver que en todos los casos los errores cometidos al llegar al máximo de épocas permitido es el mismo para todas las repeticiones de los experimentos. Observando los valores es posible ver que casi todos los valores están en torno a 0.0047 y 0.0048 y sólo uno en torno a 0.0029. Dado que el valor de epsilon tomado es 0.001, en todos los casos el criterio de corte efectivo acaba siendo el máximo de épocas. Dado el learning rate escogido (0.001) y las operaciones entre instancias de entrada y pesos, este error (correspondiente a la norma Frobenius de la matriz de delta pesos) es el mínimo alcanzado y por ende se puede decir que el algoritmo convergió. Es claro entonces que el epsilon elegido es muy pequeño para los valores en los que converge la red con estas instancias independientemente de si la regla utilizada es la de Oja o la de Sanger. Comparando ambas reglas, es posible ver que los valores con la regla de Oja son levemente menores.
 	
-	Dado que con 500 épocas en todos los casos se llegó a que la red converjiese, decidimos repetir la experimentación usando como tope 250 épocas. Observando las Tablas \ref{tab:pesos_sanger250} y \ref{tab:pesos_oja250} es posible ver que los valores de convergencia son prácticamente los mismos que usando 500 \'epocas. 
+	Dado que con 500 épocas en todos los casos se llegó a que la red convergiese, decidimos repetir la experimentación usando como tope 250 épocas. Observando las Tablas \ref{tab:pesos_sanger250} y \ref{tab:pesos_oja250} es posible ver que los valores de convergencia son prácticamente los mismos que usando 500 \'epocas. 
 	
 	~
 	
@@ -242,7 +242,7 @@
 	
 	~
 	
-	Recordando que para la regla de Oja y el criterio de ortogonalidad casi siempre se produjo el corte por ortogonalidad y analizando los resultados espaciales de las instancias podemos afirmar que en general la separación producida por las tres componentes principales no es demasiado útil desde lo visual. Apenas dos clases aparecen en general más separadas de las demás, la azul y la magenta (5 y 1 respectivamente). Sin embargo, hay otras clases que se ubican formando cúmulos (clases roja, celeste, verde, amarilla y marrrón) de modo que utilizando alguna técnica de clasificación como knn sería posible caracterizarlas correctamente aunque obviamente sería necesario realizar experimentos con esto para corroborarlo.
+	Recordando que para la regla de Oja y el criterio de ortogonalidad casi siempre se produjo el corte por ortogonalidad y analizando los resultados espaciales de las instancias podemos afirmar que en general la separación producida por las tres componentes principales no es demasiado útil desde lo visual. Apenas dos clases aparecen en general más separadas de las demás, la azul y la magenta (5 y 1 respectivamente). Sin embargo, hay otras clases que se ubican formando cúmulos (clases roja, celeste, verde, amarilla y marrrón) de modo que utilizando alguna técnica de clasificación como KNN sería posible caracterizarlas correctamente aunque obviamente sería necesario realizar experimentos con esto para corroborarlo.
 	
 	Considerando ahora las instancias de validación (triángulos en los gráficos), salvo raras excepciones no se ven instancias de validación demasiado alejadas de las instancias de entrenamiento correspondientes a la misma clase (mismo color). Esto indica que las tres primeras componentes principales permiten agrupar de manera bastante eficaz a las distintas clases. Es claro que la apreciación visual de los gráficos no es suficiente para determinar esto ya que sería necesario aplicar posteriormente alguna técnica de clasificación pero auspicia posibles buenos resultados.
 	
@@ -607,8 +607,10 @@
       donde $\alpha$ fue un parámetro variado en valores mayores y menores a 1 y $epoca$ es la época actual.
 
  
-      
+    \newpage
     \subsection{Mapeo de características}
+    
+      Para analizar los resultados de las m\'etricas decidimos generar 9 folds distintos para luego promediar los resultados de los mismos. No vimos la necesidad de repetir los tests a diferencia del an\'alisis anterior, ya que la red de kohonen da resultados mas estables. Cada fold estar\'a compuesto por un set de entrenamiento y uno de validaci\'on con instancias seleccionadas al azar.
     
       En este caso, el análisis de este modelo se vuelve algo particular. Para realizar el mismo, decidimos utilizar dos métricas: la primera con el objetivo de obtener alguna noción de desempe\~no de la red, y la segunda para conocer que tan distanciados estaban los distintos grupos de activación luego del entrenamiento.
       
@@ -622,7 +624,7 @@
       
       $$DD_rel(DTr, DTe, W, M_1, M_2) = \frac{DD_abs(DTr, DTe, W)}{||(M_1,M_2)||}$$
       
-      Donde $DTr$ es el dataset de entrenamiento, $DTe$ es el dataset de validación, $W$ es la matriz de pesos y $M_1, M_2$  son las dimensiones de la última. Se supone que $mAct$ calcula los mapas de dominantes para los datos otorgados y que $dM$ calcula la distancia media entre dichos dominantes. En otra variacion de la metrica, $dM$ puede calculado utilizando distancia Manhattan.
+      Donde $DTr$ es el dataset de entrenamiento, $DTe$ es el dataset de validación, $W$ es la matriz de pesos y $M_1, M_2$  son las dimensiones de la última. Se supone que $mAct$ calcula los mapas de dominantes para los datos otorgados y que $dM$ calcula la distancia media entre dichos dominantes. En otra variaci\'on de la metrica, $dM$ puede calculado utilizando distancia Manhattan.
       
       \subsubsection{Factor de cruce (FC)}
       
@@ -642,15 +644,15 @@
       
       ~
 
-      \subsubsection{Analisis de resultados}
-      Para analizar los resultados de las metricas decidimos generar 9 folds distintos para luego promediar los resultados de los mismos. No vimos la necesidad de repetir los tests a diferencia del analisis anterior, ya que la red de kohonen da resultados mas estables. Cada fold estar\'a compuesto por un set de entrenamiento y uno de validaci\'on con instancias seleccionadas al azar. Para decidir que tama\~nos de redes analizar en los tests, decidimos realizar un analisis preliminar viendo como la red neuronal ``cubria'' el conjunto de entrenamiento con distinta cantidad de neuronas.
+      \subsubsection{Experimentaci\'on preliminar}
+      Para decidir que tama\~nos de redes utilizar durante la experimentaci\'on, decidimos realizar un an\'alisis preliminar viendo como la red neuronal ``cubr\'ia'' el conjunto de entrenamiento con distinta cantidad de neuronas.
       ~
       
-      Para esto, realizamos un analisis de componentes pricipales de los datos y trasladamos los mismos a un espacio planar utilizando las dos primeras componentes como base del nuevo espacio. En un espacio mas grande cada neurona se mueve en una dimension mayor, pero suponemos que no hace falta una cantidad mayor de neuronas para cubrir de forma eficiente los datos en un espacio de mayor dimensionalidad; dicho de otra forma, la relacion se mantiene independiente de la dimensionalidad. Es por eso que este analisis nos parecio relevante como criterio.
+      Para esto, realizamos un an\'alisis de componentes principales de los datos y trasladamos los mismos a un espacio planar utilizando las dos primeras componentes como base del nuevo espacio. En un espacio mas grande cada neurona se mueve en una dimensi\'on mayor, pero suponemos que no hace falta una cantidad mayor de neuronas para cubrir de forma eficiente los datos en un espacio de mayor dimensionalidad; dicho de otra forma, la relaci\'on se mantiene independiente de la dimensionalidad. Es por eso que este an\'alisis nos pareci\'o relevante como criterio.
       
       ~
       
-      Durante este analisis preliminar, utilizamos el modo de auto-ajuste con 1000 epocas de entrenamiento. Analizamos arquitecturas cuadradas de neuronas, desde 5x5 hasta 50x50 con incrementos de 5 neuronas en cada paso y un experimento final con una red de 100x100 neuronas. Por lo que, realizamos un total de 11 experimentos preliminares.
+      Durante este an\'alisis preliminar, utilizamos el modo de auto-ajuste con 1000 \'epocas de entrenamiento. Analizamos arquitecturas cuadradas de neuronas, desde 5x5 hasta 50x50 con incrementos de 5 neuronas en cada paso y un experimento final con una red de 100x100 neuronas. Por lo que, realizamos un total de 11 experimentos preliminares.
       
       \newpage
       \newgeometry{textwidth=21cm,textheight=25cm}
@@ -738,11 +740,11 @@
       
        \restoregeometry
        
-       Como se puede observar en los graficos obtenidos, las diferencias mas significativas en la forma que adquiere la red se pueden notar entre las redes de 5x5 hasta 30x30. Desde 30x30 en adelante no se notan diferencias mayores en la topologia de la red, si no que, expresado de alguna forma, es un incremento en la ``resolucion'' de la misma.
+       Como se puede observar en los gr\'aficos obtenidos, las diferencias mas significativas en la forma que adquiere la red se pueden notar entre las redes de 5x5 hasta 30x30. Desde 30x30 en adelante no se notan diferencias mayores en la topolog\'ia de la red, si no que, expresado de alguna forma, es un incremento en la ``resoluci\'on'' de la misma.
        
-       ~
+       \subsubsection{Elecci\'on de cantidad de \'epocas}
        
-       Para decidir con cuantas epocas realizar la experimentación analizamos como la red de 30x30 (a la que encontramos como mas representativa) iba cambiando su forma al pasar las epocas. Mostramos a continuación los graficos correspondientes.       
+       Para decidir con cuantas \'epocas realizar la experimentación analizamos como la red de 30x30 (a la que encontramos como mas representativa) iba cambiando su forma al pasar las \'epocas. Mostramos a continuación los gr\'aficos correspondientes.       
        
        \FloatBarrier
 	\begin{minipage}{0.31\textwidth}
@@ -750,19 +752,19 @@
 	  \begin{figure}[H]
 	    \centering
 	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/5.png}
-		  \caption{\small 5 epocas}
+		  \caption{\small 5 \'epocas}
 	  \end{figure}
 	  
 	  \begin{figure}[H]
 	    \centering
 	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/50.png}
-		  \caption{\small 50 epocas}
+		  \caption{\small 50 \'epocas}
 	  \end{figure}
 	  
 	  \begin{figure}[H]
 	    \centering
 	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/300.png}
-		  \caption{\small 300 epocas}
+		  \caption{\small 300 \'epocas}
 	  \end{figure}
 	\end{minipage}
 	\begin{minipage}{0.33\textwidth}
@@ -770,19 +772,19 @@
 	  \begin{figure}[H]
 	    \centering
 	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/10.png}
-		  \caption{\small 10 epocas}
+		  \caption{\small 10 \'epocas}
 	  \end{figure}
 	  
 	  \begin{figure}[H]
 	    \centering
 	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/100.png}
-		  \caption{\small 100 epocas}
+		  \caption{\small 100 \'epocas}
 	  \end{figure}
 	  
 	  \begin{figure}[H]
 	    \centering
 	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/500.png}
-		  \caption{\small 500 epocas}
+		  \caption{\small 500 \'epocas}
 	  \end{figure}
 	\end{minipage}
 	\begin{minipage}{0.30\textwidth}
@@ -790,29 +792,29 @@
 	  \begin{figure}[H]
 	    \centering
 	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/20.png}
-		  \caption{\small 20 epocas}
+		  \caption{\small 20 \'epocas}
 	  \end{figure}
 	  
 	  \begin{figure}[H]
 	    \centering
 	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/200.png}
-		  \caption{\small 200 epocas}
+		  \caption{\small 200 \'epocas}
 	  \end{figure}
 	  
 	  \begin{figure}[H]
 	    \centering
 	    \includegraphics[height=3.75cm,keepaspectratio]{graficos/tiempo/1000.png}
-		  \caption{\small 1000 epocas}
+		  \caption{\small 1000 \'epocas}
 	  \end{figure}
 	\end{minipage}
        
        \newpage
        
-       Se puede observar que a partir de las 200 epocas procede mas como un ajuste fino, por lo que no hay cambios demasiados significativos en la topologia. Esto principalmente puede darse por la tecnica de autoajuste utilizada en la red. De todas formas, encontramos el limite de 300 epocas como un numero apropiado para la experimentaci\'on.
+       Se puede observar que a partir de las 200 \'epocas procede mas como un ajuste fino, por lo que no hay cambios demasiados significativos en la topolog\'ia. Esto principalmente puede darse por la t\'ecnica de autoajuste utilizada en la red. De todas formas, encontramos el limite de 300 \'epocas como un numero apropiado para la experimentaci\'on.
        
-       ~
+       \subsubsection{Experimentaci\'on y an\'alisis de resultados}
        
-       Decidimos entonces, experimentar con las redes de 5x5, 10x10, 15x15, 20x20, 30x30 y 50x50, con autoajuste activado y tomando las metricas de distancia a dominantes, absoluta y relativa, con distancia euclidiana y Manhattan; y la metrica de factor de cruce. Se presentan los resultados obtenidos luego de realizar los promedios entre los 9 folds.
+       En base a la experimentaci\'on preliminar, decidimos experimentar con las redes de 5x5, 10x10, 15x15, 20x20, 30x30 y 50x50, con autoajuste activado y tomando las m\'etricas de distancia a dominantes, absoluta y relativa, con distancia euclidiana y Manhattan; y la m\'etrica de factor de cruce. Se presentan los resultados obtenidos luego de realizar los promedios entre los 9 folds.
        
        \begin{table}[H]
 	  \centering
@@ -829,7 +831,7 @@
 	  \label{tab:resultados_kohonen}
 	\end{table}
 	
-	Como se puede observar, efectivamente ocurre una reduccion en DD$_{rel}$, DD$_{rel}(M)$ y FC a medida que aumentamos el tama\~no de la red, mientras que DD$_{abs}$ y DD$_{abs}(M)$ crecen. Las reducciones en los valores ocurren porque, en terminos de las metricas elegidas, se genera una mejor clusterizaci\'on a medida que aumentamos el tama\~no de la red; es decir que los dominantes se vuelven relativamente mas cercanos a las instancias que representan y hay una mejor separacion entre los distintos clusters a nivel de activacion de neuronas. 
+	Como se puede observar, efectivamente ocurre una reducci\'on en DD$_{rel}$, DD$_{rel}(M)$ y FC a medida que aumentamos el tama\~no de la red, mientras que DD$_{abs}$ y DD$_{abs}(M)$ crecen. Las reducciones en los valores ocurren porque, en terminos de las m\'etricas elegidas, se genera una mejor clusterizaci\'on a medida que aumentamos el tama\~no de la red; es decir que los dominantes se vuelven relativamente mas cercanos a las instancias que representan y hay una mejor separaci\'on entre los distintos clusters a nivel de activaci\'on de neuronas. 
 	
 	Por otro lado, las distancias absolutas crecen porque existe una cantidad mayor de neuronas en el medio, lo que nos puede estar indicando una cantidad mayor de neuronas que no se activan para ninguna clase.
 	
@@ -880,11 +882,11 @@
        
        \vspace{20pt}
        
-       Se puede observar que los mapas concuerdan con los resultados analiticos obtenidos. Desde un principio se puede ver una clara clusterizaci\'on de la red, y a medida que aumentamos el tama\~no de la misma la cantidad de neuronas sin activacion crece. 
+       Se puede observar que los mapas concuerdan con los resultados anal\'iticos obtenidos. Desde un principio se puede ver una clara clusterizaci\'on de la red, y a medida que aumentamos el tama\~no de la misma la cantidad de neuronas sin activaci\'on crece. 
        
        ~
        
-       Dados estos resultados creemos que la red de 15x15 es una buena arquitectura para modelar el problema, ya que genera una buena clusterizacion y tiene un factor de cruce aceptable, mientras que hay pocas neuronas que no se activan.
+       Dados estos resultados creemos que la red de 15x15 es una buena arquitectura para modelar el problema, ya que genera una buena clusterizaci\'on y tiene un factor de cruce aceptable, mientras que hay pocas neuronas que no se activan.
 	
 
 \end{document}
