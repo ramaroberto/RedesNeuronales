@@ -32,9 +32,9 @@ trainInput = csvread(trainFilename, 0, 1);
 
 lr = 1;
 sigma = 2;
-M1 = 100;
-M2 = 100;
-epocs = 1000;
+M1 = 30;
+M2 = 30;
+epocs = 5;
 [weights] = som( SCORE(:,1:2), M1, M2, epocs, lr, sigma, true, false );
 
 makeGridGraphic(weights, SCORE, epocs, M1, M2);

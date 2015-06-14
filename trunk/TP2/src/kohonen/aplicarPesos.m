@@ -1,4 +1,4 @@
-function [activados] = aplicarPesos(weights, input, M1, M2)
+function [activados, cantidades] = aplicarPesos(weights, input, M1, M2)
 	cantidades = zeros(M1,M2,9);
 	activados = zeros(M1,M2);
 	for instancia = 1:size(input,1)
