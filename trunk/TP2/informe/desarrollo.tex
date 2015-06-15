@@ -41,7 +41,86 @@
       \subsubsection{Criterios de convergencia}
 	Para determinar que el algoritmo convergió a vectores ortogonales correspondientes a las primeras componentes principales, utilizamos dos criterios diferentes. Por un lado, calcular el producto entre los vectores obtenidos en cada iteración y ver que el resultado sea menor a un epsilon pequeño. Si todos los productos de los vectores entre sí son pequeños entonces se puede decir que los mismos son suficientemente ortogonales y entonces dejar de iterar. El otro criterio considerado observa los valores de los $\delta W$. Si dicha matriz tiene una norma Frobenius menor a un epsilon pequeño entonces se asume que el aprendizaje que se puede obtener de allí es mínimo y por ende no tiene sentido continuar iterando.
 	
+	\newpage
+	\subsubsection{Pseudoc\'odigo}
 	
+	A modo de dejar bien asentada la implementación, la presentamos a continuación en formato de pseudocódigo. Sin embargo, no daremos mayores explicaciones ya que no presenta ninguna innovación.
+	
+	\vspace{10pt}
+	
+	\begin{minipage}{0.5\textwidth}
+	
+	  \begin{algorithmic}
+	      \Function{Hebbiano}{$D$, $M$, $Ep_{m}$, $regla$, $\gamma$, $\alpha$}
+		\State $Ep = 0$
+		\State $N =$ cols(D)
+		\State $W = 0.1 * $randn(cols($D$), $M_1*M_2$)
+		\State $\epsilon = 0.001$
+		\State suma$\Delta = 0$
+		\State salir $=$ false
+		
+		\While{$Ep < Ep_{max} \land \neg $salir}
+		  \For{$x \in D$}
+		    \If{$regla = sanger$}
+		      \State $\tilde{x} = (W * $triagS$(y'*$unos$(1,M)))$
+		      \State $r = unos(M,1) * x - \tilde{x}$
+		      \State $\Delta W = \gamma * r .* (y'*$unos$(1,N))$
+		    \Else
+ 		      \State $\Delta W = \gamma * (x-y*W')' * y$
+		    \EndIf
+		    \State $W += \Delta W$
+		  \EndFor
+		  
+		  \If{$\alpha \not= 0$}
+		    \State $\gamma = Ep^{-\alpha}$
+		  \EndIf
+		  
+		  \State suma$\Delta = ||\Delta W||_{Frobenius}$
+		  
+		  \If{criterio $= p$}
+		    \State salir $=$ salidaPesos($suma\Delta$. $\epsilon$)
+		  \Else
+		    \State salir $=$ salidaOrtogonal($W$. $\epsilon$)
+		  \EndIf
+		  \State $Ep += 1$
+		\EndWhile
+		\State \Return $W$
+	      \EndFunction
+	  \end{algorithmic}
+	  \vspace{20pt}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}	
+	
+	  \begin{algorithmic}
+	   \Function{salidaPesos}{$suma\Delta$. $\epsilon$}
+	      \If{suma$\Delta < \epsilon$}
+		\State \Return true
+	      \EndIf
+	      \State \Return false
+	   \EndFunction
+	  \end{algorithmic}
+	  \vspace{40pt}
+	  \begin{algorithmic}
+	   \Function{salidaOrtogonal}{$W$. $\epsilon$}
+	      \State $j_1 = 1$
+	      \While{$j_1 < $\#cols$(W)-1$}
+		\State $v_1 = $fila$_{j_1}(W)$
+		\State $j_2 = j_1 + 1$
+		\While{$j_2 < $\#cols$(W)-1$}
+		  \State $v_2 = $fila$_{j_2}(W)$
+		  \If{$|v_1' * v_2| > \epsilon$}
+		    \State \Return false
+		  \EndIf
+		  \State $j_2 = j_2 + 1$
+		\EndWhile
+		\State $j_1 = j_1 + 1$
+	      \EndWhile
+	      \State \Return true
+	   \EndFunction
+	  \end{algorithmic}
+	  
+	  \vspace{84pt}
+	\end{minipage}
 	
 	
     \subsection{Mapeo de características auto-organizado}
@@ -68,7 +147,7 @@
 		    \State $\tilde{y}= $resta($x$,$W$)
 		    \State $j^* =$ indiceDeMinimo($\tilde{y}$)
 		    \State $Di = $ dists($j^*$, $M_1*M_2$, $M_2$, $\sigma$)
-		    \State $\Delta W =$ correccion($Di$, $\tilde{y}$,$\gamma$)
+		    \State $\Delta W =$ correccion($Di$, $x'-W$,$\gamma$)
 		    \State $W += \Delta W$
 		  \EndFor
 		  \State $Ep += 1$
