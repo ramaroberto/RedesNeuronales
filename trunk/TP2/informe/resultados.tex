@@ -645,14 +645,16 @@
       ~
 
       \subsubsection{Experimentaci\'on preliminar}
-      Para decidir que tama\~nos de redes utilizar durante la experimentaci\'on, decidimos realizar un an\'alisis preliminar viendo como la red neuronal ``cubr\'ia'' el conjunto de entrenamiento con distinta cantidad de neuronas.
+      Para decidir qué tama\~nos de redes utilizar durante la experimentaci\'on, decidimos realizar un an\'alisis preliminar viendo cómo la red neuronal ``cubr\'ia'' el conjunto de entrenamiento con distinta cantidad de neuronas.
       ~
       
-      Para esto, realizamos un an\'alisis de componentes principales de los datos y trasladamos los mismos a un espacio planar utilizando las dos primeras componentes como base del nuevo espacio. En un espacio mas grande cada neurona se mueve en una dimensi\'on mayor, pero ya que Kohonen tiene una naturaleza geom\'etrica, suponemos que no hace falta una cantidad mayor de neuronas para cubrir de forma eficiente los datos en un espacio de mayor dimensionalidad; dicho de otra forma, la relaci\'on se mantiene independiente de la dimensionalidad. Es por eso que este an\'alisis nos pareci\'o relevante como criterio de elecci\'on de las arquitecturas.
+      Para esto, realizamos un an\'alisis de componentes principales de los datos y trasladamos los mismos a un espacio planar utilizando las dos primeras componentes como base del nuevo espacio. En un espacio más grande cada neurona se mueve en una dimensi\'on mayor, pero ya que Kohonen tiene una naturaleza geom\'etrica, suponemos que no hace falta una cantidad mayor de neuronas para cubrir de forma eficiente los datos en un espacio de mayor dimensionalidad; dicho de otra forma, la relaci\'on se mantiene independiente de la dimensionalidad. Es por eso que este an\'alisis nos pareci\'o relevante como criterio de elecci\'on de las arquitecturas.
       
       ~
       
       Durante este an\'alisis preliminar, utilizamos el modo de auto-ajuste con 1000 \'epocas de entrenamiento. Analizamos arquitecturas cuadradas de neuronas, desde 5x5 hasta 50x50 con incrementos de 5 neuronas en cada paso y un experimento final con una red de 100x100 neuronas. Por lo que, realizamos un total de 11 experimentos preliminares.
+      
+      A continuaci\'on vemos los gráficos al realizar la transformación usando las dos primeras componentes principales sobre el Fold 9. Sin embargo se obtuvieron resultados similares para los demás. Dado que no aportaba nada distinto mostrarlos a todos decidimos colocar los gráficos de sólo uno de ellos.
       
       \newpage
       \newgeometry{textwidth=21cm,textheight=25cm}
@@ -740,11 +742,11 @@
       
        \restoregeometry
        
-       Como se puede observar en los gr\'aficos obtenidos, las diferencias mas significativas en la forma que adquiere la red se pueden notar entre las redes de 5x5 hasta 30x30. Desde 30x30 en adelante no se notan diferencias mayores en la topolog\'ia de la red, si no que, expresado de alguna forma, es un incremento en la ``resoluci\'on'' de la misma.
+       Como se puede observar en los gr\'aficos obtenidos, las diferencias más significativas en la forma que adquiere la red se pueden notar entre las redes de 5x5 hasta 30x30. Desde 30x30 en adelante no se notan diferencias mayores en la topolog\'ia de la red, si no que, expresado de alguna forma, es un incremento en la ``resoluci\'on'' de la misma.
        
        \subsubsection{Elecci\'on de cantidad de \'epocas}
        
-       Para decidir con cuantas \'epocas realizar la experimentación analizamos como la red de 30x30 (a la que encontramos como mas representativa) iba cambiando su forma al pasar las \'epocas. Mostramos a continuación los gr\'aficos correspondientes.       
+       Para decidir con cuantas \'epocas realizar la experimentación analizamos como la red de 30x30 (a la que encontramos como más representativa) iba cambiando su forma al pasar las \'epocas. Mostramos a continuación los gr\'aficos correspondientes.       
        
        \FloatBarrier
 	\begin{minipage}{0.31\textwidth}
@@ -810,7 +812,7 @@
        
        \newpage
        
-       Se puede observar que a partir de las 200 \'epocas procede mas como un ajuste fino, por lo que no hay cambios demasiados significativos en la topolog\'ia. Esto principalmente puede darse por la t\'ecnica de autoajuste utilizada en la red. De todas formas, encontramos el limite de 300 \'epocas como un numero apropiado para la experimentaci\'on.
+       Se puede observar que a partir de las 200 \'epocas procede más como un ajuste fino, por lo que no hay cambios demasiado significativos en la topolog\'ia. Esto principalmente puede darse por la t\'ecnica de autoajuste utilizada en la red. De todas formas, encontramos el limite de 300 \'epocas como un número apropiado para la experimentaci\'on.
        
        \subsubsection{Experimentaci\'on y an\'alisis de resultados}
        
@@ -831,13 +833,13 @@
 	  \label{tab:resultados_kohonen}
 	\end{table}
 	
-	Como se puede observar, efectivamente ocurre una reducci\'on en DD$_{rel}$, DD$_{rel}(M)$ y FC a medida que aumentamos el tama\~no de la red, mientras que DD$_{abs}$ y DD$_{abs}(M)$ crecen. Las reducciones en los valores ocurren porque, en terminos de las m\'etricas elegidas, se genera una mejor clusterizaci\'on a medida que aumentamos el tama\~no de la red; es decir que los dominantes se vuelven relativamente mas cercanos a las instancias que representan y hay una mejor separaci\'on entre los distintos clusters a nivel de activaci\'on de neuronas. 
+	Como se puede observar, efectivamente ocurre una reducci\'on en DD$_{rel}$, DD$_{rel}(M)$ y FC a medida que aumentamos el tama\~no de la red, mientras que DD$_{abs}$ y DD$_{abs}(M)$ crecen. Las reducciones en los valores ocurren porque, en términos de las m\'etricas elegidas, se genera una mejor clusterizaci\'on a medida que aumentamos el tama\~no de la red; es decir que los dominantes se vuelven relativamente más cercanos a las instancias que representan y hay una mejor separaci\'on entre los distintos clusters a nivel de activaci\'on de neuronas. 
 	
 	Por otro lado, las distancias absolutas crecen porque existe una cantidad mayor de neuronas en el medio, lo que nos puede estar indicando una cantidad mayor de neuronas que no se activan para ninguna clase.
 	
 	~
 	
-	Observemos que ocurre si representamos los mapas de dominantes como mapas de calor. En este caso la clase 0 representa aquellas neuronas que no se activaron para ninguna clase.
+	Observemos qué ocurre si representamos los mapas de dominantes como mapas de calor. En este caso la clase 0 representa aquellas neuronas que no se activaron para ninguna clase.
 	
        
        \begin{minipage}{0.30\textwidth}
